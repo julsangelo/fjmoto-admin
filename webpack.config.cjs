@@ -68,6 +68,20 @@ let config = {
                 test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
                 type: "asset",
             },
+            {
+                test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+                type: "asset/resource",
+                generator: {
+                    filename: "[name][ext]",
+                },
+            },
+            {
+                test: /\.(png|jpg|jpeg|svg|gif|webm|webp)$/,
+                type: "asset/resource",
+                generator: {
+                    filename: "images/[name].[ext]",
+                },
+            },
         ],
     },
     plugins: [

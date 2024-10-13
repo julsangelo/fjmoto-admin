@@ -3,16 +3,37 @@
   \**************************************************************************************************************************************************************************************************************************************************************************/
 @font-face {
   font-family: "Manrope";
-  src: url(/a9b9e09fe6b69741f316.ttf) format("truetype");
+  src: url(/manrope.ttf) format("truetype");
 }
 body {
   margin: 0;
-  font-family: "sans-serif", sans-serif;
-  background-color: #F8F8F8;
+  font-family: "Manrope", sans-serif;
+  background-color: #f8f8f8;
 }
 
 .Sidebar-module-sideBar-cTter {
-  background-color: #EBEBEB;
+  background-color: #ebebeb;
   height: 100dvh;
   width: 230px;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/Brand.module.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+.Brand-module-brandContainer-yHx7n {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  column-gap: 5%;
+  padding: 20px;
+}
+
+.Brand-module-brandLogo-OhxjX {
+  height: 40px;
+  width: 40px;
+}
+
+.Brand-module-brandName-ZVnH1 {
+  font-weight: bold;
+  font-size: 16px;
 }

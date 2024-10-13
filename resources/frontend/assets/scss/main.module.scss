@@ -1,14 +1,14 @@
 @font-face {
     font-family: "Manrope";
-    src: url('@assets/font/manrope.ttf') format('truetype');
+    src: url("/resources/frontend/assets/font/manrope.ttf") format("truetype");
 }
 
-$b_primary: #FFFFFF;
-$b_secondary: #F8F8F8;
-$b_darker: #EBEBEB;
+$b_primary: #ffffff;
+$b_secondary: #f8f8f8;
+$b_darker: #ebebeb;
 
 body {
     margin: 0;
-    font-family: 'sans-serif', sans-serif;
+    font-family: "Manrope", sans-serif;
     background-color: $b_secondary;
 }

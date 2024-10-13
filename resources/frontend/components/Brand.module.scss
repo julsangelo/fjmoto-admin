@@ -1,11 +1,18 @@
 .brandContainer {
-    margin-inline-start: 20px;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    column-gap: 5%;
+    padding: 20px;
 }
 
 .brandLogo {
-
+    height: 40px;
+    width: 40px;
 }
 
 .brandName {
-
+    font-weight: bold;
+    font-size: 16px;
 }
