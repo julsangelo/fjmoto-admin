@@ -1,0 +1,10 @@
+@import "../assets/scss/main.module";
+
+.tableButton {
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    color: $c_primary;
+    border: 1px solid $c_gray;
+    border-radius: 5px;
+}

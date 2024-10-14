@@ -1,0 +1,29 @@
+@import "../assets/scss/main.module";
+
+.inputContainer {
+    border: 1px solid $c_gray;
+    border-radius: 5px;
+    padding: 15px 20px;
+    width: fit-content;
+    column-gap: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.inputContainer:focus-within {
+    outline: 1px solid $c_primary;
+}
+
+.input {
+    font-size: 16px;
+    border: none;
+    height: 100%;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.input::placeholder {
+    color: $c_darkgray;
+}

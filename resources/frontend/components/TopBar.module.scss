@@ -1,0 +1,14 @@
+@import "../assets/scss/main.module";
+
+.topBar {
+    background-color: $b_primary;
+    height: 70px;
+    width: calc(100% - 330px);
+    position: absolute;
+    display: flex;
+    top: 0;
+    right: 0;
+    padding: 0 50px 0 50px;
+    justify-content: end;
+    border-bottom: 1px solid $c_gray;
+}

@@ -1,0 +1,99 @@
+@import "../assets/scss/main.module";
+
+table input {
+    height: 20px;
+    width: 20px;
+    margin-left: 15px;
+}
+
+.productImage {
+    height: 40px;
+    width: 40px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+}
+
+thead th {
+    background-color: $c_gray;
+    text-align: left;
+    border: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: normal;
+    color: $c_darkgray;
+}
+
+thead {
+    padding-bottom: 10px;
+}
+
+thead tr {
+    border: none;
+    padding-bottom: 5px;
+}
+
+tbody {
+    margin-top: 10px;
+}
+
+tbody td {
+    border: none;
+    padding: 0 20px;
+}
+
+tbody tr {
+    border: none;
+}
+
+hr {
+    margin: 0;
+    border: 1px solid #ddd;
+}
+
+.tableBottom {
+    display: flex;
+    padding: 20px 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page {
+    font-size: 15px;
+    color: $c_darkgray;
+}
+
+.pagination {
+    display: flex;
+    column-gap: 20px;
+}
+
+.paginationPage {
+    height: 40px;
+    width: 40px;
+    font-size: 16px;
+    border: 1px solid $c_gray;
+    color: $c_mediumgray;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paginationButton {
+    height: 40px;
+    width: 40px;
+    background-color: $c_gray;
+    color: $c_darkgray;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+}
+
+.tableAction {
+    display: flex;
+    column-gap: 10px;
+}

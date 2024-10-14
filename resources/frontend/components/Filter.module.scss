@@ -1,0 +1,14 @@
+@import "../assets/scss/main.module";
+
+.filter {
+    border: 1px solid $c_gray;
+    border-radius: 5px;
+    padding: 15px 20px;
+    width: fit-content;
+    background-color: transparent;
+    font-size: 16px;
+    color: $c_darkgray;
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}

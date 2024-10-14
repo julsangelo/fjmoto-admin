@@ -1,5 +1,12 @@
 import React from "react";
+import styles from "./BarLink.module";
+import Icon from "./Icon";
 
-export default function () {
-    return <div></div>;
+export default function BarLink({ label, icon, height, width }) {
+    return (
+        <div className={styles.barLink}>
+            <Icon icon={icon} height={height} width={width} />
+            {label}
+        </div>
+    );
 }

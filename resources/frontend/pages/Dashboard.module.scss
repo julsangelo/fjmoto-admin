@@ -1,0 +1,39 @@
+@import "../assets/scss/main.module";
+
+.barLinkContainer {
+    margin-top: 10px;
+}
+
+.inventoryContent {
+    height: fit-content;
+    max-height: calc(100% - 170px);
+    width: calc(100% - 330px);
+    position: absolute;
+    // bottom: 0;
+    top: 71px;
+    right: 0;
+    padding: 50px 50px 50px 50px;
+}
+
+.inventoryHeader {
+    font-weight: bolder;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inventoryMain {
+    background-color: $b_primary;
+    margin-top: 20px;
+    width: 100%;
+    height: calc(100% - 68px);
+    border: 1px solid $c_gray;
+    border-radius: 5px;
+}
+
+.inventorySearchFilter {
+    display: flex;
+    justify-content: end;
+    padding: 20px 40px 20px 0;
+    column-gap: 20px;
+}

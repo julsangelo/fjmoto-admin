@@ -1,3 +1,52 @@
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/pages/Dashboard.module.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+  font-family: "Manrope";
+  src: url(/manrope.ttf) format("truetype");
+}
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #f8f8f8;
+}
+
+.Dashboard-module-barLinkContainer-SWUDV {
+  margin-top: 10px;
+}
+
+.Dashboard-module-inventoryContent-IEF6K {
+  height: fit-content;
+  max-height: calc(100% - 170px);
+  width: calc(100% - 330px);
+  position: absolute;
+  top: 71px;
+  right: 0;
+  padding: 50px 50px 50px 50px;
+}
+
+.Dashboard-module-inventoryHeader-XxHWs {
+  font-weight: bolder;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Dashboard-module-inventoryMain-L4Rsg {
+  background-color: #ffffff;
+  margin-top: 20px;
+  width: 100%;
+  height: calc(100% - 68px);
+  border: 1px solid #d7d7d7;
+  border-radius: 5px;
+}
+
+.Dashboard-module-inventorySearchFilter-lgesK {
+  display: flex;
+  justify-content: end;
+  padding: 20px 40px 20px 0;
+  column-gap: 20px;
+}
 /*!**************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/Sidebar.module.scss ***!
   \**************************************************************************************************************************************************************************************************************************************************************************/
@@ -36,4 +85,294 @@ body {
 .Brand-module-brandName-ZVnH1 {
   font-weight: bold;
   font-size: 16px;
+}
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/BarLink.module.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+  font-family: "Manrope";
+  src: url(/manrope.ttf) format("truetype");
+}
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #f8f8f8;
+}
+
+.BarLink-module-barLink-smYzG {
+  font-size: 16px;
+  padding: 15px;
+  padding-left: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  color: #3f3f3f;
+}
+
+.BarLink-module-barLink-smYzG:active {
+  background-color: white;
+  border-right: 4px solid #3f3f3f;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/TopBar.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+  font-family: "Manrope";
+  src: url(/manrope.ttf) format("truetype");
+}
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #f8f8f8;
+}
+
+.TopBar-module-topBar-HRlVI {
+  background-color: #ffffff;
+  height: 70px;
+  width: calc(100% - 330px);
+  position: absolute;
+  display: flex;
+  top: 0;
+  right: 0;
+  padding: 0 50px 0 50px;
+  justify-content: end;
+  border-bottom: 1px solid #d7d7d7;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/User.module.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
+.User-module-userContainer-t9qn5 {
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+.User-module-userName-EXqz_ {
+  font-weight: bold;
+  font-size: 15px;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/Button.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+  font-family: "Manrope";
+  src: url(/manrope.ttf) format("truetype");
+}
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #f8f8f8;
+}
+
+.Button-module-button-ibCSs {
+  background-color: #373737;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: normal;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  align-content: center;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/Input.module.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+  font-family: "Manrope";
+  src: url(/manrope.ttf) format("truetype");
+}
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #f8f8f8;
+}
+
+.Input-module-inputContainer-xIoXf {
+  border: 1px solid #d7d7d7;
+  border-radius: 5px;
+  padding: 15px 20px;
+  width: fit-content;
+  column-gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.Input-module-inputContainer-xIoXf:focus-within {
+  outline: 1px solid #373737;
+}
+
+.Input-module-input-ybfaf {
+  font-size: 16px;
+  border: none;
+  height: 100%;
+}
+
+.Input-module-input-ybfaf:focus {
+  outline: none;
+}
+
+.Input-module-input-ybfaf::placeholder {
+  color: #737373;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/Filter.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+  font-family: "Manrope";
+  src: url(/manrope.ttf) format("truetype");
+}
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #f8f8f8;
+}
+
+.Filter-module-filter-lMnwd {
+  border: 1px solid #d7d7d7;
+  border-radius: 5px;
+  padding: 15px 20px;
+  width: fit-content;
+  background-color: transparent;
+  font-size: 16px;
+  color: #737373;
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/Table.module.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+  font-family: "Manrope";
+  src: url(/manrope.ttf) format("truetype");
+}
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #f8f8f8;
+}
+
+table input {
+  height: 20px;
+  width: 20px;
+  margin-left: 15px;
+}
+
+.Table-module-productImage-y9vde {
+  height: 40px;
+  width: 40px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+}
+
+thead th {
+  background-color: #d7d7d7;
+  text-align: left;
+  border: none;
+  padding: 15px 20px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #737373;
+}
+
+thead {
+  padding-bottom: 10px;
+}
+
+thead tr {
+  border: none;
+  padding-bottom: 5px;
+}
+
+tbody {
+  margin-top: 10px;
+}
+
+tbody td {
+  border: none;
+  padding: 0 20px;
+}
+
+tbody tr {
+  border: none;
+}
+
+hr {
+  margin: 0;
+  border: 1px solid #ddd;
+}
+
+.Table-module-tableBottom-tbyrZ {
+  display: flex;
+  padding: 20px 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Table-module-page-NqLhF {
+  font-size: 15px;
+  color: #737373;
+}
+
+.Table-module-pagination-xL1kp {
+  display: flex;
+  column-gap: 20px;
+}
+
+.Table-module-paginationPage-aoUDo {
+  height: 40px;
+  width: 40px;
+  font-size: 16px;
+  border: 1px solid #d7d7d7;
+  color: #989898;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Table-module-paginationButton-jzhdh {
+  height: 40px;
+  width: 40px;
+  background-color: #d7d7d7;
+  color: #737373;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+.Table-module-tableAction-TpAP_ {
+  display: flex;
+  column-gap: 10px;
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/TableButton.module.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+  font-family: "Manrope";
+  src: url(/manrope.ttf) format("truetype");
+}
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #f8f8f8;
+}
+
+.TableButton-module-tableButton-U_wDm {
+  height: 40px;
+  width: 40px;
+  background-color: transparent;
+  color: #373737;
+  border: 1px solid #d7d7d7;
+  border-radius: 5px;
 }

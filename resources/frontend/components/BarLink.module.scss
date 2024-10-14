@@ -1,0 +1,18 @@
+@import "../assets/scss/main.module";
+
+.barLink {
+    font-size: 16px;
+    padding: 15px;
+    padding-left: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    color: $c_dark;
+}
+
+.barLink:active {
+    background-color: white;
+    border-right: 4px solid $c_dark;
+}
