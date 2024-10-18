@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./AddInventory.module";
 import Input from "./Input";
 import UploadImage from "./UploadImage";
@@ -13,13 +13,16 @@ export default function AddInventory({ onClose }) {
                 <div className={styles.addInventoryImage}>
                     <UploadImage />
                 </div>
-                <Input label="ID" />
-                <Input label="Product Name" />
-                <Input label="Quantity" />
-                <Input label="Price" />
+                <Input label="ID" value={formData.id} />
+                <Input label="Product Name" value={formData.productName} />
+                <Input label="Quantity" value={formData.quantity} />
+                <Input label="Price" value={formData.price} />
                 <Dropdown
                     label="Category"
                     className={styles.addInventoryDropdown}
+                    setSelectedBranch={(value) =>
+                        setFormData({ ...formData, category: value })
+                    }
                 />
             </div>
             <div className={styles.addInventoryButton}>
@@ -28,7 +31,7 @@ export default function AddInventory({ onClose }) {
                     onClick={onClose}
                     className={styles.addInventoryCancel}
                 />
-                <Button label="Submit" />
+                <Button label="Submit" onClick={handleSubmit} />
             </div>
         </>
     );

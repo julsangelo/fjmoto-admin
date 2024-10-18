@@ -14,3 +14,14 @@ export function getInventory(branch, callback) {
             return error;
         });
 }
+
+export function getCustomers(callback) {
+    axiosClient
+        .get(`/getCustomers`)
+        .then((response) => {
+            callback(response.data);
+        })
+        .catch((error) => {
+            return error;
+        });
+}

@@ -17,8 +17,8 @@ class InventoryController extends Controller
     public function getInventory(Request $request)
     {
         $branch = $request->query('branch');
-        $products = $this->inventory->getInventory($branch);
+        $data = $this->inventory->getInventory($branch);
 
-        return response()->json($products);
+        return response()->json($data);
     }
 }

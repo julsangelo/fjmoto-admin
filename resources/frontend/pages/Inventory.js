@@ -37,48 +37,45 @@ export default function Inventory({ branch }) {
     let closeModal = () => setIsModalOpen(false);
 
     return (
-        <>
-            <div className={styles.inventoryContent}>
-                <div className={styles.inventoryHeader}>
-                    Inventory
-                    <Button
-                        label="Add Inventory"
-                        icon="add"
-                        size="24"
-                        onClick={openModal}
-                    />
-                </div>
-                <div className={styles.inventoryMain}>
-                    <div className={styles.inventorySearchFilter}>
-                        <Input
-                            placeholder="Search products"
-                            icon="search"
-                            height="24"
-                            width="24"
-                            value={searchTerm} // Bind the value to the state
-                            onChange={handleSearchChange} // Handle input changes
-                        />
-                        <Button
-                            icon="filter"
-                            size="24"
-                            className={styles.inventoryFilter}
-                            label="Filter"
-                        />
-                        {/* <Filter label="Filter" /> */}
-                    </div>
-                    <Table
-                        checkbox={false}
-                        data={{
-                            headers: inventoryData.headers || [],
-                            data: searchTerm
-                                ? filteredData
-                                : inventoryData.data || [],
-                        }}
-                        action={true}
-                    />
-                    {isModalOpen && <Modal onClose={closeModal} />}
-                </div>
+        <div className={styles.inventoryContent}>
+            <div className={styles.inventoryHeader}>
+                Inventory
+                <Button
+                    label="Add Inventory"
+                    icon="add"
+                    size="24"
+                    onClick={openModal}
+                />
             </div>
-        </>
+            <div className={styles.inventoryMain}>
+                <div className={styles.inventorySearchFilter}>
+                    <Input
+                        placeholder="Search products"
+                        icon="search"
+                        height="24"
+                        width="24"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                    />
+                    <Button
+                        icon="filter"
+                        size="24"
+                        className={styles.inventoryFilter}
+                        label="Filter"
+                    />
+                </div>
+                <Table
+                    checkbox={false}
+                    data={{
+                        headers: inventoryData.headers || [],
+                        data: searchTerm
+                            ? filteredData
+                            : inventoryData.data || [],
+                    }}
+                    action={true}
+                />
+                {isModalOpen && <Modal onClose={closeModal} />}
+            </div>
+        </div>
     );
 }
