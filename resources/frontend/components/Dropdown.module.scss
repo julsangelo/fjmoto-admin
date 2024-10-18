@@ -1,0 +1,23 @@
+@import "../assets/scss/main.module.scss";
+
+.dropdown {
+    font-size: 15px;
+    font-weight: bolder;
+    height: fit-content;
+    padding: 15px;
+    display: flex;
+    align-self: center;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: 2px solid $c_gray;
+    border: 0;
+    border-right: 12px solid transparent;
+    width: 100%;
+}
+
+.dropdownLabel {
+    color: $c_darkgray;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}

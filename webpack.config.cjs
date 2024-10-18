@@ -79,7 +79,7 @@ let config = {
                 test: /\.(png|jpg|jpeg|svg|gif|webm|webp)$/,
                 type: "asset/resource",
                 generator: {
-                    filename: "images/[name].[ext]",
+                    filename: "images/[name][ext]",
                 },
             },
         ],

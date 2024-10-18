@@ -2,10 +2,16 @@ import React from "react";
 import styles from "./Button.module";
 import Icon from "./Icon";
 
-export default function Button({ label }) {
+export default function Button({
+    label,
+    icon = null,
+    size = null,
+    onClick,
+    className,
+}) {
     return (
-        <button className={styles.button}>
-            <Icon icon="add" height="24" width="24" />
+        <button className={`${styles.button} ${className}`} onClick={onClick}>
+            {icon && <Icon icon={icon} size={size} />}
             {label}
         </button>
     );

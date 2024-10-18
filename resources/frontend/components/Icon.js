@@ -10,6 +10,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CloseIcon from "@mui/icons-material/Close";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
 const ICON_TYPES = {
     dashboard: DashboardIcon,
@@ -23,11 +26,18 @@ const ICON_TYPES = {
     edit: EditIcon,
     chevLeft: ChevronLeftIcon,
     chevRight: ChevronRightIcon,
+    chevDown: ExpandMoreIcon,
+    close: CloseIcon,
+    addImage: AddPhotoAlternateIcon,
 };
 
-export default function Icon({ icon, height, width }) {
+export default function Icon({ icon, size, onClick, className }) {
     let IconComponent = ICON_TYPES[icon];
     return (
-        <IconComponent style={{ height: `${height}px`, width: `${width}px` }} />
+        <IconComponent
+            style={{ fontSize: `${size}px`, cursor: "pointer" }}
+            className={className}
+            onClick={onClick}
+        />
     );
 }

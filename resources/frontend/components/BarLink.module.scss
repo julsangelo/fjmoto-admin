@@ -12,7 +12,16 @@
     color: $c_dark;
 }
 
-.barLink:active {
+.barLinkActive {
+    font-size: 16px;
+    padding: 15px;
+    padding-left: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    color: $c_dark;
     background-color: white;
     border-right: 4px solid $c_dark;
 }

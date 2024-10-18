@@ -1,0 +1,39 @@
+@import "../assets/scss/main.module.scss";
+
+.addInventoryTitle {
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.addInventoryForm {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 20px;
+    column-gap: 40px;
+}
+
+.addInventoryImage {
+    grid-column: 1;
+    grid-row: span 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addInventoryDropdown {
+    grid-column: span 2;
+}
+
+.addInventoryButton {
+    display: flex;
+    justify-content: end;
+    column-gap: 16px;
+    margin-top: 70px;
+}
+
+.addInventoryCancel {
+    border: 1px solid $c_mediumgray;
+    color: $c_mediumgray;
+    background-color: transparent;
+}

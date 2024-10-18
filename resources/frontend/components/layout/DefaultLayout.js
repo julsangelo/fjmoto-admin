@@ -1,24 +1,24 @@
 import React, { useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { useStateContext } from "../../context/ContextProvider";
-import axiosClient from "../../ajax/axiosClient";
+import axiosClient from "../../ajax/axios";
 
 export default function DefaultLayout() {
-  let { session, setUser } = useStateContext();
+    let { session, setUser } = useStateContext();
 
-  if (!session) {
-    return <Navigate to="/login" />;
-  }
+    if (!session) {
+        return <Navigate to="/login" />;
+    }
 
-  useEffect(() => {
-    axiosClient.get("/user").then(({ data }) => {
-      setUser(data);
-    });
-  }, []);
+    useEffect(() => {
+        axiosClient.get("/user").then(({ data }) => {
+            setUser(data);
+        });
+    }, []);
 
-  return (
-    <div>
-      <Outlet />
-    </div>
-  );
+    return (
+        <div>
+            <Outlet />
+        </div>
+    );
 }

@@ -1,9 +1,5 @@
 @import "../assets/scss/main.module";
 
-.barLinkContainer {
-    margin-top: 10px;
-}
-
 .inventoryContent {
     height: fit-content;
     max-height: calc(100% - 170px);
@@ -34,6 +30,13 @@
 .inventorySearchFilter {
     display: flex;
     justify-content: end;
+    align-items: baseline;
     padding: 20px 40px 20px 0;
     column-gap: 20px;
+}
+
+.inventoryFilter {
+    background-color: $c_secondary !important;
+    color: $c_mediumgray !important;
+    border: 1px solid $c_gray !important;
 }

@@ -1,0 +1,15 @@
+@import "../assets/scss/main.module.scss";
+
+.branchDropdown {
+    font-size: 15px;
+    font-weight: bolder;
+    height: fit-content;
+    padding: 12px;
+    display: flex;
+    align-self: center;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: 2px solid $c_gray;
+    border: 0;
+    border-right: 12px solid transparent;
+}

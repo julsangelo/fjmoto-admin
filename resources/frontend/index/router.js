@@ -1,7 +1,7 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Dashboard from "../pages/Dashboard";
 import DefaultLayout from "../components/layout/DefaultLayout.js";
+import Main from "../pages/Main.js";
 // import GuestLayout from "../components/layout/GuestLayout";
 
 let router = createBrowserRouter([
@@ -19,7 +19,7 @@ let router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Dashboard />,
+                element: <Main />,
             },
         ],
     },
