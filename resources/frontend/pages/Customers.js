@@ -60,6 +60,14 @@ export default function Customer() {
                             : customerData.data || [],
                     }}
                     action={true}
+                    visibleActions={["view"]}
+                    visibleColumns={[
+                        "customerName",
+                        "customerID",
+                        "customerEmail",
+                        "customerContactNo",
+                        "customerAddress",
+                    ]}
                 />
             </div>
         </div>
