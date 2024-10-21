@@ -281,6 +281,7 @@ body {
   font-size: 16px;
   border: none;
   height: 100%;
+  width: 100%;
 }
 
 .Input-module-input-ybfaf:focus {
@@ -297,31 +298,17 @@ body {
   font-weight: 600;
   margin-bottom: 10px;
 }
-/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/Filter.module.scss ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************/
-@font-face {
-  font-family: "Manrope";
-  src: url(/manrope.ttf) format("truetype");
-}
-body {
-  margin: 0;
-  font-family: "Manrope", sans-serif;
-  background-color: #f8f8f8;
+
+.Input-module-inputError-LoUKp {
+  color: #d62828;
+  margin: 5px;
+  font-size: 14px;
 }
 
-.Filter-module-filter-lMnwd {
-  border: 1px solid #d7d7d7;
-  border-radius: 5px;
-  padding: 15px 20px;
-  width: fit-content;
-  height: fit-content;
-  background-color: transparent;
+.Input-module-inputPeso-QgM07 {
   font-size: 16px;
-  color: #737373;
-  display: flex;
-  column-gap: 10px;
-  align-items: center;
+  font-weight: normal;
+  color: #989898;
 }
 /*!************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/Table.module.scss ***!
@@ -349,8 +336,9 @@ table input {
 
 table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
   border: none;
+  border-spacing: 0 9px;
 }
 
 thead th {
@@ -439,26 +427,15 @@ hr {
   justify-content: center;
   padding: 20px;
 }
-/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/TableButton.module.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************/
-@font-face {
-  font-family: "Manrope";
-  src: url(/manrope.ttf) format("truetype");
-}
-body {
-  margin: 0;
-  font-family: "Manrope", sans-serif;
-  background-color: #f8f8f8;
-}
 
-.TableButton-module-tableButton-U_wDm {
+.Table-module-tableButton-MNugK {
   height: 40px;
   width: 40px;
   background-color: transparent;
   color: #373737;
   border: 1px solid #d7d7d7;
   border-radius: 5px;
+  justify-content: center;
 }
 /*!************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/Modal.module.scss ***!
@@ -489,6 +466,7 @@ body {
 .Modal-module-modalContainer-IOael {
   background-color: #ffffff;
   border-radius: 5px;
+  min-width: 600px;
 }
 
 .Modal-module-modalHeader-wI7GH {
@@ -502,9 +480,9 @@ body {
 .Modal-module-modalContent-lmrBK {
   padding: 53px 67px;
 }
-/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/AddInventory.module.scss ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/Inventory/AddInventory.module.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************/
 @font-face {
   font-family: "Manrope";
   src: url(/manrope.ttf) format("truetype");
@@ -515,12 +493,12 @@ body {
   background-color: #f8f8f8;
 }
 
-.AddInventory-module-addInventoryTitle-B_h6A {
+.AddInventory-module-addInventoryTitle-k1DMP {
   font-size: 24px;
   font-weight: bolder;
 }
 
-.AddInventory-module-addInventoryForm-F7NTx {
+.AddInventory-module-addInventoryForm-FFWVp {
   margin-top: 30px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -528,7 +506,7 @@ body {
   column-gap: 40px;
 }
 
-.AddInventory-module-addInventoryImage-k7FYC {
+.AddInventory-module-addInventoryImage-xSDoK {
   grid-column: 1;
   grid-row: span 3;
   display: flex;
@@ -536,18 +514,18 @@ body {
   justify-content: center;
 }
 
-.AddInventory-module-addInventoryDropdown-JN_0O {
+.AddInventory-module-addInventoryDropdown-niEit {
   grid-column: span 2;
 }
 
-.AddInventory-module-addInventoryButton-tL1gZ {
+.AddInventory-module-addInventoryButton-_0iz1 {
   display: flex;
   justify-content: end;
   column-gap: 16px;
   margin-top: 70px;
 }
 
-.AddInventory-module-addInventoryCancel-nH1kp {
+.AddInventory-module-addInventoryCancel-aIbsV {
   border: 1px solid #989898;
   color: #989898;
   background-color: transparent;
@@ -563,6 +541,10 @@ body {
   margin: 0;
   font-family: "Manrope", sans-serif;
   background-color: #f8f8f8;
+}
+
+.UploadImage-module-uploadImage-eUeqy {
+  display: block;
 }
 
 .UploadImage-module-uploadImageContainer-slFqS {
@@ -586,6 +568,23 @@ body {
   font-size: 16px;
   font-weight: 600;
   color: #373737;
+  text-align: center;
+}
+
+.UploadImage-module-uploadImageError-jndW4 {
+  color: #d62828;
+  margin: 5px;
+  font-size: 14px;
+}
+
+.UploadImage-module-uploadImageContent-dsZCZ {
+  overflow: hidden;
+}
+
+.UploadImage-module-uploadedImage-UliIr {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 /*!***************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/Dropdown.module.scss ***!
@@ -620,6 +619,270 @@ body {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 10px;
+}
+
+.Dropdown-module-dropdownError-SnVXu {
+  color: #d62828;
+  margin: 5px;
+  font-size: 14px;
+}
+/*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/Inventory/DeleteInventory.module.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+  font-family: "Manrope";
+  src: url(/manrope.ttf) format("truetype");
+}
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #f8f8f8;
+}
+
+.DeleteInventory-module-deleteInventoryTitle-cQQ58 {
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+.DeleteInventory-module-deleteInventoryText-XHejB {
+  font-size: 16px;
+  margin-top: 30px;
+}
+
+.DeleteInventory-module-deleteInventoryButton-dbFUJ {
+  display: flex;
+  justify-content: end;
+  column-gap: 16px;
+  margin-top: 70px;
+}
+
+.DeleteInventory-module-deleteInventoryCancel-lF5wM {
+  border: 1px solid #989898;
+  color: #989898;
+  background-color: transparent;
+}
+
+.DeleteInventory-module-deleteInventorySubmit-dXi40 {
+  color: #ffffff;
+  background-color: #d62828;
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/Inventory/EditInventory.module.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+  font-family: "Manrope";
+  src: url(/manrope.ttf) format("truetype");
+}
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #f8f8f8;
+}
+
+.EditInventory-module-editInventoryTitle-pspya {
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+.EditInventory-module-editInventoryForm-NLMr7 {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 20px;
+  column-gap: 40px;
+}
+
+.EditInventory-module-editInventoryImage-vbpAK {
+  grid-column: 1;
+  grid-row: span 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.EditInventory-module-editInventoryDropdown-rFAdz {
+  grid-column: span 2;
+}
+
+.EditInventory-module-editInventoryButton-IiBKg {
+  display: flex;
+  justify-content: end;
+  column-gap: 16px;
+  margin-top: 70px;
+}
+
+.EditInventory-module-editInventoryCancel-Gltm_ {
+  border: 1px solid #989898;
+  color: #989898;
+  background-color: transparent;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/Filter.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+  font-family: "Manrope";
+  src: url(/manrope.ttf) format("truetype");
+}
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #f8f8f8;
+}
+
+.Filter-module-filter-lMnwd {
+  position: absolute;
+  top: 220px;
+  right: 215px;
+  background: #ffffff;
+  padding: 25px 20px;
+  border: 1px solid #d7d7d7;
+  border-radius: 5px;
+  min-width: 270px;
+  display: flex;
+  flex-flow: column;
+  row-gap: 30px;
+}
+
+.Filter-module-filterCategory-ols9Q {
+  font-size: 16px;
+  font-weight: bold;
+  color: #3f3f3f;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  align-items: baseline;
+}
+
+.Filter-module-filterCategoryLabel-hX9BV {
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.Filter-module-filterCategoryCheckbox-aJXe4 {
+  height: 20px;
+  width: 20px;
+  scale: 1;
+  border-color: #989898;
+}
+
+.Filter-module-filterPrice-dnT02 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #3f3f3f;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.Filter-module-filterInputLabel-ldifo {
+  font-size: 13px !important;
+}
+
+.Filter-module-filterInputContainer-tba5r {
+  padding: 10px 15px !important;
+}
+
+.Filter-module-filterButtonContainer-DOBbu {
+  display: flex;
+  column-gap: 10px;
+  justify-content: end;
+}
+
+.Filter-module-filterClearButton-oJDTr {
+  border: 2px solid #373737;
+  color: #373737;
+  background-color: #ffffff;
+  padding: 10px 18px;
+}
+
+.Filter-module-filterApplyButton-t9jQO {
+  padding: 10px 18px;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/components/Sort.module.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+  font-family: "Manrope";
+  src: url(/manrope.ttf) format("truetype");
+}
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #f8f8f8;
+}
+
+.Sort-module-sort-Q0dfE {
+  position: absolute;
+  top: 220px;
+  right: 90px;
+  background: #ffffff;
+  padding: 25px 20px;
+  border: 1px solid #d7d7d7;
+  border-radius: 5px;
+  min-width: 270px;
+  display: flex;
+  flex-flow: column;
+  row-gap: 30px;
+}
+
+.Sort-module-sortCategory-oEuLx {
+  font-size: 16px;
+  font-weight: bold;
+  color: #3f3f3f;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  align-items: baseline;
+}
+
+.Sort-module-sortCategoryLabel-sRosP {
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.Sort-module-sortCategoryCheckbox-GoDww {
+  height: 20px;
+  width: 20px;
+  scale: 1;
+  border-color: #989898;
+}
+
+.Sort-module-sortPrice-NYCHP {
+  font-size: 16px;
+  font-weight: bold;
+  color: #3f3f3f;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.Sort-module-sortInputLabel-LzyeL {
+  font-size: 13px !important;
+}
+
+.Sort-module-sortInputContainer-nios1 {
+  padding: 10px 15px !important;
+}
+
+.Sort-module-sortButtonContainer-dwLjS {
+  display: flex;
+  column-gap: 10px;
+  justify-content: end;
+}
+
+.Sort-module-sortClearButton-b037v {
+  border: 2px solid #373737;
+  color: #373737;
+  background-color: #ffffff;
+  padding: 10px 18px;
+}
+
+.Sort-module-sortApplyButton-bf9E4 {
+  padding: 10px 18px;
 }
 /*!***********************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/pages/Customers.module.scss ***!

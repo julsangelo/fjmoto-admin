@@ -1,5 +1,9 @@
 @import "../assets/scss/main.module.scss";
 
+.uploadImage {
+    display: block;
+}
+
 .uploadImageContainer {
     height: 280px;
     width: 280px;
@@ -21,4 +25,21 @@
     font-size: 16px;
     font-weight: 600;
     color: $c_primary;
+    text-align: center;
+}
+
+.uploadImageError {
+    color: #d62828;
+    margin: 5px;
+    font-size: 14px;
+}
+
+.uploadImageContent {
+    overflow: hidden;
+}
+
+.uploadedImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

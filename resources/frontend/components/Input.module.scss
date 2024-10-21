@@ -17,6 +17,7 @@
     font-size: 16px;
     border: none;
     height: 100%;
+    width: 100%;
 }
 
 .input:focus {
@@ -32,4 +33,16 @@
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 10px;
+}
+
+.inputError {
+    color: #d62828;
+    margin: 5px;
+    font-size: 14px;
+}
+
+.inputPeso {
+    font-size: 16px;
+    font-weight: normal;
+    color: $c_mediumgray;
 }

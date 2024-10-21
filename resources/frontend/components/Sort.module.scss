@@ -1,9 +1,9 @@
 @import "../assets/scss/main.module";
 
-.filter {
+.sort {
     position: absolute;
     top: 220px;
-    right: 215px;
+    right: 90px;
     background: #ffffff;
     padding: 25px 20px;
     border: 1px solid $c_gray;
@@ -14,7 +14,7 @@
     row-gap: 30px;
 }
 
-.filterCategory {
+.sortCategory {
     font-size: 16px;
     font-weight: bold;
     color: $c_dark;
@@ -24,21 +24,21 @@
     align-items: baseline;
 }
 
-.filterCategoryLabel {
+.sortCategoryLabel {
     font-weight: normal;
     display: flex;
     align-items: center;
     column-gap: 10px;
 }
 
-.filterCategoryCheckbox {
+.sortCategoryCheckbox {
     height: 20px;
     width: 20px;
     scale: 1;
     border-color: $c_mediumgray;
 }
 
-.filterPrice {
+.sortPrice {
     font-size: 16px;
     font-weight: bold;
     color: $c_dark;
@@ -47,27 +47,27 @@
     row-gap: 20px;
 }
 
-.filterInputLabel {
+.sortInputLabel {
     font-size: 13px !important;
 }
 
-.filterInputContainer {
+.sortInputContainer {
     padding: 10px 15px !important;
 }
 
-.filterButtonContainer {
+.sortButtonContainer {
     display: flex;
     column-gap: 10px;
     justify-content: end;
 }
 
-.filterClearButton {
+.sortClearButton {
     border: 2px solid $c_primary;
     color: $c_primary;
     background-color: $c_secondary;
     padding: 10px 18px;
 }
 
-.filterApplyButton {
+.sortApplyButton {
     padding: 10px 18px;
 }

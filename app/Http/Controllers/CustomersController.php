@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Repositories\Customer;
 use Illuminate\Http\Request;
 
-class Customers extends Controller
+class CustomersController extends Controller
 {
     protected $customers;
 

@@ -8,8 +8,11 @@ class Inventory
 {
     public function getInventory($branch)
     {
-        $products = Products::select("image", "productName", "productId", "category", "price", "stockQuantity")
-            ->where('branch', $branch)->get();
+        $products = Products::select()
+            ->where('branch', $branch)
+            ->orderBy('id', "DESC" )
+            ->get()
+            ;
 
         $headers = array_keys($products->first()->getAttributes());
 

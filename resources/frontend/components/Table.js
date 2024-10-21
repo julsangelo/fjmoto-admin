@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import styles from "./Table.module";
-import TableButton from "./TableButton";
 import Icon from "./Icon";
+import Button from "./Button";
 
-export default function InventoryTable({ checkbox, data, action }) {
+export default function InventoryTable({
+    checkbox,
+    data,
+    action,
+    openModal,
+    branch,
+    visibleColumns,
+    visibleActions, // New prop for controlling which action buttons to show
+}) {
     const itemsPerPage = 7;
     const [currentPage, setCurrentPage] = useState(1);
 
-    const isDataValid = data && Array.isArray(data.data);
-
+    const isDataValid = Array.isArray(data?.data);
     const totalPages = isDataValid
         ? Math.ceil(data.data.length / itemsPerPage)
         : 0;
@@ -20,164 +27,150 @@ export default function InventoryTable({ checkbox, data, action }) {
           )
         : [];
 
-    const formatHeader = (item) => {
-        return item
+    const formatHeader = (header) =>
+        header
             .replace(/([A-Z])/g, " $1")
             .replace(/_/g, " ")
             .trim()
-            .split(" ")
-            .map(
-                (word) =>
-                    word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(),
-            )
-            .join(" ");
+            .replace(/\b\w/g, (c) => c.toUpperCase());
+
+    const handlePageChange = (newPage) => {
+        if (newPage > 0 && newPage <= totalPages) setCurrentPage(newPage);
     };
 
-    // Handle page change
-    const handlePageChange = (newPage) => {
-        if (newPage > 0 && newPage <= totalPages) {
-            setCurrentPage(newPage);
-        }
-    };
+    const renderTableHeader = () => (
+        <thead>
+            <tr>
+                {checkbox && (
+                    <th>
+                        <input type="checkbox" />
+                    </th>
+                )}
+                {isDataValid &&
+                    visibleColumns.map((header, idx) => (
+                        <th key={idx}>{formatHeader(header)}</th>
+                    ))}
+                {action && <th>Action</th>}
+            </tr>
+        </thead>
+    );
+
+    const renderTableRow = (item) => (
+        <React.Fragment key={item.id}>
+            <tr>
+                {checkbox && (
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                )}
+                {visibleColumns.map((header, idx) => (
+                    <td
+                        key={idx}
+                        style={idx === 0 ? { padding: "0px 20px" } : {}}
+                    >
+                        {header.toLowerCase() === "image" ? (
+                            <img
+                                className={styles.productImage}
+                                src={item.image}
+                                alt={item.product || "Product Image"}
+                            />
+                        ) : header.toLowerCase() === "price" ? (
+                            `₱ ${item[header]}`
+                        ) : (
+                            item[header]
+                        )}
+                    </td>
+                ))}
+                {action && renderActionButtons(item)}
+            </tr>
+            <tr>
+                <td colSpan={calculateColSpan()} style={{ padding: "0px" }}>
+                    <hr />
+                </td>
+            </tr>
+        </React.Fragment>
+    );
+
+    const renderActionButtons = (item) => (
+        <td>
+            <div className={styles.tableAction}>
+                {visibleActions.includes("view") && (
+                    <Button
+                        icon="view"
+                        size="24"
+                        className={styles.tableButton}
+                        onClick={() => openModal("view", item.id, null)}
+                    />
+                )}
+                {visibleActions.includes("delete") && (
+                    <Button
+                        icon="delete"
+                        size="24"
+                        className={styles.tableButton}
+                        onClick={() => openModal("delete", item.id, null)}
+                    />
+                )}
+                {visibleActions.includes("edit") && (
+                    <Button
+                        icon="edit"
+                        size="24"
+                        className={styles.tableButton}
+                        onClick={() => openModal("edit", null, item)}
+                    />
+                )}
+            </div>
+        </td>
+    );
+
+    const calculateColSpan = () =>
+        (visibleColumns.length || 0) + (checkbox ? 1 : 0) + (action ? 1 : 0);
+
+    const renderNoData = () => (
+        <tr>
+            <td colSpan={calculateColSpan()}>
+                <div className={styles.noData}>No entries available.</div>
+            </td>
+        </tr>
+    );
+
+    const renderPagination = () => (
+        <div className={styles.tableBottom}>
+            <div className={styles.page}>
+                Showing {(currentPage - 1) * itemsPerPage + 1} -{" "}
+                {Math.min(currentPage * itemsPerPage, data.data.length)} of{" "}
+                {data.data.length} entries
+            </div>
+            <div className={styles.pagination}>
+                <button
+                    className={styles.paginationButton}
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                >
+                    <Icon icon="chevLeft" size="20" />
+                </button>
+                <div className={styles.paginationPage}>{currentPage}</div>
+                <button
+                    className={styles.paginationButton}
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                >
+                    <Icon icon="chevRight" size="20" />
+                </button>
+            </div>
+        </div>
+    );
 
     return (
         <>
             <table className={styles.table}>
-                <thead>
-                    <tr>
-                        {checkbox && (
-                            <th>
-                                <input type="checkbox" />
-                            </th>
-                        )}
-                        {isDataValid &&
-                            data.headers?.map((item, index) => (
-                                <th key={index}>{formatHeader(item)}</th>
-                            ))}
-                        {action && <th>Action</th>}
-                    </tr>
-                </thead>
+                {renderTableHeader()}
                 <tbody>
-                    {currentItems.length > 0 ? (
-                        currentItems.map((item, index) => (
-                            <React.Fragment key={index}>
-                                <tr>
-                                    {checkbox && (
-                                        <td>
-                                            <input type="checkbox" />
-                                        </td>
-                                    )}
-                                    {isDataValid &&
-                                        data.headers.map((header, index) => (
-                                            <td
-                                                key={index}
-                                                style={
-                                                    index === 0
-                                                        ? {
-                                                              padding:
-                                                                  "10px 20px 10px 20px",
-                                                          }
-                                                        : {}
-                                                }
-                                            >
-                                                {header.toLowerCase() ===
-                                                "image" ? (
-                                                    <img
-                                                        className={
-                                                            styles.productImage
-                                                        }
-                                                        src={item.image}
-                                                        alt={
-                                                            item.product ||
-                                                            "Product Image"
-                                                        }
-                                                    />
-                                                ) : header.toLowerCase() ===
-                                                  "price" ? (
-                                                    `₱ ${item[header]}`
-                                                ) : (
-                                                    item[header]
-                                                )}
-                                            </td>
-                                        ))}
-                                    {action && (
-                                        <td>
-                                            <div className={styles.tableAction}>
-                                                <TableButton
-                                                    icon="delete"
-                                                    size="24"
-                                                />
-                                                <TableButton
-                                                    icon="edit"
-                                                    size="24"
-                                                />
-                                            </div>
-                                        </td>
-                                    )}
-                                </tr>
-                                <tr>
-                                    <td
-                                        colSpan={
-                                            (isDataValid
-                                                ? data.headers.length
-                                                : 0) +
-                                            (checkbox ? 1 : 0) +
-                                            (action ? 1 : 0)
-                                        }
-                                    >
-                                        <hr />
-                                    </td>
-                                </tr>
-                            </React.Fragment>
-                        ))
-                    ) : (
-                        <tr>
-                            <td
-                                colSpan={
-                                    (isDataValid ? data.headers.length : 0) +
-                                    (checkbox ? 1 : 0) +
-                                    (action ? 1 : 0)
-                                }
-                            >
-                                <div className={styles.noData}>
-                                    No entries available.
-                                </div>
-                            </td>
-                        </tr>
-                    )}
+                    {currentItems.length > 0
+                        ? currentItems.map(renderTableRow)
+                        : renderNoData()}
                 </tbody>
             </table>
-            {isDataValid && currentItems.length > 0 && (
-                <div className={styles.tableBottom}>
-                    <div className={styles.page}>
-                        Showing {(currentPage - 1) * itemsPerPage + 1} -{" "}
-                        {Math.min(
-                            currentPage * itemsPerPage,
-                            isDataValid ? data.data.length : 0,
-                        )}{" "}
-                        of {isDataValid ? data.data.length : 0} entries
-                    </div>
-                    <div className={styles.pagination}>
-                        <button
-                            className={styles.paginationButton}
-                            onClick={() => handlePageChange(currentPage - 1)}
-                            disabled={currentPage === 1}
-                        >
-                            <Icon icon="chevLeft" size="20" />
-                        </button>
-                        <div className={styles.paginationPage}>
-                            {currentPage}
-                        </div>
-                        <button
-                            className={styles.paginationButton}
-                            onClick={() => handlePageChange(currentPage + 1)}
-                            disabled={currentPage === totalPages}
-                        >
-                            <Icon icon="chevRight" size="20" />
-                        </button>
-                    </div>
-                </div>
-            )}
+            {isDataValid && currentItems.length > 0 && renderPagination()}
         </>
     );
 }

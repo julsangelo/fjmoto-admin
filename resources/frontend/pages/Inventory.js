@@ -2,15 +2,21 @@ import React, { useEffect, useState } from "react";
 import styles from "./Inventory.module";
 import Button from "../components/Button";
 import Input from "../components/Input";
-import Filter from "../components/Filter";
 import Table from "../components/Table";
 import { getInventory } from "../ajax/backend";
 import Modal from "../components/Modal";
+import Filter from "../components/Filter";
+import Sort from "../components/Sort";
 
 export default function Inventory({ branch }) {
     const [inventoryData, setInventoryData] = useState({});
     const [searchTerm, setSearchTerm] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [isSortOpen, setIsSortOpen] = useState(false);
+    const [modalType, setModalType] = useState("");
+    const [selectedProductId, setSelectedProductId] = useState(null);
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
     useEffect(() => {
         getInventory(branch, (data) => {
@@ -33,8 +39,29 @@ export default function Inventory({ branch }) {
           )
         : [];
 
-    let openModal = () => setIsModalOpen(true);
-    let closeModal = () => setIsModalOpen(false);
+    const openModal = (type, productId, product) => {
+        console.log(product);
+        setModalType(type);
+        setSelectedProductId(productId);
+        setIsModalOpen(true);
+        setSelectedProduct(product);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedProductId(null);
+        setSelectedProduct(null);
+    };
+
+    const toggleFilterModal = () => {
+        setIsFilterOpen((prev) => !prev);
+        setIsSortOpen(false);
+    };
+
+    const toggleSortModal = () => {
+        setIsSortOpen((prev) => !prev);
+        setIsFilterOpen(false);
+    };
 
     return (
         <div className={styles.inventoryContent}>
@@ -44,7 +71,7 @@ export default function Inventory({ branch }) {
                     label="Add Inventory"
                     icon="add"
                     size="24"
-                    onClick={openModal}
+                    onClick={() => openModal("add")}
                 />
             </div>
             <div className={styles.inventoryMain}>
@@ -52,8 +79,7 @@ export default function Inventory({ branch }) {
                     <Input
                         placeholder="Search products"
                         icon="search"
-                        height="24"
-                        width="24"
+                        size="24"
                         value={searchTerm}
                         onChange={handleSearchChange}
                     />
@@ -62,6 +88,14 @@ export default function Inventory({ branch }) {
                         size="24"
                         className={styles.inventoryFilter}
                         label="Filter"
+                        onClick={toggleFilterModal}
+                    />
+                    <Button
+                        icon="sort"
+                        size="24"
+                        className={styles.inventoryFilter}
+                        label="Sort"
+                        onClick={toggleSortModal}
                     />
                 </div>
                 <Table
@@ -72,9 +106,30 @@ export default function Inventory({ branch }) {
                             ? filteredData
                             : inventoryData.data || [],
                     }}
+                    openModal={openModal}
                     action={true}
+                    branch={branch}
+                    visibleColumns={[
+                        "image",
+                        "productName",
+                        "productId",
+                        "category",
+                        "price",
+                        "stockQuantity",
+                    ]}
+                    visibleActions={["delete", "edit"]}
                 />
-                {isModalOpen && <Modal onClose={closeModal} />}
+                {isModalOpen && (
+                    <Modal
+                        onClose={closeModal}
+                        branch={branch}
+                        modal={modalType}
+                        productId={selectedProductId}
+                        product={selectedProduct}
+                    />
+                )}
+                {isFilterOpen && <Filter />}
+                {isSortOpen && <Sort />}
             </div>
         </div>
     );

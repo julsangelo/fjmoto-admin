@@ -2,10 +2,8 @@ import axiosClient from "./axios";
 
 export function getInventory(branch, callback) {
     axiosClient
-        .get(`/getInventory`, {
-            params: {
-                branch: branch,
-            },
+        .post(`/getInventory`, {
+            branch: branch,
         })
         .then((response) => {
             callback(response.data);
@@ -18,6 +16,28 @@ export function getInventory(branch, callback) {
 export function getCustomers(callback) {
     axiosClient
         .get(`/getCustomers`)
+        .then((response) => {
+            callback(response.data);
+        })
+        .catch((error) => {
+            return error;
+        });
+}
+
+export function addInventory(data) {
+    axiosClient
+        .post("/addInventory", data)
+        .then((response) => {
+            console.log("Inventory added:", response.data);
+        })
+        .catch((error) => {
+            console.error("Error adding inventory:", error);
+        });
+}
+
+export function deleteInventory(productId, callback) {
+    axiosClient
+        .post(`/deleteInventory`, { id: productId })
         .then((response) => {
             callback(response.data);
         })

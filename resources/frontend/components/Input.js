@@ -1,27 +1,38 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styles from "./Input.module";
 import Icon from "./Icon";
 
-export default function Input({
-    label,
-    icon = null,
-    size = null,
-    value,
-    onChange,
-    placeholder,
-}) {
-    return (
+const Input = forwardRef(
+    (
+        {
+            label,
+            icon = null,
+            peso,
+            size = null,
+            placeholder,
+            error,
+            labelStyle,
+            containerStyle,
+            ...rest
+        },
+        ref,
+    ) => (
         <div>
-            <div className={styles.inputLabel}>{label}</div>
-            <div className={styles.inputContainer}>
+            <div className={`${styles.inputLabel} ${labelStyle}`}>{label}</div>
+            <div className={`${styles.inputContainer} ${containerStyle}`}>
                 {icon && <Icon icon={icon} size={size} />}
+                {peso && <div className={styles.inputPeso}>₱</div>}
                 <input
                     className={styles.input}
                     placeholder={placeholder}
-                    value={value}
-                    onChange={onChange}
+                    ref={ref}
+                    {...rest}
+                    step="0.01"
                 />
             </div>
+            {error && <p className={styles.inputError}>{error}</p>}
         </div>
-    );
-}
+    ),
+);
+
+export default Input;

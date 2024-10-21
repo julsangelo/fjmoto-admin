@@ -1,0 +1,29 @@
+@import "../../assets/scss/main.module.scss";
+
+.deleteInventoryTitle {
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.deleteInventoryText {
+    font-size: 16px;
+    margin-top: 30px;
+}
+
+.deleteInventoryButton {
+    display: flex;
+    justify-content: end;
+    column-gap: 16px;
+    margin-top: 70px;
+}
+
+.deleteInventoryCancel {
+    border: 1px solid $c_mediumgray;
+    color: $c_mediumgray;
+    background-color: transparent;
+}
+
+.deleteInventorySubmit {
+    color: $c_secondary;
+    background-color: #d62828;
+}
