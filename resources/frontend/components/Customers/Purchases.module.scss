@@ -1,6 +1,6 @@
-@import "../assets/scss/main.module";
+@import "../../assets/scss/main.module";
 
-.customersContent {
+.purchasesContent {
     height: fit-content;
     max-height: calc(100% - 170px);
     width: calc(100% - 330px);
@@ -10,16 +10,22 @@
     padding: 40px 40px 40px 40px;
 }
 
-.customersHeader {
+.purchasesHeader {
     font-weight: bolder;
     font-size: 24px;
     display: flex;
-    justify-content: space-between;
     margin-bottom: 50px;
     align-items: center;
 }
 
-.customersMain {
+.purchasesBackButton {
+    background-color: transparent;
+    color: $c_mediumgray;
+    padding: 15px 0;
+    margin-right: 10px;
+}
+
+.purchasesMain {
     background-color: $b_primary;
     margin-top: 20px;
     width: 100%;
@@ -28,7 +34,7 @@
     border-radius: 5px;
 }
 
-.customersSearchFilter {
+.purchasesSearchFilter {
     display: flex;
     justify-content: end;
     align-items: baseline;
@@ -36,7 +42,7 @@
     column-gap: 20px;
 }
 
-.customersFilter {
+.purchasesFilter {
     background-color: $c_secondary !important;
     color: $c_mediumgray !important;
     border: 1px solid $c_gray !important;

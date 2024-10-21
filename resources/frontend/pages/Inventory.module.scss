@@ -7,7 +7,7 @@
     position: absolute;
     top: 71px;
     right: 0;
-    padding: 50px 50px 50px 50px;
+    padding: 40px 40px 40px 40px;
 }
 
 .inventoryHeader {
@@ -15,6 +15,8 @@
     font-size: 24px;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 50px;
+    align-items: center;
 }
 
 .inventoryMain {

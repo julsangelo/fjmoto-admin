@@ -3,14 +3,14 @@ import styles from "./Table.module";
 import Icon from "./Icon";
 import Button from "./Button";
 
-export default function InventoryTable({
+export default function Table({
     checkbox,
     data,
     action,
     openModal,
-    branch,
     visibleColumns,
-    visibleActions, // New prop for controlling which action buttons to show
+    visibleActions,
+    onViewCustomer,
 }) {
     const itemsPerPage = 7;
     const [currentPage, setCurrentPage] = useState(1);
@@ -99,7 +99,7 @@ export default function InventoryTable({
                         icon="view"
                         size="24"
                         className={styles.tableButton}
-                        onClick={() => openModal("view", item.id, null)}
+                        onClick={() => onViewCustomer(item.customerID)}
                     />
                 )}
                 {visibleActions.includes("delete") && (

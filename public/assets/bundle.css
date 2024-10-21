@@ -192,7 +192,7 @@ body {
   position: absolute;
   top: 71px;
   right: 0;
-  padding: 50px 50px 50px 50px;
+  padding: 40px 40px 40px 40px;
 }
 
 .Inventory-module-inventoryHeader-CQIWU {
@@ -200,6 +200,8 @@ body {
   font-size: 24px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 50px;
+  align-items: center;
 }
 
 .Inventory-module-inventoryMain-M4jEk {
@@ -743,7 +745,7 @@ body {
   row-gap: 30px;
 }
 
-.Filter-module-filterCategory-ols9Q {
+.Filter-module-filterContainer-f34MV {
   font-size: 16px;
   font-weight: bold;
   color: #3f3f3f;
@@ -753,14 +755,29 @@ body {
   align-items: baseline;
 }
 
-.Filter-module-filterCategoryLabel-hX9BV {
+.Filter-module-filterInput-wS6E5 {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 100%;
+}
+
+.Filter-module-filterDate-g5a2a {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  color: #989898;
+  font-weight: normal;
+}
+
+.Filter-module-filterOptionLabel-MtR3E {
   font-weight: normal;
   display: flex;
   align-items: center;
   column-gap: 10px;
 }
 
-.Filter-module-filterCategoryCheckbox-aJXe4 {
+.Filter-module-filterOptionCheckbox-blQKH {
   height: 20px;
   width: 20px;
   scale: 1;
@@ -782,6 +799,16 @@ body {
 
 .Filter-module-filterInputContainer-tba5r {
   padding: 10px 15px !important;
+}
+
+.Filter-module-filterDropdown-nbAgP {
+  height: 40px;
+  width: 100%;
+  padding: 10px;
+  border: #d7d7d7;
+  border-radius: 5px;
+  outline: 1px solid #d7d7d7;
+  border-right: 12px solid transparent;
 }
 
 .Filter-module-filterButtonContainer-DOBbu {
@@ -827,7 +854,7 @@ body {
   row-gap: 30px;
 }
 
-.Sort-module-sortCategory-oEuLx {
+.Sort-module-sortRadiobox-QM4z6 {
   font-size: 16px;
   font-weight: bold;
   color: #3f3f3f;
@@ -837,35 +864,29 @@ body {
   align-items: baseline;
 }
 
-.Sort-module-sortCategoryLabel-sRosP {
+.Sort-module-sortRadioboxSecondTitle-wjcOp {
+  color: #989898 !important;
+  display: contents;
+}
+
+.Sort-module-sortRadioboxOption-PvWNO {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.Sort-module-sortRadioboxLabel-WAvLm {
   font-weight: normal;
   display: flex;
   align-items: center;
   column-gap: 10px;
 }
 
-.Sort-module-sortCategoryCheckbox-GoDww {
+.Sort-module-sortRadioboxCircle-_2PVb {
   height: 20px;
   width: 20px;
   scale: 1;
   border-color: #989898;
-}
-
-.Sort-module-sortPrice-NYCHP {
-  font-size: 16px;
-  font-weight: bold;
-  color: #3f3f3f;
-  display: flex;
-  flex-direction: column;
-  row-gap: 20px;
-}
-
-.Sort-module-sortInputLabel-LzyeL {
-  font-size: 13px !important;
-}
-
-.Sort-module-sortInputContainer-nios1 {
-  padding: 10px 15px !important;
 }
 
 .Sort-module-sortButtonContainer-dwLjS {
@@ -904,7 +925,7 @@ body {
   position: absolute;
   top: 71px;
   right: 0;
-  padding: 50px 50px 50px 50px;
+  padding: 40px 40px 40px 40px;
 }
 
 .Customers-module-customersHeader-yP_06 {
@@ -912,7 +933,8 @@ body {
   font-size: 24px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 45px;
+  margin-bottom: 50px;
+  align-items: center;
 }
 
 .Customers-module-customersMain-ATi51 {

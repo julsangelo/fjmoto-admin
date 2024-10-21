@@ -15,6 +15,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const ICON_TYPES = {
     dashboard: DashboardIcon,
@@ -33,6 +34,7 @@ const ICON_TYPES = {
     addImage: AddPhotoAlternateIcon,
     sort: SwapVertIcon,
     view: VisibilityIcon,
+    back: ArrowBackIcon,
 };
 
 export default function Icon({ icon, size, onClick, className }) {

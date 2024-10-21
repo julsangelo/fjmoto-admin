@@ -20,4 +20,6 @@ class CustomersController extends Controller
 
         return response()->json($data);
     }
+
+    
 }

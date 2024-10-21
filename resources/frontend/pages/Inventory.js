@@ -128,8 +128,12 @@ export default function Inventory({ branch }) {
                         product={selectedProduct}
                     />
                 )}
-                {isFilterOpen && <Filter />}
-                {isSortOpen && <Sort />}
+                {isFilterOpen && (
+                    <Filter visibleFilter={["category", "price"]} />
+                )}
+                {isSortOpen && (
+                    <Sort visibleSort={["price", "stockQuantity"]} />
+                )}
             </div>
         </div>
     );

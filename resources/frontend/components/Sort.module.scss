@@ -14,7 +14,7 @@
     row-gap: 30px;
 }
 
-.sortCategory {
+.sortRadiobox {
     font-size: 16px;
     font-weight: bold;
     color: $c_dark;
@@ -24,36 +24,47 @@
     align-items: baseline;
 }
 
-.sortCategoryLabel {
+.sortRadioboxSecondTitle {
+    color: $c_mediumgray !important;
+    display: contents;
+}
+
+.sortRadioboxOption {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.sortRadioboxLabel {
     font-weight: normal;
     display: flex;
     align-items: center;
     column-gap: 10px;
 }
 
-.sortCategoryCheckbox {
+.sortRadioboxCircle {
     height: 20px;
     width: 20px;
     scale: 1;
     border-color: $c_mediumgray;
 }
 
-.sortPrice {
-    font-size: 16px;
-    font-weight: bold;
-    color: $c_dark;
-    display: flex;
-    flex-direction: column;
-    row-gap: 20px;
-}
+// .sortPrice {
+//     font-size: 16px;
+//     font-weight: bold;
+//     color: $c_dark;
+//     display: flex;
+//     flex-direction: column;
+//     row-gap: 20px;
+// }
 
-.sortInputLabel {
-    font-size: 13px !important;
-}
+// .sortInputLabel {
+//     font-size: 13px !important;
+// }
 
-.sortInputContainer {
-    padding: 10px 15px !important;
-}
+// .sortInputContainer {
+//     padding: 10px 15px !important;
+// }
 
 .sortButtonContainer {
     display: flex;

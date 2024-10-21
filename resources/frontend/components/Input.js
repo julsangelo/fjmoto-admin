@@ -5,7 +5,7 @@ import Icon from "./Icon";
 const Input = forwardRef(
     (
         {
-            label,
+            label = null,
             icon = null,
             peso,
             size = null,
@@ -18,7 +18,11 @@ const Input = forwardRef(
         ref,
     ) => (
         <div>
-            <div className={`${styles.inputLabel} ${labelStyle}`}>{label}</div>
+            {label && (
+                <div className={`${styles.inputLabel} ${labelStyle}`}>
+                    {label}
+                </div>
+            )}
             <div className={`${styles.inputContainer} ${containerStyle}`}>
                 {icon && <Icon icon={icon} size={size} />}
                 {peso && <div className={styles.inputPeso}>₱</div>}

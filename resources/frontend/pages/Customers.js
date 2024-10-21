@@ -4,8 +4,10 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 import Table from "../components/Table";
 import { getCustomers } from "../ajax/backend";
+import Filter from "../components/Filter";
+import Sort from "../components/Sort";
 
-export default function Customer() {
+export default function Customer({ onViewCustomer }) {
     const [customerData, setCustomerData] = useState({});
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -14,8 +16,6 @@ export default function Customer() {
             setCustomerData(data);
         });
     });
-
-    console.log(customerData);
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
@@ -31,24 +31,19 @@ export default function Customer() {
               ),
           )
         : [];
+
     return (
         <div className={styles.customersContent}>
             <div className={styles.customersHeader}>Customers</div>
             <div className={styles.customersMain}>
                 <div className={styles.customersSearchFilter}>
                     <Input
-                        placeholder="Search products"
+                        placeholder="Search customers"
                         icon="search"
                         height="24"
                         width="24"
-                        value={searchTerm} // Bind the value to the state
-                        onChange={handleSearchChange} // Handle input changes
-                    />
-                    <Button
-                        icon="filter"
-                        size="24"
-                        className={styles.customersFilter}
-                        label="Filter"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
                     />
                 </div>
                 <Table
@@ -68,6 +63,7 @@ export default function Customer() {
                         "customerContactNo",
                         "customerAddress",
                     ]}
+                    onViewCustomer={onViewCustomer}
                 />
             </div>
         </div>

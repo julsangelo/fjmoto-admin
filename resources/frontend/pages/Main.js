@@ -9,6 +9,7 @@ import Orders from "./Orders";
 export default function Main() {
     const [activeComponent, setActiveComponent] = useState("inventory");
     const [selectedBranch, setSelectedBranch] = useState("Branch A");
+    const [showPurchases, setShowPurchases] = useState(false);
 
     useEffect(() => {
         const storedComponent = localStorage.getItem("activeComponent");
@@ -17,6 +18,11 @@ export default function Main() {
         }
     }, []);
 
+    const handleViewPurchases = (customerId) => {
+        setSelectedCustomer(customerId);
+        setActiveComponent("purchases");
+    };
+
     const renderContent = () => {
         switch (activeComponent) {
             case "dashboard":
@@ -24,9 +30,16 @@ export default function Main() {
             case "inventory":
                 return <Inventory branch={selectedBranch} />;
             case "customers":
-                return <Customers branch={selectedBranch} />;
+                return (
+                    <Customers
+                        branch={selectedBranch}
+                        onViewPurchases={handleViewPurchases}
+                    />
+                );
             case "orders":
                 return <Orders branch={selectedBranch} />;
+            case "purchases":
+                return <Purchases customerId={selectedCustomer} />;
         }
     };
 

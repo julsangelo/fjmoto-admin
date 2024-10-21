@@ -14,7 +14,7 @@
     row-gap: 30px;
 }
 
-.filterCategory {
+.filterContainer {
     font-size: 16px;
     font-weight: bold;
     color: $c_dark;
@@ -24,14 +24,29 @@
     align-items: baseline;
 }
 
-.filterCategoryLabel {
+.filterInput {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 100%;
+}
+
+.filterDate {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    color: $c_mediumgray;
+    font-weight: normal;
+}
+
+.filterOptionLabel {
     font-weight: normal;
     display: flex;
     align-items: center;
     column-gap: 10px;
 }
 
-.filterCategoryCheckbox {
+.filterOptionCheckbox {
     height: 20px;
     width: 20px;
     scale: 1;
@@ -53,6 +68,16 @@
 
 .filterInputContainer {
     padding: 10px 15px !important;
+}
+
+.filterDropdown {
+    height: 40px;
+    width: 100%;
+    padding: 10px;
+    border: #d7d7d7;
+    border-radius: 5px;
+    outline: 1px solid #d7d7d7;
+    border-right: 12px solid transparent;
 }
 
 .filterButtonContainer {
