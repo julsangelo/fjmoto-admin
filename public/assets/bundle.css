@@ -348,7 +348,7 @@ thead th {
   text-align: left;
   border: none;
   padding: 15px 20px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: normal;
   color: #737373;
 }
@@ -400,7 +400,7 @@ hr {
 .Table-module-paginationPage-aoUDo {
   height: 40px;
   width: 40px;
-  font-size: 16px;
+  font-size: 15px;
   border: 1px solid #d7d7d7;
   color: #989898;
   border-radius: 5px;
@@ -414,7 +414,7 @@ hr {
   width: 40px;
   background-color: #d7d7d7;
   color: #737373;
-  font-size: 16px;
+  font-size: 15px;
   border: none;
   border-radius: 5px;
 }
@@ -955,6 +955,58 @@ body {
 }
 
 .Customers-module-customersFilter-bhStT {
+  background-color: #ffffff !important;
+  color: #989898 !important;
+  border: 1px solid #d7d7d7 !important;
+}
+/*!********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./resources/frontend/pages/Orders.module.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+  font-family: "Manrope";
+  src: url(/manrope.ttf) format("truetype");
+}
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #f8f8f8;
+}
+
+.Orders-module-ordersContent-gz2pr {
+  height: fit-content;
+  max-height: calc(100% - 170px);
+  width: calc(100% - 330px);
+  position: absolute;
+  top: 71px;
+  right: 0;
+  padding: 50px 50px 50px 50px;
+}
+
+.Orders-module-ordersHeader-Xlx2E {
+  font-weight: bolder;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Orders-module-ordersMain-bd7nq {
+  background-color: #ffffff;
+  margin-top: 20px;
+  width: 100%;
+  height: calc(100% - 68px);
+  border: 1px solid #d7d7d7;
+  border-radius: 5px;
+}
+
+.Orders-module-ordersSearchFilter-AvoIb {
+  display: flex;
+  justify-content: end;
+  align-items: baseline;
+  padding: 20px 40px 20px 0;
+  column-gap: 20px;
+}
+
+.Orders-module-ordersFilter-moWlZ {
   background-color: #ffffff !important;
   color: #989898 !important;
   border: 1px solid #d7d7d7 !important;

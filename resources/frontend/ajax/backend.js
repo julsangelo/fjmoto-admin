@@ -24,6 +24,19 @@ export function getCustomers(callback) {
         });
 }
 
+export function getOrders(branch, callback) {
+    axiosClient
+        .post(`/getOrders`, {
+            branch: branch,
+        })
+        .then((response) => {
+            callback(response.data);
+        })
+        .catch((error) => {
+            return error;
+        });
+}
+
 export function addInventory(data) {
     axiosClient
         .post("/addInventory", data)
