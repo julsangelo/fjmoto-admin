@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Customers.module";
-import Button from "../components/Button";
 import Input from "../components/Input";
 import Table from "../components/Table";
 import { getCustomers } from "../ajax/backend";
-import Filter from "../components/Filter";
-import Sort from "../components/Sort";
 
-export default function Customer({ onViewCustomer }) {
+export default function Customer({ showPurchases }) {
     const [customerData, setCustomerData] = useState({});
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -15,7 +12,7 @@ export default function Customer({ onViewCustomer }) {
         getCustomers((data) => {
             setCustomerData(data);
         });
-    });
+    }, []);
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
@@ -31,6 +28,10 @@ export default function Customer({ onViewCustomer }) {
               ),
           )
         : [];
+
+    const handleView = (customerId) => {
+        showPurchases(customerId);
+    };
 
     return (
         <div className={styles.customersContent}>
@@ -56,6 +57,7 @@ export default function Customer({ onViewCustomer }) {
                     }}
                     action={true}
                     visibleActions={["view"]}
+                    onView={handleView}
                     visibleColumns={[
                         "customerName",
                         "customerID",
@@ -63,7 +65,6 @@ export default function Customer({ onViewCustomer }) {
                         "customerContactNo",
                         "customerAddress",
                     ]}
-                    onViewCustomer={onViewCustomer}
                 />
             </div>
         </div>

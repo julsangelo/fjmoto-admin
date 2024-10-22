@@ -1,5 +1,9 @@
 @import "../assets/scss/main.module";
 
+.inputBox {
+    width: auto;
+}
+
 .inputContainer {
     border: 1px solid $c_gray;
     border-radius: 5px;

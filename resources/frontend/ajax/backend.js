@@ -58,3 +58,14 @@ export function deleteInventory(productId, callback) {
             return error;
         });
 }
+
+export function getPurchases(customerID, callback) {
+    axiosClient
+        .post("/getPurchases", { customerID: customerID })
+        .then((response) => {
+            callback(response.data);
+        })
+        .catch((error) => {
+            return error;
+        });
+}

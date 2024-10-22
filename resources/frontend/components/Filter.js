@@ -56,7 +56,7 @@ export default function Filter({ visibleFilter }) {
             {visibleFilter.includes("date") && (
                 <div className={styles.filterContainer}>
                     Date
-                    <div className={styles.filterDate}>
+                    <div className={styles.filterDateTotal}>
                         <Input
                             labelStyle={styles.filterInputLabel}
                             containerStyle={styles.filterInputContainer}
@@ -67,6 +67,27 @@ export default function Filter({ visibleFilter }) {
                             labelStyle={styles.filterInputLabel}
                             containerStyle={styles.filterInputContainer}
                             type="date"
+                        />
+                    </div>
+                </div>
+            )}
+            {visibleFilter.includes("total") && (
+                <div className={styles.filterContainer}>
+                    Total Amount
+                    <div className={styles.filterDateTotal}>
+                        <Input
+                            labelStyle={styles.filterInputLabel}
+                            containerStyle={styles.filterInputContainer}
+                            type="number"
+                            label="Minimum"
+                            peso={true}
+                        />
+                        <Input
+                            labelStyle={styles.filterInputLabel}
+                            containerStyle={styles.filterInputContainer}
+                            type="number"
+                            label="Maximum"
+                            peso={true}
                         />
                     </div>
                 </div>

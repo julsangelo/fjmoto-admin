@@ -94,8 +94,20 @@ export default function Orders({ branch }) {
                     ]}
                     visibleActions={["view"]}
                 />
-                {isFilterOpen && <Filter />}
-                {isSortOpen && <Sort />}
+                {isFilterOpen && (
+                    <Filter
+                        visibleFilter={[
+                            "date",
+                            "total",
+                            "payment",
+                            "fullfillment",
+                            "order",
+                        ]}
+                    />
+                )}
+                {isSortOpen && (
+                    <Sort visibleSort={["date", "total", "items"]} />
+                )}
             </div>
         </div>
     );

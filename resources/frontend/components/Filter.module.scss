@@ -2,13 +2,13 @@
 
 .filter {
     position: absolute;
-    top: 220px;
-    right: 215px;
+    top: 230px;
+    right: 205px;
     background: #ffffff;
     padding: 25px 20px;
     border: 1px solid $c_gray;
     border-radius: 5px;
-    min-width: 270px;
+    max-width: 365px;
     display: flex;
     flex-flow: column;
     row-gap: 30px;
@@ -31,7 +31,7 @@
     width: 100%;
 }
 
-.filterDate {
+.filterDateTotal {
     display: flex;
     column-gap: 10px;
     align-items: center;

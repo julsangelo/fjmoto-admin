@@ -17,7 +17,7 @@ const Input = forwardRef(
         },
         ref,
     ) => (
-        <div>
+        <div className={styles.inputBox}>
             {label && (
                 <div className={`${styles.inputLabel} ${labelStyle}`}>
                     {label}

@@ -14,7 +14,7 @@
     font-weight: bolder;
     font-size: 24px;
     display: flex;
-    margin-bottom: 50px;
+    margin-bottom: 70px;
     align-items: center;
 }
 
@@ -27,7 +27,6 @@
 
 .purchasesMain {
     background-color: $b_primary;
-    margin-top: 20px;
     width: 100%;
     height: calc(100% - 68px);
     border: 1px solid $c_gray;
@@ -46,4 +45,42 @@
     background-color: $c_secondary !important;
     color: $c_mediumgray !important;
     border: 1px solid $c_gray !important;
+}
+
+.purchasesInfo {
+    background-color: $b_primary;
+    background-color: #ffffff;
+    padding: 30px;
+    border: 1px solid #d7d7d7;
+    border-radius: 5px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 45px;
+}
+
+.purchasesInfoContainer {
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    width: max-content;
+}
+
+.purchasesInfoDetails {
+    font-size: 16px;
+    font-weight: normal;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.purchasesInfoDetails p {
+    margin: 0;
+}
+
+.infoContainer {
+    display: flex;
+    column-gap: 30px;
 }

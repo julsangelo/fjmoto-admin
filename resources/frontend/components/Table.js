@@ -7,10 +7,10 @@ export default function Table({
     checkbox,
     data,
     action,
+    onView,
     openModal,
     visibleColumns,
     visibleActions,
-    onViewCustomer,
 }) {
     const itemsPerPage = 7;
     const [currentPage, setCurrentPage] = useState(1);
@@ -100,7 +100,7 @@ export default function Table({
                         icon="view"
                         size="24"
                         className={styles.tableButton}
-                        onClick={() => onViewCustomer(item.customerID)}
+                        onClick={() => onView(item)}
                     />
                 )}
                 {visibleActions.includes("delete") && (

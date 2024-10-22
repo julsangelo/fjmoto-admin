@@ -5,11 +5,12 @@ import Dashboard from "./Dashboard";
 import Inventory from "./Inventory";
 import Customers from "./Customers";
 import Orders from "./Orders";
+import Purchases from "../components/Customers/Purchases";
 
 export default function Main() {
     const [activeComponent, setActiveComponent] = useState("inventory");
     const [selectedBranch, setSelectedBranch] = useState("Branch A");
-    const [showPurchases, setShowPurchases] = useState(false);
+    const [selectedCustomer, setSelectedCustomer] = useState(null);
 
     useEffect(() => {
         const storedComponent = localStorage.getItem("activeComponent");
@@ -18,7 +19,7 @@ export default function Main() {
         }
     }, []);
 
-    const handleViewPurchases = (customerId) => {
+    const showPurchases = (customerId) => {
         setSelectedCustomer(customerId);
         setActiveComponent("purchases");
     };
@@ -33,13 +34,18 @@ export default function Main() {
                 return (
                     <Customers
                         branch={selectedBranch}
-                        onViewPurchases={handleViewPurchases}
+                        showPurchases={showPurchases}
                     />
                 );
             case "orders":
                 return <Orders branch={selectedBranch} />;
             case "purchases":
-                return <Purchases customerId={selectedCustomer} />;
+                return (
+                    <Purchases
+                        customer={selectedCustomer}
+                        onBack={() => setActiveComponent("customers")}
+                    />
+                );
         }
     };
 
