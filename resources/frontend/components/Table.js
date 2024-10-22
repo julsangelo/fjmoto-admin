@@ -74,7 +74,8 @@ export default function Table({
                                 src={item.image}
                                 alt={item.product || "Product Image"}
                             />
-                        ) : header.toLowerCase() === "price" ? (
+                        ) : header.toLowerCase() === "price" ||
+                          header.toLowerCase() === "total" ? (
                             `₱ ${item[header]}`
                         ) : (
                             item[header]
