@@ -3,6 +3,7 @@
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\EmployeesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,4 +15,5 @@ Route::get('/getCustomers', [CustomersController::class, 'getCustomers']);
 Route::post('/addInventory', [InventoryController::class, 'addInventory']);
 Route::post('/deleteInventory', [InventoryController::class, 'deleteInventory']);
 Route::post('/getOrders', [OrdersController::class, 'getOrders']);
+Route::post('/getEmployees', [EmployeesController::class, 'getEmployees']);
 Route::post('/getPurchases', [CustomersController::class, 'getPurchases']);
