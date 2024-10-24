@@ -47,11 +47,11 @@ export default function EditInventory({ onClose, branch, product }) {
 
     useEffect(() => {
         if (product) {
-            setValue("productId", product.productId);
+            setValue("productCode", product.productCode);
             setValue("productName", product.productName);
-            setValue("stockQuantity", product.stockQuantity);
-            setValue("price", product.price);
-            setValue("category", product.category);
+            setValue("productStockQuantity", product.productStockQuantity);
+            setValue("productPrice", product.productPrice);
+            setValue("productCategory", product.productCategory);
         }
     }, [product, setValue]);
 
@@ -61,8 +61,8 @@ export default function EditInventory({ onClose, branch, product }) {
     };
 
     const handleCategoryChange = (value) => {
-        setValue("category", value);
-        setError("category", { type: "manual", message: "" });
+        setValue("productCategory", value);
+        setError("productCategory", { type: "manual", message: "" });
     };
 
     const onSubmit = (data) => {
@@ -74,7 +74,7 @@ export default function EditInventory({ onClose, branch, product }) {
         });
 
         editInventory(formData)
-            .then(() => onClose()) // Close on success
+            .then(() => onClose())
             .catch((error) =>
                 console.error("Failed to edit inventory:", error),
             );
@@ -99,10 +99,10 @@ export default function EditInventory({ onClose, branch, product }) {
                         error={errors.image?.message}
                     />
                 </div>
-                {renderInput("ID", "productId")}
+                {renderInput("Code", "productCode")}
                 {renderInput("Product Name", "productName")}
-                {renderInput("Quantity", "stockQuantity", "number")}
-                {renderInput("Price", "price", "number")}
+                {renderInput("Quantity", "productStockQuantity", "number")}
+                {renderInput("Price", "productPrice", "number")}
                 <Dropdown
                     label="Category"
                     className={styles.editInventoryDropdown}

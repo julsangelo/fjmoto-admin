@@ -19,8 +19,8 @@ export default function Dropdown({ onSelect, label, className, error, value }) {
                 <option selected disabled>
                     Select Category
                 </option>
-                <option value="Branch A">Mandaluyong Branch</option>
-                <option value="Branch B">Rizal Branch</option>
+                <option value="1">Mandaluyong Branch</option>
+                <option value="2">Rizal Branch</option>
             </select>
             <div className={styles.dropdownError}>{error}</div>
         </div>

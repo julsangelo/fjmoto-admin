@@ -8,8 +8,7 @@ class Customer
 {
     public function getCustomers () 
     {
-        $customers = Customers::select("customerName", "customerID", "customerEmail", "customerContactNo", "customerAddress")
-            ->get();
+        $customers = Customers::get();
 
         $headers = array_keys($customers->first()->getAttributes());
 

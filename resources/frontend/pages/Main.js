@@ -9,7 +9,7 @@ import Purchases from "../components/Customers/Purchases";
 
 export default function Main() {
     const [activeComponent, setActiveComponent] = useState("inventory");
-    const [selectedBranch, setSelectedBranch] = useState("Branch A");
+    const [selectedBranch, setSelectedBranch] = useState("1");
     const [selectedCustomer, setSelectedCustomer] = useState(null);
 
     useEffect(() => {
@@ -27,18 +27,18 @@ export default function Main() {
     const renderContent = () => {
         switch (activeComponent) {
             case "dashboard":
-                return <Dashboard branch={selectedBranch} />;
+                return <Dashboard branchID={selectedBranch} />;
             case "inventory":
-                return <Inventory branch={selectedBranch} />;
+                return <Inventory branchID={selectedBranch} />;
             case "customers":
                 return (
                     <Customers
-                        branch={selectedBranch}
+                        branchID={selectedBranch}
                         showPurchases={showPurchases}
                     />
                 );
             case "orders":
-                return <Orders branch={selectedBranch} />;
+                return <Orders branchID={selectedBranch} />;
             case "purchases":
                 return (
                     <Purchases

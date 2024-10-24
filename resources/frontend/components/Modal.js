@@ -5,27 +5,23 @@ import AddInventory from "./Inventory/AddInventory";
 import DeleteInventory from "./Inventory/DeleteInventory";
 import EditInventory from "./Inventory/EditInventory";
 
-export default function Modal({ onClose, branch, modal, productId, product }) {
+export default function Modal({
+    onClose,
+    branchID,
+    modal,
+    productId,
+    product,
+}) {
     const renderContent = () => {
         switch (modal) {
             case "add":
-                return <AddInventory onClose={onClose} branch={branch} />;
+                return <AddInventory onClose={onClose} branchID={branchID} />;
             case "delete":
                 return (
-                    <DeleteInventory
-                        onClose={onClose}
-                        branch={branch}
-                        productId={productId}
-                    />
+                    <DeleteInventory onClose={onClose} productId={productId} />
                 );
             case "edit":
-                return (
-                    <EditInventory
-                        onClose={onClose}
-                        branch={branch}
-                        product={product}
-                    />
-                );
+                return <EditInventory onClose={onClose} product={product} />;
             default:
                 return <div>No content available</div>;
         }

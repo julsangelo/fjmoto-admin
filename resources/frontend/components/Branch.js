@@ -8,8 +8,8 @@ export default function Branch({ setSelectedBranch }) {
 
     return (
         <select className={styles.branchDropdown} onChange={handleChange}>
-            <option value="Branch A">Mandaluyong Branch</option>
-            <option value="Branch B">Rizal Branch</option>
+            <option value="1">Mandaluyong Branch</option>
+            <option value="2">Rizal Branch</option>
         </select>
     );
 }

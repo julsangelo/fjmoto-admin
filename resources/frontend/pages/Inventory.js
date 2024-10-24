@@ -8,7 +8,7 @@ import Modal from "../components/Modal";
 import Filter from "../components/Filter";
 import Sort from "../components/Sort";
 
-export default function Inventory({ branch }) {
+export default function Inventory({ branchID }) {
     const [inventoryData, setInventoryData] = useState({});
     const [searchTerm, setSearchTerm] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,10 +19,10 @@ export default function Inventory({ branch }) {
     const [selectedProduct, setSelectedProduct] = useState(null);
 
     useEffect(() => {
-        getInventory(branch, (data) => {
+        getInventory(branchID, (data) => {
             setInventoryData(data);
         });
-    }, [branch]);
+    }, [branchID]);
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
@@ -108,21 +108,21 @@ export default function Inventory({ branch }) {
                     }}
                     openModal={openModal}
                     action={true}
-                    branch={branch}
+                    branchID={branchID}
                     visibleColumns={[
-                        "image",
+                        "productImage",
                         "productName",
-                        "productId",
-                        "category",
-                        "price",
-                        "stockQuantity",
+                        "productCode",
+                        "productCategory",
+                        "productPrice",
+                        "productStockQuantity",
                     ]}
                     visibleActions={["delete", "edit"]}
                 />
                 {isModalOpen && (
                     <Modal
                         onClose={closeModal}
-                        branch={branch}
+                        branchID={branchID}
                         modal={modalType}
                         productId={selectedProductId}
                         product={selectedProduct}

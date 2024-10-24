@@ -10,21 +10,21 @@ import { useForm } from "react-hook-form";
 import { addInventory } from "../../ajax/backend";
 
 const schema = yup.object().shape({
-    productId: yup.string().required("ID is required."),
+    productCode: yup.string().required("ID is required."),
     productName: yup.string().required("Product Name is required."),
-    stockQuantity: yup
+    productStockQuantity: yup
         .number()
         .typeError("Quantity must be a number.")
         .required("Quantity is required.")
         .positive("Quantity must be positive.")
         .integer("Quantity must be an integer."),
-    price: yup
+    productPrice: yup
         .number()
         .typeError("Price must be a number.")
         .required("Price is required.")
         .positive("Price must be positive."),
-    category: yup.string().required("Category is required."),
-    image: yup
+    productCategory: yup.string().required("Category is required."),
+    productImage: yup
         .mixed()
         .required("Image is required.")
         .test(
@@ -34,7 +34,7 @@ const schema = yup.object().shape({
         ),
 });
 
-export default function AddInventory({ onClose, branch }) {
+export default function AddInventory({ onClose, branchID }) {
     const {
         register,
         handleSubmit,
@@ -44,23 +44,23 @@ export default function AddInventory({ onClose, branch }) {
     } = useForm({ resolver: yupResolver(schema) });
 
     const handleFileChange = (file) => {
-        if (file) setValue("image", file);
-        setError("image", { type: "manual", message: "" });
+        if (file) setValue("productImage", file);
+        setError("productImage", { type: "manual", message: "" });
     };
 
     const handleCategoryChange = (value) => {
-        setValue("category", value);
-        setError("category", { type: "manual", message: "" });
+        setValue("productCategory", value);
+        setError("productCategory", { type: "manual", message: "" });
     };
 
     const onSubmit = (data) => {
         const formData = new FormData();
-        Object.entries({ ...data, branch }).forEach(([key, value]) => {
-            if (key === "image" && value instanceof File)
+        Object.entries({ ...data, branchID }).forEach(([key, value]) => {
+            if (key === "productImage" && value instanceof File)
                 formData.append(key, value);
             else formData.append(key, value);
         });
-
+        console.log(data);
         addInventory(formData);
     };
 
@@ -81,18 +81,18 @@ export default function AddInventory({ onClose, branch }) {
                 <div className={styles.addInventoryImage}>
                     <UploadImage
                         onFileChange={handleFileChange}
-                        error={errors.image?.message}
+                        error={errors.productImage?.message}
                     />
                 </div>
-                {renderInput("ID", "productId")}
+                {renderInput("ID", "productCode")}
                 {renderInput("Product Name", "productName")}
-                {renderInput("Quantity", "stockQuantity", "number")}
-                {renderInput("Price", "price", "number", true)}
+                {renderInput("Quantity", "productStockQuantity", "number")}
+                {renderInput("Price", "productPrice", "number", true)}
                 <Dropdown
                     label="Category"
                     className={styles.addInventoryDropdown}
                     onSelect={handleCategoryChange}
-                    error={errors.category?.message}
+                    error={errors.productCategory?.message}
                 />
             </div>
             <div className={styles.addInventoryButton}>

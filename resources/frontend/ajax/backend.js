@@ -50,9 +50,10 @@ export function addInventory(data) {
 
 export function deleteInventory(productId, callback) {
     axiosClient
-        .post(`/deleteInventory`, { id: productId })
+        .post(`/deleteInventory`, { productID: productId })
         .then((response) => {
             callback(response.data);
+            console.log(productId);
         })
         .catch((error) => {
             return error;

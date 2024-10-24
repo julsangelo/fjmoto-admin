@@ -9,8 +9,8 @@ class Inventory
     public function getInventory($branch)
     {
         $products = Products::select()
-            ->where('branch', $branch)
-            ->orderBy('id', "DESC" )
+            ->where('branchID', $branch)
+            ->orderBy('productID', "DESC" )
             ->get()
             ;
 

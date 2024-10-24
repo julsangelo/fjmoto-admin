@@ -7,7 +7,7 @@ import Table from "../components/Table";
 import Filter from "../components/Filter";
 import Sort from "../components/Sort";
 
-export default function Orders({ branch }) {
+export default function Orders({ branchID }) {
     const [ordersData, setOrdersData] = useState({});
     const [searchTerm, setSearchTerm] = useState("");
     const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -15,10 +15,10 @@ export default function Orders({ branch }) {
     const [modalType, setModalType] = useState("");
 
     useEffect(() => {
-        getOrders(branch, (data) => {
+        getOrders(branchID, (data) => {
             setOrdersData(data);
         });
-    }, [branch]);
+    }, [branchID]);
 
     console.log(ordersData);
 
@@ -81,15 +81,14 @@ export default function Orders({ branch }) {
                         data: searchTerm ? filteredData : ordersData.data || [],
                     }}
                     action={true}
-                    branch={branch}
+                    branchID={branchID}
                     visibleColumns={[
-                        "ID",
-                        "orderDate",
-                        "customer",
-                        "total",
-                        "items",
-                        "paymentStatus",
-                        "fulfillmentStatus",
+                        "orderID",
+                        "orderDateTime",
+                        "customerID",
+                        "orderTotal",
+                        "orderPaymentStatus",
+                        "orderFulfillmentStatus",
                         "orderStatus",
                     ]}
                     visibleActions={["view"]}

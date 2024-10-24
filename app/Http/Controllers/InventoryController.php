@@ -25,31 +25,35 @@ class InventoryController extends Controller
 
     public function addInventory(Request $request) {
         $request->validate([
-            'productId' => 'required|string',
+            'productCode' => 'required|string',
             'productName' => 'required|string',
-            'stockQuantity' => 'required|integer',
-            'price' => 'required|numeric',
-            'category' => 'required|string',
-            'image' => 'required|image|max:2048',
-            'branch' => 'required'
+            'productStockQuantity' => 'required|integer',
+            'productPrice' => 'required|numeric',
+            'productCategory' => 'required|string',
+            'productImage' => 'required|image|max:2048',
+            'branchID' => 'required|exists:branches,branchID'
         ]);
 
-        $imagePath = $request->file('image')->store('images/products', 'public');
+        $image = $request->file('productImage');
+        $imageName = $image->getClientOriginalName();
+        $image->move(public_path('fjmoto/images/products'), $imageName); 
+
+        $imagePath = 'images/products/' . $imageName;
 
         Products::create([
-            'productId' => $request->productId,
+            'productCode' => $request->productCode,
             'productName' => $request->productName,
-            'stockQuantity' => $request->stockQuantity,
-            'price' => $request->price,
-            'category' => $request->category,
-            'image' => $imagePath,
-            'branch' => $request->branch
+            'productStockQuantity' => $request->productStockQuantity,
+            'productPrice' => $request->productPrice,
+            'productCategory' => $request->productCategory,
+            'productImage' => $imagePath,
+            'branchID' => $request->branchID
         ]);
     }   
 
     public function deleteInventory(Request $request) 
     {
-        $id = $request->input('id');
-        Products::destroy($id);
+        $productID = $request->input('productID');
+        $product = Products::findOrFail($productID)->delete();
     }
 }

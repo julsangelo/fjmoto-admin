@@ -9,8 +9,8 @@ class Order
     public function getOrders($branch)
     {
         $orders = Orders::select()
-            ->where('branch', $branch)
-            ->orderBy('id', "DESC" )
+            ->where('branchID', $branch)
+            ->orderBy('orderID', "DESC" )
             ->get()
             ;
 

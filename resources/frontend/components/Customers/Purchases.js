@@ -51,12 +51,11 @@ export default function Purchases({ customer, onBack }) {
                         }}
                         action={false}
                         visibleColumns={[
-                            "ID",
-                            "orderDate",
-                            "items",
-                            "total",
-                            "paymentStatus",
-                            "fulfillmentStatus",
+                            "orderID",
+                            "orderDateTime",
+                            "orderTotal",
+                            "orderPaymentStatus",
+                            "orderFulfillmentStatus",
                             "orderStatus",
                         ]}
                     />

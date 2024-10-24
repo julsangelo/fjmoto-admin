@@ -9,8 +9,8 @@ class Purchases
     public function getPurchases($customerID)
     {
         $purchases = Orders::select()
-            ->where('customerId', $customerID)
-            ->orderBy('id', "DESC" )
+            ->where('customerID', $customerID)
+            ->orderBy('orderID', "DESC" )
             ->get()
             ;
 

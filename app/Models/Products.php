@@ -8,15 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Products extends Model
 {
     protected $table = 'products';
+    protected $primaryKey = 'productID';
     public $timestamps = false;
 
     protected $fillable = [
-        'productId',
+        'productCode',
         'productName',
-        'stockQuantity',
-        'price',
-        'category',
-        'image',
-        'branch',
+        'productStockQuantity',
+        'productPrice',
+        'productCategory',
+        'productImage',
+        'branchID',
     ];
 }

@@ -27,12 +27,11 @@ export default function Table({
           )
         : [];
 
-    const formatHeader = (header) =>
-        header
-            .replace(/([A-Z])/g, " $1")
-            .replace(/_/g, " ")
-            .trim()
-            .replace(/\b\w/g, (c) => c.toUpperCase());
+    const formatHeader = (header) => {
+        const words = header.split(/(?<=[a-z])(?=[A-Z])|_/);
+        const formattedWords = words.slice(1).join(" ");
+        return formattedWords.replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2").trim();
+    };
 
     const handlePageChange = (newPage) => {
         if (newPage > 0 && newPage <= totalPages) setCurrentPage(newPage);
@@ -68,14 +67,14 @@ export default function Table({
                         key={idx}
                         style={idx === 0 ? { padding: "0px 20px" } : {}}
                     >
-                        {header.toLowerCase() === "image" ? (
+                        {formatHeader(header).toLowerCase() === "image" ? (
                             <img
                                 className={styles.productImage}
-                                src={item.image}
+                                src={`/fjmoto/${item.productImage}`}
                                 alt={item.product || "Product Image"}
                             />
-                        ) : header.toLowerCase() === "price" ||
-                          header.toLowerCase() === "total" ? (
+                        ) : formatHeader(header).toLowerCase() === "price" ||
+                          formatHeader(header).toLowerCase() === "total" ? (
                             `₱ ${item[header]}`
                         ) : (
                             item[header]
@@ -108,7 +107,9 @@ export default function Table({
                         icon="delete"
                         size="24"
                         className={styles.tableButton}
-                        onClick={() => openModal("delete", item.id, null)}
+                        onClick={() =>
+                            openModal("delete", item.productID, null)
+                        }
                     />
                 )}
                 {visibleActions.includes("edit") && (
