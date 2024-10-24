@@ -76,7 +76,7 @@ export default function AddInventory({ onClose, branchID }) {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div className={styles.addInventoryTitle}>Add Product</div>
+            <div className={styles.addInventoryTitle}></div>
             <div className={styles.addInventoryForm}>
                 <div className={styles.addInventoryImage}>
                     <UploadImage
