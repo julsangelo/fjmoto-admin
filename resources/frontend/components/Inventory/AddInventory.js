@@ -10,8 +10,8 @@ import { useForm } from "react-hook-form";
 import { addInventory } from "../../ajax/backend";
 
 const schema = yup.object().shape({
-    productCode: yup.string().required("ID is required."),
-    productName: yup.string().required("Product Name is required."),
+    productCode: yup.string().required("Code is required."),
+    productName: yup.string().required("Name is required."),
     productStockQuantity: yup
         .number()
         .typeError("Quantity must be a number.")
@@ -76,7 +76,7 @@ export default function AddInventory({ onClose, branchID }) {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div className={styles.addInventoryTitle}>Add Inventory</div>
+            <div className={styles.addInventoryTitle}>Add Product</div>
             <div className={styles.addInventoryForm}>
                 <div className={styles.addInventoryImage}>
                     <UploadImage
@@ -84,8 +84,8 @@ export default function AddInventory({ onClose, branchID }) {
                         error={errors.productImage?.message}
                     />
                 </div>
-                {renderInput("ID", "productCode")}
-                {renderInput("Product Name", "productName")}
+                {renderInput("Code", "productCode")}
+                {renderInput("Name", "productName")}
                 {renderInput("Quantity", "productStockQuantity", "number")}
                 {renderInput("Price", "productPrice", "number", true)}
                 <Dropdown

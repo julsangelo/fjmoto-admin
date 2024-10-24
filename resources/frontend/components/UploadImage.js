@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./UploadImage.module";
 import Icon from "./Icon";
 
-export default function UploadImage({ onFileChange, error }) {
+export default function UploadImage({ onFileChange, error, uploadedImage }) {
     const [imageSrc, setImageSrc] = useState(null);
+
+    useEffect(() => {
+        if (uploadedImage) {
+            setImageSrc(uploadedImage);
+        }
+    }, [uploadedImage]);
 
     const handleChange = (event) => {
         const file = event.target.files[0];
         if (file) {
             const fileSize = file.size / 1024 / 1024;
-            const fileType = file.type;
 
             if (fileSize > 2) {
                 error("File size must be less than 2 MB.");
@@ -25,26 +30,55 @@ export default function UploadImage({ onFileChange, error }) {
         }
     };
 
+    const renderFileInput = () => (
+        <input
+            type="file"
+            accept="image/jpeg, image/png"
+            onChange={handleChange}
+            style={{ display: "none" }}
+            id="imageUpload"
+        />
+    );
+
+    const openFileInput = () => {
+        document.getElementById("imageUpload").click();
+    };
+
     return (
         <div className={styles.uploadImage}>
+            <input
+                type="file"
+                accept="image/jpeg, image/png"
+                onChange={handleChange}
+                style={{ display: "none" }}
+                id="imageUpload"
+            />
             <div className={styles.uploadImageContainer}>
-                <input
-                    type="file"
-                    accept="image/jpeg, image/png"
-                    onChange={handleChange}
-                    style={{ display: "none" }}
-                    id="imageUpload"
-                />
+                {imageSrc && (
+                    <div
+                        className={styles.uploadImageChange}
+                        onClick={openFileInput}
+                    >
+                        Change
+                    </div>
+                )}
                 <label
                     htmlFor="imageUpload"
                     className={styles.uploadImageContent}
                 >
                     {imageSrc ? (
-                        <img
-                            src={imageSrc}
-                            alt="Uploaded"
-                            className={styles.uploadedImage}
-                        />
+                        <>
+                            <img
+                                src={
+                                    uploadedImage === imageSrc
+                                        ? `/fjmoto/${imageSrc}`
+                                        : imageSrc
+                                }
+                                alt="Uploaded"
+                                className={styles.uploadedImage}
+                                onClick={renderFileInput}
+                            />
+                        </>
                     ) : (
                         <Icon
                             icon="addImage"

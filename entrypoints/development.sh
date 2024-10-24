@@ -10,6 +10,9 @@ if [ ! -d "./vendor" ]; then
     composer install
 fi
 
-chown -R 1000:www-data 0:www-data /var/www/html ./vendor ./node_modules
+chown -R 1000:www-data /var/www/html ./vendor ./node_modules
 
-/entrypoint supervisord
+/entrypoint supervisord &
+
+echo "Starting npm watch..."
+npm run watch

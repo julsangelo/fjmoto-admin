@@ -10,23 +10,27 @@ import { useForm } from "react-hook-form";
 import { editInventory } from "../../ajax/backend";
 
 const schema = yup.object().shape({
-    productId: yup.string().required("ID is required."),
+    productCode: yup.string().required("ID is required."),
     productName: yup.string().required("Product Name is required."),
-    stockQuantity: yup
+    productStockQuantity: yup
         .number()
         .typeError("Quantity must be a number.")
         .required("Quantity is required.")
         .positive("Quantity must be positive.")
         .integer("Quantity must be an integer."),
-    price: yup
+    productPrice: yup
         .number()
         .typeError("Price must be a number.")
         .required("Price is required.")
         .positive("Price must be positive."),
-    category: yup.string().required("Category is required."),
-    image: yup
+    productCategory: yup.string().required("Category is required."),
+    productImage: yup
         .mixed()
-        .required("Image is required.")
+        .test(
+            "required",
+            "Image is required.",
+            (value) => value instanceof File,
+        )
         .test(
             "fileSize",
             "File size must be less than 2 MB.",
@@ -39,11 +43,9 @@ export default function EditInventory({ onClose, branch, product }) {
         register,
         handleSubmit,
         setValue,
-        setError,
         formState: { errors },
+        trigger,
     } = useForm({ resolver: yupResolver(schema) });
-
-    console.log(product);
 
     useEffect(() => {
         if (product) {
@@ -52,25 +54,35 @@ export default function EditInventory({ onClose, branch, product }) {
             setValue("productStockQuantity", product.productStockQuantity);
             setValue("productPrice", product.productPrice);
             setValue("productCategory", product.productCategory);
+
+            if (product.productImage) {
+                // This ensures productImage is set correctly for validation.
+                fetch(`/fjmoto/${product.productImage}`)
+                    .then((res) => res.blob())
+                    .then((blob) => {
+                        const file = new File([blob], product.productImage, {
+                            type: blob.type,
+                        });
+                        setValue("productImage", file);
+                    });
+            }
         }
     }, [product, setValue]);
 
     const handleFileChange = (file) => {
-        if (file) setValue("image", file);
-        setError("image", { type: "manual", message: "" });
+        setValue("productImage", file);
+        trigger("productImage");
     };
 
     const handleCategoryChange = (value) => {
         setValue("productCategory", value);
-        setError("productCategory", { type: "manual", message: "" });
+        trigger("productCategory");
     };
 
     const onSubmit = (data) => {
         const formData = new FormData();
         Object.entries({ ...data, branch }).forEach(([key, value]) => {
-            if (key === "image" && value instanceof File)
-                formData.append(key, value);
-            else formData.append(key, value);
+            formData.append(key, value);
         });
 
         editInventory(formData)
@@ -80,12 +92,17 @@ export default function EditInventory({ onClose, branch, product }) {
             );
     };
 
-    const renderInput = (label, name, type = "text") => (
+    const renderInput = (label, name, type = "text", peso = false) => (
         <Input
             label={label}
             type={type}
+            peso={peso}
             {...register(name)}
             error={errors[name]?.message}
+            onChange={(e) => {
+                setValue(name, e.target.value);
+                trigger(name);
+            }}
         />
     );
 
@@ -96,19 +113,20 @@ export default function EditInventory({ onClose, branch, product }) {
                 <div className={styles.editInventoryImage}>
                     <UploadImage
                         onFileChange={handleFileChange}
-                        error={errors.image?.message}
+                        uploadedImage={product?.productImage}
+                        error={errors.productImage?.message}
                     />
                 </div>
                 {renderInput("Code", "productCode")}
                 {renderInput("Product Name", "productName")}
                 {renderInput("Quantity", "productStockQuantity", "number")}
-                {renderInput("Price", "productPrice", "number")}
+                {renderInput("Price", "productPrice", "number", true)}
                 <Dropdown
                     label="Category"
                     className={styles.editInventoryDropdown}
                     onSelect={handleCategoryChange}
-                    value={product?.category}
-                    error={errors.category?.message}
+                    value={product?.productCategory}
+                    error={errors.productCategory?.message}
                 />
             </div>
             <div className={styles.editInventoryButton}>

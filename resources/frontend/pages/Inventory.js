@@ -68,7 +68,7 @@ export default function Inventory({ branchID }) {
             <div className={styles.inventoryHeader}>
                 Inventory
                 <Button
-                    label="Add Inventory"
+                    label="Add Product"
                     icon="add"
                     size="24"
                     onClick={() => openModal("add")}

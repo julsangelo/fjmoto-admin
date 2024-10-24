@@ -3,7 +3,8 @@
     "scripts": {
         "start": "webpack",
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "watch": "watch npm start"
     },
     "devDependencies": {
         "@babel/core": "^7.25.2",
