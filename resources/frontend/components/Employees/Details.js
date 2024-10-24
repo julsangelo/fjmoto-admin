@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getEmployeeDetails } from "../../ajax/backend";
+import { getEmployees } from "../../ajax/backend";
 import styles from "./Details.module";
 import Button from "../Button";
 
@@ -7,7 +7,7 @@ export default function Details({ employee, onBack }) {
     const [employeeDetails, setEmployeeDetails] = useState({});
 
     useEffect(() => {
-        getEmployeeDetails(employee.employeeID, (data) => {
+        getEmployees(employee.employeeID, (data) => {
             setEmployeeDetails(data);
         });
     }, [employee.employeeID]);

@@ -49,7 +49,32 @@ class InventoryController extends Controller
             'productImage' => $imagePath,
             'branchID' => $request->branchID
         ]);
-    }   
+    }
+
+    public function editInventory(Request $request) {
+        $product = Products::findOrFail($request->productID);
+    
+        $request->validate([
+            'productCode' => 'required|string',
+            'productName' => 'required|string',
+            'productStockQuantity' => 'required|integer',
+            'productPrice' => 'required|numeric',
+            'productCategory' => 'required|string',
+            'productImage' => 'nullable|image|max:2048',
+        ]);
+    
+        if ($request->hasFile('productImage')) {
+            $imageName = $request->file('productImage')->getClientOriginalName();
+            $request->file('productImage')->move(public_path('fjmoto/images/products'), $imageName);
+            $product->productImage = 'images/products/' . $imageName;
+        }
+    
+        $product->update($request->only(['productCode', 'productName', 'productStockQuantity', 'productPrice', 'productCategory']));
+    
+        return response()->json(['message' => 'Product updated successfully.']);
+    }
+    
+    
 
     public function deleteInventory(Request $request) 
     {

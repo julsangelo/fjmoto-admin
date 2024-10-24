@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { editInventory } from "../../ajax/backend";
 
 const schema = yup.object().shape({
+    productID: yup.number().required(),
     productCode: yup.string().required("ID is required."),
     productName: yup.string().required("Product Name is required."),
     productStockQuantity: yup
@@ -29,12 +30,12 @@ const schema = yup.object().shape({
         .test(
             "required",
             "Image is required.",
-            (value) => value instanceof File,
+            (value) => !value || value instanceof File,
         )
         .test(
             "fileSize",
             "File size must be less than 2 MB.",
-            (value) => value && value.size <= 2 * 1024 * 1024,
+            (value) => !value || value.size <= 2 * 1024 * 1024,
         ),
 });
 
@@ -49,6 +50,7 @@ export default function EditInventory({ onClose, branch, product }) {
 
     useEffect(() => {
         if (product) {
+            setValue("productID", product.productID); // Ensure productID is set
             setValue("productCode", product.productCode);
             setValue("productName", product.productName);
             setValue("productStockQuantity", product.productStockQuantity);
@@ -56,7 +58,6 @@ export default function EditInventory({ onClose, branch, product }) {
             setValue("productCategory", product.productCategory);
 
             if (product.productImage) {
-                // This ensures productImage is set correctly for validation.
                 fetch(`/fjmoto/${product.productImage}`)
                     .then((res) => res.blob())
                     .then((blob) => {

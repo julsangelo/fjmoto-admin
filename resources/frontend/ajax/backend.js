@@ -61,6 +61,17 @@ export function addInventory(data) {
         });
 }
 
+export function editInventory(data) {
+    axiosClient
+        .post("/editInventory", data)
+        .then((response) => {
+            console.log("Inventory added:", response.data);
+        })
+        .catch((error) => {
+            console.error("Error adding inventory:", error);
+        });
+}
+
 export function deleteInventory(productId, callback) {
     axiosClient
         .post(`/deleteInventory`, { productID: productId })
@@ -76,17 +87,6 @@ export function deleteInventory(productId, callback) {
 export function getPurchases(customerID, callback) {
     axiosClient
         .post("/getPurchases", { customerID: customerID })
-        .then((response) => {
-            callback(response.data);
-        })
-        .catch((error) => {
-            return error;
-        });
-}
-
-export function getEmployeeDetails(employeeID, callback) {
-    axiosClient
-        .post("/getEmployeeDetails", { employeeID: employeeID })
         .then((response) => {
             callback(response.data);
         })

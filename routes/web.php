@@ -13,6 +13,7 @@ Route::get('/', function () {
 Route::post('/getInventory', [InventoryController::class, 'getInventory']);
 Route::get('/getCustomers', [CustomersController::class, 'getCustomers']);
 Route::post('/addInventory', [InventoryController::class, 'addInventory']);
+Route::post('/editInventory', [InventoryController::class, 'editInventory']);
 Route::post('/deleteInventory', [InventoryController::class, 'deleteInventory']);
 Route::post('/getOrders', [OrdersController::class, 'getOrders']);
 Route::post('/getEmployees', [EmployeesController::class, 'getEmployees']);
