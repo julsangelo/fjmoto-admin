@@ -14,13 +14,6 @@ export default function UploadImage({ onFileChange, error, uploadedImage }) {
     const handleChange = (event) => {
         const file = event.target.files[0];
         if (file) {
-            const fileSize = file.size / 1024 / 1024;
-
-            if (fileSize > 2) {
-                error("File size must be less than 2 MB.");
-                return;
-            }
-
             const reader = new FileReader();
             reader.onloadend = () => {
                 setImageSrc(reader.result);
