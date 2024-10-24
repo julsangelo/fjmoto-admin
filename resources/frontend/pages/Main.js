@@ -7,11 +7,13 @@ import Customers from "./Customers";
 import Orders from "./Orders";
 import Employees from "./Employees";
 import Purchases from "../components/Customers/Purchases";
+import Details from "../components/Employees/Details";
 
 export default function Main() {
     const [activeComponent, setActiveComponent] = useState("inventory");
     const [selectedBranch, setSelectedBranch] = useState("1");
     const [selectedCustomer, setSelectedCustomer] = useState(null);
+    const [selectedEmployee, setSelectedEmployee] = useState(null);
 
     useEffect(() => {
         const storedComponent = localStorage.getItem("activeComponent");
@@ -23,6 +25,11 @@ export default function Main() {
     const showPurchases = (customerId) => {
         setSelectedCustomer(customerId);
         setActiveComponent("purchases");
+    };
+
+    const showDetails = (employeeID) => {
+        setSelectedEmployee(employeeID);
+        setActiveComponent("details");
     };
 
     const renderContent = () => {
@@ -48,7 +55,19 @@ export default function Main() {
                     />
                 );
             case "employees":
-                return <Employees branch={selectedBranch} />;
+                return (
+                    <Employees
+                        branchID={selectedBranch}
+                        showDetails={showDetails}
+                    />
+                );
+            case "details":
+                return (
+                    <Details
+                        employee={selectedEmployee}
+                        onBack={() => setActiveComponent("employees")}
+                    />
+                );
         }
     };
 

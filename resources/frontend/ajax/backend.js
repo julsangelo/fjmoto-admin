@@ -83,3 +83,14 @@ export function getPurchases(customerID, callback) {
             return error;
         });
 }
+
+export function getEmployeeDetails(employeeID, callback) {
+    axiosClient
+        .post("/getEmployeeDetails", { employeeID: employeeID })
+        .then((response) => {
+            callback(response.data);
+        })
+        .catch((error) => {
+            return error;
+        });
+}

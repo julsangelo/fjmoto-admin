@@ -5,26 +5,20 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 import Table from "../components/Table";
 import Filter from "../components/Filter";
-import Sort from "../components/Sort";
 
-export default function Employees({ branch }) {
+export default function Employees({ branchID, showDetails }) {
     const [employeesData, setEmployeesData] = useState({});
     const [searchTerm, setSearchTerm] = useState("");
     const [isFilterOpen, setIsFilterOpen] = useState(false);
-    const [isSortOpen, setIsSortOpen] = useState(false);
-    const [modalType, setModalType] = useState("");
 
     useEffect(() => {
-        getEmployees(branch, (data) => {
+        getEmployees(branchID, (data) => {
             setEmployeesData(data);
         });
-    }, [branch]);
-
-    console.log(employeesData);
+    }, [branchID]);
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
-        console.log(event.target.value);
     };
 
     const filteredData = employeesData.data
@@ -39,11 +33,10 @@ export default function Employees({ branch }) {
 
     const toggleFilterModal = () => {
         setIsFilterOpen((prev) => !prev);
-        setIsSortOpen(false);
     };
 
-    const handleView = (customerId) => {
-        showPurchases(customerId);
+    const handleView = (employeeID) => {
+        showDetails(employeeID);
     };
 
     return (
@@ -83,15 +76,17 @@ export default function Employees({ branch }) {
                             : employeesData.data || [],
                     }}
                     action={true}
-                    branch={branch}
+                    branch={branchID}
                     visibleColumns={[
-                        "name",
-                        "ID",
-                        "branch",
-                        "position",
-                        "employmentStatus",
+                        "employeeFirstName",
+                        "employeeMiddleName",
+                        "employeeLastName",
+                        "branchID",
+                        "employeePosition",
+                        "employeeStatus",
                     ]}
                     visibleActions={["view", "delete", "edit"]}
+                    onView={handleView}
                 />
                 {isFilterOpen && (
                     <Filter

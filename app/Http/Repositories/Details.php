@@ -4,13 +4,13 @@ namespace App\Http\Repositories;
 
 use App\Models\Employees;
 
-class Employee
+class Details
 {
-    public function getEmployees($branch)
+    public function getEmployeeDetails($employeeID)
     {
         $employees = Employees::select()
-            ->where('branchID', $branch)
-            ->orderBy('employeeID', "DESC")
+            ->where('employeeID', $employeeID)
+            ->orderBy('employeeID', "DESC" )
             ->get()
             ;
 
