@@ -1,7 +1,6 @@
 import React from "react";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import InventoryIcon from "@mui/icons-material/Inventory";
-import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
@@ -16,11 +15,13 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import BadgeIcon from "@mui/icons-material/Badge";
 
 const ICON_TYPES = {
     dashboard: DashboardIcon,
     inventory: InventoryIcon,
-    customer: PersonIcon,
+    customer: PeopleAltIcon,
     order: ShoppingCartIcon,
     add: AddIcon,
     search: SearchIcon,
@@ -35,6 +36,7 @@ const ICON_TYPES = {
     sort: SwapVertIcon,
     view: VisibilityIcon,
     back: ArrowBackIcon,
+    employees: BadgeIcon,
 };
 
 export default function Icon({ icon, size, onClick, className }) {

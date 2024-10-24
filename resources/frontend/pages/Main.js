@@ -5,6 +5,7 @@ import Dashboard from "./Dashboard";
 import Inventory from "./Inventory";
 import Customers from "./Customers";
 import Orders from "./Orders";
+import Employees from "./Employees";
 import Purchases from "../components/Customers/Purchases";
 
 export default function Main() {
@@ -46,6 +47,8 @@ export default function Main() {
                         onBack={() => setActiveComponent("customers")}
                     />
                 );
+            case "employees":
+                return <Employees branch={selectedBranch} />;
         }
     };
 

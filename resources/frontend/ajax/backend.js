@@ -37,6 +37,19 @@ export function getOrders(branch, callback) {
         });
 }
 
+export function getEmployees(branch, callback) {
+    axiosClient
+        .post(`/getEmployees`, {
+            branch: branch,
+        })
+        .then((response) => {
+            callback(response.data);
+        })
+        .catch((error) => {
+            return error;
+        });
+}
+
 export function addInventory(data) {
     axiosClient
         .post("/addInventory", data)

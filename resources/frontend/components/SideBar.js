@@ -49,6 +49,14 @@ export default function Sidebar({ setActiveComponent }) {
                     size="24"
                     isActive={activeLink === "orders"}
                 ></BarLink>
+                <p className={styles.otherMenu}>Management</p>
+                <BarLink
+                    onClick={() => handleLinkClick("employees")}
+                    label="Employees"
+                    icon="employees"
+                    size="24"
+                    isActive={activeLink === "employees"}
+                ></BarLink>
             </div>
         </div>
     );
