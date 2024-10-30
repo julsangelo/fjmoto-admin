@@ -33,13 +33,26 @@ export default function Purchases({ customer, onBack }) {
             <div className={styles.infoContainer}>
                 <div className={styles.purchasesMain}>
                     <div className={styles.purchasesSearchFilter}>
-                        <Button
-                            icon="filter"
-                            size="24"
-                            className={styles.purchasesFilter}
-                            label="Filter"
-                            onClick={toggleFilterModal}
-                        />
+                        <div className={styles.customerOrdersOptionContainer}>
+                            <Button
+                                icon="filter"
+                                size="24"
+                                className={styles.purchasesFilter}
+                                label="Filter"
+                                onClick={toggleFilterModal}
+                            />
+                            {isFilterOpen && (
+                                <Filter
+                                    visibleFilter={[
+                                        "date",
+                                        "total",
+                                        "payment",
+                                        "fullfillment",
+                                        "order",
+                                    ]}
+                                />
+                            )}
+                        </div>
                     </div>
                     <Table
                         checkbox={false}
@@ -57,9 +70,6 @@ export default function Purchases({ customer, onBack }) {
                             "orderStatus",
                         ]}
                     />
-                    {isFilterOpen && (
-                        <Filter visibleFilter={["category", "price"]} />
-                    )}
                 </div>
                 <div className={styles.purchasesInfo}>
                     <div className={styles.purchasesInfoContainer}>

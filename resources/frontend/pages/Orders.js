@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getOrders } from "../ajax/backend";
-import styles from "./Orders.module";
+import styles from "./Main.module";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import Table from "../components/Table";
@@ -62,10 +62,10 @@ export default function Orders({ branchID, showOrders }) {
     };
 
     return (
-        <div className={styles.ordersContent}>
-            <div className={styles.ordersHeader}>Orders</div>
-            <div className={styles.ordersMain}>
-                <div className={styles.ordersSearchFilter}>
+        <div className={styles.container}>
+            <div className={styles.header}>Orders</div>
+            <div className={styles.mainContent}>
+                <div className={styles.contentOptions}>
                     <Input
                         placeholder="Search orders"
                         icon="search"
@@ -74,11 +74,11 @@ export default function Orders({ branchID, showOrders }) {
                         onChange={handleSearchChange}
                         onClick={toggleSearch}
                     />
-                    <div className={styles.ordersOptionContainer}>
+                    <div className={styles.optionsContainer}>
                         <Button
                             icon="filter"
                             size="24"
-                            className={styles.ordersFilter}
+                            className={styles.options}
                             label="Filter"
                             onClick={toggleFilterModal}
                         />
@@ -94,11 +94,11 @@ export default function Orders({ branchID, showOrders }) {
                             />
                         )}
                     </div>
-                    <div className={styles.ordersOptionContainer}>
+                    <div className={styles.optionsContainer}>
                         <Button
                             icon="sort"
                             size="24"
-                            className={styles.ordersFilter}
+                            className={styles.options}
                             label="Sort"
                             onClick={toggleSortModal}
                         />

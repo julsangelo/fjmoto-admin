@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Inventory.module";
+import styles from "./Main.module";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import Table from "../components/Table";
@@ -69,8 +69,8 @@ export default function Inventory({ branchID }) {
     };
 
     return (
-        <div className={styles.inventoryContent}>
-            <div className={styles.inventoryHeader}>
+        <div className={styles.container}>
+            <div className={styles.header}>
                 Inventory
                 <Button
                     label="Add Product"
@@ -79,8 +79,8 @@ export default function Inventory({ branchID }) {
                     onClick={() => openModal("add")}
                 />
             </div>
-            <div className={styles.inventoryMain}>
-                <div className={styles.inventorySearchFilter}>
+            <div className={styles.mainContent}>
+                <div className={styles.contentOptions}>
                     <Input
                         placeholder="Search products"
                         icon="search"
@@ -89,11 +89,11 @@ export default function Inventory({ branchID }) {
                         onChange={handleSearchChange}
                         onClick={toggleSearch}
                     />
-                    <div className={styles.inventoryOptionContainer}>
+                    <div className={styles.optionsContainer}>
                         <Button
                             icon="filter"
                             size="24"
-                            className={styles.inventoryFilter}
+                            className={styles.options}
                             label="Filter"
                             onClick={toggleFilterModal}
                         />
@@ -109,11 +109,11 @@ export default function Inventory({ branchID }) {
                             />
                         )}
                     </div>
-                    <div className={styles.inventoryOptionContainer}>
+                    <div className={styles.optionsContainer}>
                         <Button
                             icon="sort"
                             size="24"
-                            className={styles.inventoryFilter}
+                            className={styles.options}
                             label="Sort"
                             onClick={toggleSortModal}
                         />

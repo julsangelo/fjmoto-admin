@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Customers.module";
+import styles from "./Main.module";
 import Input from "../components/Input";
 import Table from "../components/Table";
 import { getCustomers } from "../ajax/backend";
@@ -34,10 +34,10 @@ export default function Customer({ showPurchases }) {
     };
 
     return (
-        <div className={styles.customersContent}>
-            <div className={styles.customersHeader}>Customers</div>
-            <div className={styles.customersMain}>
-                <div className={styles.customersSearchFilter}>
+        <div className={styles.container}>
+            <div className={styles.header}>Customers</div>
+            <div className={styles.mainContent}>
+                <div className={styles.contentOptions}>
                     <Input
                         placeholder="Search customers"
                         icon="search"
