@@ -68,11 +68,16 @@ export default function Table({
                         style={idx === 0 ? { padding: "0px 20px" } : {}}
                     >
                         {formatHeader(header).toLowerCase() === "image" ? (
-                            <img
-                                className={styles.productImage}
-                                src={`/fjmoto/${item.productImage}`}
-                                alt={item.product || "Product Image"}
-                            />
+                            <div className={styles.tableImageContainer}>
+                                <img
+                                    className={styles.productImage}
+                                    src={`/fjmoto/${item.productImage}`}
+                                    alt={item.product || "Product Image"}
+                                />
+                                <div className={styles.tableViewImage}>
+                                    <Icon icon="view" size="20" />
+                                </div>
+                            </div>
                         ) : formatHeader(header).toLowerCase() === "price" ||
                           formatHeader(header).toLowerCase() === "total" ? (
                             `₱ ${item[header]}`

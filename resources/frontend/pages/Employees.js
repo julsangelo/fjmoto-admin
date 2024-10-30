@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getEmployees } from "../ajax/backend";
-import styles from "./Employees.module";
+import styles from "./Main.module";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import Table from "../components/Table";
@@ -44,8 +44,8 @@ export default function Employees({ branchID, showDetails }) {
         setIsSortOpen(false);
     };
     return (
-        <div className={styles.employeesContent}>
-            <div className={styles.employeesHeader}>
+        <div className={styles.container}>
+            <div className={styles.header}>
                 Employees
                 <Button
                     label="Add employee"
@@ -54,8 +54,8 @@ export default function Employees({ branchID, showDetails }) {
                     // onClick={() => openModal("add")}
                 />
             </div>
-            <div className={styles.employeesMain}>
-                <div className={styles.employeesSearchFilter}>
+            <div className={styles.mainContent}>
+                <div className={styles.contentOptions}>
                     <Input
                         placeholder="Search employees"
                         icon="search"
@@ -64,11 +64,11 @@ export default function Employees({ branchID, showDetails }) {
                         onChange={handleSearchChange}
                         onClick={toggleSearch}
                     />
-                    <div className={styles.emploeesOptionContainer}>
+                    <div className={styles.optionsContainer}>
                         <Button
                             icon="filter"
                             size="24"
-                            className={styles.employeesFilter}
+                            className={styles.options}
                             label="Filter"
                             onClick={toggleFilterModal}
                         />

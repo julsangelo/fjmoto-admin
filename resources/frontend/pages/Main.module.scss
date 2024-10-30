@@ -1,6 +1,6 @@
 @import "../assets/scss/main.module";
 
-.inventoryContent {
+.container {
     height: fit-content;
     max-height: calc(100% - 170px);
     width: calc(100% - 330px);
@@ -10,16 +10,17 @@
     padding: 40px 40px 40px 40px;
 }
 
-.inventoryHeader {
+.header {
     font-weight: bolder;
     font-size: 24px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 50px;
     align-items: center;
+    height: 54px;
 }
 
-.inventoryMain {
+.mainContent {
     background-color: $b_primary;
     margin-top: 20px;
     width: 100%;
@@ -28,7 +29,7 @@
     border-radius: 5px;
 }
 
-.inventorySearchFilter {
+.contentOptions {
     display: flex;
     justify-content: end;
     align-items: baseline;
@@ -36,13 +37,13 @@
     column-gap: 20px;
 }
 
-.inventoryFilter {
+.options {
     background-color: $c_secondary !important;
     color: $c_mediumgray !important;
     border: 1px solid $c_gray !important;
 }
 
-.inventoryOptionContainer {
+.optionsContainer {
     position: relative;
     display: flex;
     flex-direction: row-reverse;

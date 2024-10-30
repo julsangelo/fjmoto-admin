@@ -84,3 +84,9 @@
     display: flex;
     column-gap: 30px;
 }
+
+.customerOrdersOptionContainer {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+}
