@@ -15,9 +15,13 @@ export default function Orders({ branchID, showOrders }) {
     const [modalType, setModalType] = useState("");
 
     useEffect(() => {
-        getOrders(branchID, (data) => {
-            setOrdersData(data);
-        });
+        getOrders(
+            branchID,
+            (data) => {
+                setOrdersData(data);
+            },
+            false,
+        );
     }, [branchID]);
 
     console.log(ordersData);
