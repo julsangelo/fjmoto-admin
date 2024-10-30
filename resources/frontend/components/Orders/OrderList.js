@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getOrders } from "../../ajax/backend";
 import styles from "./OrderList.module";
 import Button from "../Button";
+import OrderItem from "../OrderItem";
 
 export default function Details({ order, onBack }) {
     const [orderList, setOrderList] = useState({});
@@ -42,7 +43,7 @@ export default function Details({ order, onBack }) {
             </div>
             <div className={styles.detailsContainer}>
                 <div className={styles.infoContainer}>
-                    <div></div>
+                    <OrderItem />
                 </div>
                 <div className={styles.infoContainer}>
                     <p>Customer</p>

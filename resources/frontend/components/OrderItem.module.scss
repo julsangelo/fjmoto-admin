@@ -1,0 +1,41 @@
+@import "../assets/scss/main.module.scss";
+
+.orderItemContainer {
+    .orderItemInfo {
+        display: grid;
+        grid-template-columns: 70px 1fr auto auto;
+        gap: 15px;
+        color: $c_primary;
+        border-bottom: 1px solid $c_gray;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+
+        .image {
+            height: 70px;
+            width: 70px;
+            background-color: $c_gray;
+        }
+
+        .description {
+            p {
+                font-weight: 800;
+                margin-bottom: 5px;
+            }
+
+            div {
+                font-size: 13px;
+                color: $c_darkgray;
+                background-color: $c_gray;
+                border-radius: 4px;
+                padding: 5px 10px;
+                width: fit-content;
+            }
+        }
+
+        .priceQuantity {
+            span {
+                margin-right: 40px;
+            }
+        }
+    }
+}
