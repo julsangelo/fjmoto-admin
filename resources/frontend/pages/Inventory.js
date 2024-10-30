@@ -63,6 +63,11 @@ export default function Inventory({ branchID }) {
         setIsFilterOpen(false);
     };
 
+    const toggleSearch = () => {
+        setIsFilterOpen(false);
+        setIsSortOpen(false);
+    };
+
     return (
         <div className={styles.inventoryContent}>
             <div className={styles.inventoryHeader}>
@@ -82,21 +87,40 @@ export default function Inventory({ branchID }) {
                         size="24"
                         value={searchTerm}
                         onChange={handleSearchChange}
+                        onClick={toggleSearch}
                     />
-                    <Button
-                        icon="filter"
-                        size="24"
-                        className={styles.inventoryFilter}
-                        label="Filter"
-                        onClick={toggleFilterModal}
-                    />
-                    <Button
-                        icon="sort"
-                        size="24"
-                        className={styles.inventoryFilter}
-                        label="Sort"
-                        onClick={toggleSortModal}
-                    />
+                    <div className={styles.inventoryOptionContainer}>
+                        <Button
+                            icon="filter"
+                            size="24"
+                            className={styles.inventoryFilter}
+                            label="Filter"
+                            onClick={toggleFilterModal}
+                        />
+                        {isFilterOpen && (
+                            <Filter
+                                visibleFilter={[
+                                    "date",
+                                    "total",
+                                    "payment",
+                                    "fullfillment",
+                                    "order",
+                                ]}
+                            />
+                        )}
+                    </div>
+                    <div className={styles.inventoryOptionContainer}>
+                        <Button
+                            icon="sort"
+                            size="24"
+                            className={styles.inventoryFilter}
+                            label="Sort"
+                            onClick={toggleSortModal}
+                        />
+                        {isSortOpen && (
+                            <Sort visibleSort={["price", "stockQuantity"]} />
+                        )}
+                    </div>
                 </div>
                 <Table
                     checkbox={false}
@@ -127,12 +151,6 @@ export default function Inventory({ branchID }) {
                         productId={selectedProductId}
                         product={selectedProduct}
                     />
-                )}
-                {isFilterOpen && (
-                    <Filter visibleFilter={["category", "price"]} />
-                )}
-                {isSortOpen && (
-                    <Sort visibleSort={["price", "stockQuantity"]} />
                 )}
             </div>
         </div>

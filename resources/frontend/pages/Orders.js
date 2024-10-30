@@ -7,7 +7,7 @@ import Table from "../components/Table";
 import Filter from "../components/Filter";
 import Sort from "../components/Sort";
 
-export default function Orders({ branchID }) {
+export default function Orders({ branchID, showOrders }) {
     const [ordersData, setOrdersData] = useState({});
     const [searchTerm, setSearchTerm] = useState("");
     const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -47,6 +47,16 @@ export default function Orders({ branchID }) {
         setIsFilterOpen(false);
     };
 
+    const toggleSearch = () => {
+        setIsFilterOpen(false);
+        setIsSortOpen(false);
+    };
+
+    const handleView = (orderID) => {
+        showOrders(orderID);
+        console.log("hello");
+    };
+
     return (
         <div className={styles.ordersContent}>
             <div className={styles.ordersHeader}>Orders</div>
@@ -58,21 +68,40 @@ export default function Orders({ branchID }) {
                         size="24"
                         value={searchTerm}
                         onChange={handleSearchChange}
+                        onClick={toggleSearch}
                     />
-                    <Button
-                        icon="filter"
-                        size="24"
-                        className={styles.ordersFilter}
-                        label="Filter"
-                        onClick={toggleFilterModal}
-                    />
-                    <Button
-                        icon="sort"
-                        size="24"
-                        className={styles.ordersFilter}
-                        label="Sort"
-                        onClick={toggleSortModal}
-                    />
+                    <div className={styles.ordersOptionContainer}>
+                        <Button
+                            icon="filter"
+                            size="24"
+                            className={styles.ordersFilter}
+                            label="Filter"
+                            onClick={toggleFilterModal}
+                        />
+                        {isFilterOpen && (
+                            <Filter
+                                visibleFilter={[
+                                    "date",
+                                    "total",
+                                    "payment",
+                                    "fullfillment",
+                                    "order",
+                                ]}
+                            />
+                        )}
+                    </div>
+                    <div className={styles.ordersOptionContainer}>
+                        <Button
+                            icon="sort"
+                            size="24"
+                            className={styles.ordersFilter}
+                            label="Sort"
+                            onClick={toggleSortModal}
+                        />
+                        {isSortOpen && (
+                            <Sort visibleSort={["date", "total", "items"]} />
+                        )}
+                    </div>
                 </div>
                 <Table
                     checkbox={false}
@@ -92,21 +121,8 @@ export default function Orders({ branchID }) {
                         "orderStatus",
                     ]}
                     visibleActions={["view"]}
+                    onView={handleView}
                 />
-                {isFilterOpen && (
-                    <Filter
-                        visibleFilter={[
-                            "date",
-                            "total",
-                            "payment",
-                            "fullfillment",
-                            "order",
-                        ]}
-                    />
-                )}
-                {isSortOpen && (
-                    <Sort visibleSort={["date", "total", "items"]} />
-                )}
             </div>
         </div>
     );

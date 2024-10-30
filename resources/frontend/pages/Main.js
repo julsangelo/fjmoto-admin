@@ -6,14 +6,16 @@ import Inventory from "./Inventory";
 import Customers from "./Customers";
 import Orders from "./Orders";
 import Employees from "./Employees";
-import Purchases from "../components/Customers/Purchases";
+import CustomerOrders from "../components/Customers/CustomerOrders";
 import Details from "../components/Employees/Details";
+import OrderList from "../components/Orders/OrderList";
 
 export default function Main() {
     const [activeComponent, setActiveComponent] = useState("inventory");
     const [selectedBranch, setSelectedBranch] = useState("1");
     const [selectedCustomer, setSelectedCustomer] = useState(null);
     const [selectedEmployee, setSelectedEmployee] = useState(null);
+    const [selectedOrder, setSelectedOrder] = useState(null);
 
     useEffect(() => {
         const storedComponent = localStorage.getItem("activeComponent");
@@ -24,12 +26,17 @@ export default function Main() {
 
     const showPurchases = (customerId) => {
         setSelectedCustomer(customerId);
-        setActiveComponent("purchases");
+        setActiveComponent("customerOrders");
     };
 
     const showDetails = (employeeID) => {
         setSelectedEmployee(employeeID);
-        setActiveComponent("details");
+        setActiveComponent("employeeDetails");
+    };
+
+    const showOrders = (orderID) => {
+        setSelectedOrder(orderID);
+        setActiveComponent("orderList");
     };
 
     const renderContent = () => {
@@ -46,10 +53,12 @@ export default function Main() {
                     />
                 );
             case "orders":
-                return <Orders branchID={selectedBranch} />;
-            case "purchases":
                 return (
-                    <Purchases
+                    <Orders branchID={selectedBranch} showOrders={showOrders} />
+                );
+            case "customerOrders":
+                return (
+                    <CustomerOrders
                         customer={selectedCustomer}
                         onBack={() => setActiveComponent("customers")}
                     />
@@ -61,13 +70,15 @@ export default function Main() {
                         showDetails={showDetails}
                     />
                 );
-            case "details":
+            case "employeeDetails":
                 return (
                     <Details
                         employee={selectedEmployee}
                         onBack={() => setActiveComponent("employees")}
                     />
                 );
+            case "orderList":
+                return <OrderList order={selectedOrder} />;
         }
     };
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Purchases.module";
+import styles from "./CustomerOrders.module";
 import Button from "../Button";
 import Table from "../Table";
 import Filter from "../Filter";
@@ -14,8 +14,6 @@ export default function Purchases({ customer, onBack }) {
             setPurchasesData(data);
         });
     }, [customer.customerID]);
-
-    console.log(purchasesData);
 
     const toggleFilterModal = () => {
         setIsFilterOpen((prev) => !prev);

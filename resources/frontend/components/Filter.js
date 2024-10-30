@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./Filter.module";
 import Button from "./Button";
 import Input from "./Input";
-import Dropdown from "./Dropdown";
 
 export default function Filter({ visibleFilter }) {
     return (

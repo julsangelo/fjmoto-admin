@@ -41,3 +41,9 @@
     color: $c_mediumgray !important;
     border: 1px solid $c_gray !important;
 }
+
+.inventoryOptionContainer {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+}

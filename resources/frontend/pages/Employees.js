@@ -39,6 +39,10 @@ export default function Employees({ branchID, showDetails }) {
         showDetails(employeeID);
     };
 
+    const toggleSearch = () => {
+        setIsFilterOpen(false);
+        setIsSortOpen(false);
+    };
     return (
         <div className={styles.employeesContent}>
             <div className={styles.employeesHeader}>
@@ -58,14 +62,28 @@ export default function Employees({ branchID, showDetails }) {
                         size="24"
                         value={searchTerm}
                         onChange={handleSearchChange}
+                        onClick={toggleSearch}
                     />
-                    <Button
-                        icon="filter"
-                        size="24"
-                        className={styles.employeesFilter}
-                        label="Filter"
-                        onClick={toggleFilterModal}
-                    />
+                    <div className={styles.emploeesOptionContainer}>
+                        <Button
+                            icon="filter"
+                            size="24"
+                            className={styles.employeesFilter}
+                            label="Filter"
+                            onClick={toggleFilterModal}
+                        />
+                        {isFilterOpen && (
+                            <Filter
+                                visibleFilter={[
+                                    "date",
+                                    "total",
+                                    "payment",
+                                    "fullfillment",
+                                    "order",
+                                ]}
+                            />
+                        )}
+                    </div>
                 </div>
                 <Table
                     checkbox={true}
@@ -88,17 +106,6 @@ export default function Employees({ branchID, showDetails }) {
                     visibleActions={["view", "delete", "edit"]}
                     onView={handleView}
                 />
-                {isFilterOpen && (
-                    <Filter
-                        visibleFilter={[
-                            "date",
-                            "total",
-                            "payment",
-                            "fullfillment",
-                            "order",
-                        ]}
-                    />
-                )}
             </div>
         </div>
     );

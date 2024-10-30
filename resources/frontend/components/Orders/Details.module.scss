@@ -1,0 +1,75 @@
+@import "../../assets/scss/main.module";
+
+.detailContent {
+    height: fit-content;
+    max-height: calc(100% - 170px);
+    width: calc(100% - 330px);
+    position: absolute;
+    top: 71px;
+    right: 0;
+    padding: 40px;
+}
+
+.detailHeader {
+    font-weight: bolder;
+    font-size: 24px;
+    display: flex;
+    margin-bottom: 30px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.detailBackButton {
+    background-color: transparent;
+    color: $c_mediumgray;
+    padding: 15px 0;
+    margin-right: 10px;
+}
+
+.detailsContainer {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 20px;
+    margin: 0 auto 30px 0;
+}
+
+.infoContainer {
+    padding: 30px;
+    border: 1px solid #d7d7d7;
+    border-radius: 5px;
+    background-color: #ffffff;
+    height: fit-content;
+}
+
+.infoTable {
+    display: grid;
+    grid-template-columns: 1.5fr 3fr;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.infoTable div {
+    display: contents;
+}
+
+.infoContainer > p:first-child {
+    font-weight: 800;
+    color: $c_dark;
+    font-size: 18px;
+}
+
+.infoTable > div > p {
+    color: $c_darkgray;
+}
+
+.infoTable > div > p:first-of-type {
+    font-weight: 600;
+    color: $c_dark;
+}
+
+.deleteButton {
+    background-color: transparent;
+    border: 1.5px solid #d62828;
+    color: #d62828;
+    font-weight: 500;
+}
