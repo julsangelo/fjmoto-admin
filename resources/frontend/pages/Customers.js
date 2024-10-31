@@ -3,31 +3,19 @@ import styles from "./Main.module";
 import Input from "../components/Input";
 import Table from "../components/Table";
 import { getCustomers } from "../ajax/backend";
+import { search } from "../utils/search";
 
 export default function Customer({ showPurchases }) {
     const [customerData, setCustomerData] = useState({});
-    const [searchTerm, setSearchTerm] = useState("");
+    const { searchTerm, handleSearchChange, searchData } = search(
+        customerData.data,
+    );
 
     useEffect(() => {
         getCustomers((data) => {
             setCustomerData(data);
         });
     }, []);
-
-    const handleSearchChange = (event) => {
-        setSearchTerm(event.target.value);
-        console.log(event.target.value);
-    };
-
-    const filteredData = customerData.data
-        ? customerData.data.filter((item) =>
-              Object.values(item).some((value) =>
-                  String(value)
-                      .toLowerCase()
-                      .includes(searchTerm.toLowerCase()),
-              ),
-          )
-        : [];
 
     const handleView = (customerId) => {
         showPurchases(customerId);
@@ -51,9 +39,7 @@ export default function Customer({ showPurchases }) {
                     checkbox={false}
                     data={{
                         headers: customerData.headers || [],
-                        data: searchTerm
-                            ? filteredData
-                            : customerData.data || [],
+                        data: searchTerm ? searchData : customerData.data || [],
                     }}
                     action={true}
                     visibleActions={["view"]}

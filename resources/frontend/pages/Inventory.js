@@ -7,10 +7,10 @@ import { getInventory } from "../ajax/backend";
 import Modal from "../components/Modal";
 import Filter from "../components/Filter";
 import Sort from "../components/Sort";
+import { search } from "../utils/search";
 
 export default function Inventory({ branchID }) {
     const [inventoryData, setInventoryData] = useState({});
-    const [searchTerm, setSearchTerm] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [isSortOpen, setIsSortOpen] = useState(false);
@@ -18,26 +18,15 @@ export default function Inventory({ branchID }) {
     const [selectedProductId, setSelectedProductId] = useState(null);
     const [selectedProduct, setSelectedProduct] = useState(null);
 
+    const { searchTerm, handleSearchChange, searchData } = search(
+        inventoryData.data,
+    );
+
     useEffect(() => {
         getInventory(branchID, (data) => {
             setInventoryData(data);
         });
     }, [branchID]);
-
-    const handleSearchChange = (event) => {
-        setSearchTerm(event.target.value);
-        console.log(event.target.value);
-    };
-
-    const filteredData = inventoryData.data
-        ? inventoryData.data.filter((item) =>
-              Object.values(item).some((value) =>
-                  String(value)
-                      .toLowerCase()
-                      .includes(searchTerm.toLowerCase()),
-              ),
-          )
-        : [];
 
     const openModal = (type, productId, product) => {
         console.log(product);
@@ -127,7 +116,7 @@ export default function Inventory({ branchID }) {
                     data={{
                         headers: inventoryData.headers || [],
                         data: searchTerm
-                            ? filteredData
+                            ? searchData
                             : inventoryData.data || [],
                     }}
                     openModal={openModal}

@@ -8,7 +8,7 @@ import Orders from "./Orders";
 import Employees from "./Employees";
 import CustomerOrders from "../components/Customers/CustomerOrders";
 import Details from "../components/Employees/Details";
-import OrderList from "../components/Orders/OrderList";
+import OrderItems from "../components/Orders/OrderItems";
 
 export default function Main() {
     const [activeComponent, setActiveComponent] = useState("inventory");
@@ -78,7 +78,7 @@ export default function Main() {
                     />
                 );
             case "orderList":
-                return <OrderList order={selectedOrder} />;
+                return <OrderItems order={selectedOrder} />;
         }
     };
 

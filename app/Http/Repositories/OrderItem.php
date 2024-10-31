@@ -2,23 +2,30 @@
 
 namespace App\Http\Repositories;
 
-use App\Models\OrderItems;
+use Illuminate\Support\Facades\DB;
 
 class OrderItem
 {
-    public function getOrderItems($branch)
+    public function getOrderItems($orderID)
     {
-        $orders = OrderItems::select()
-            ->where('branchID', $branch)
-            ->orderBy('orderID', "DESC" )
-            ->get()
-            ;
+        $orderItems = DB::table('orderItems')
+            ->join('products', 'orderItems.productID', '=', 'products.productID')
+            // ->join('customers', 'orderItems.customerID', '=', 'customers.customerID')
+            ->select(
+                'orderItems.orderItemQuantity',
+                'orderItems.orderItemTotal',
+                'products.productName as productName',
+                'products.productImage as productImage'
+                // 'customers.customerID as customerID'
+            )
+            ->where('orderItems.orderID', $orderID)
+            ->get();
 
-        $headers = array_keys($orders->first()->getAttributes());
+        // $headers = array_keys($orderItems->first()->getAttributes());
 
         return [
-            'headers' => $headers,
-            'data' => $orders
+            // 'headers' => $headers,
+            'data' => $orderItems
         ];
     }
 }

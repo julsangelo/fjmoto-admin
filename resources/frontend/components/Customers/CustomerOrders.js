@@ -3,14 +3,14 @@ import styles from "./CustomerOrders.module";
 import Button from "../Button";
 import Table from "../Table";
 import Filter from "../Filter";
-import { getPurchases } from "../../ajax/backend";
+import { getCustomerOrders } from "../../ajax/backend";
 
 export default function Purchases({ customer, onBack }) {
     const [purchasesData, setPurchasesData] = useState({});
     const [isFilterOpen, setIsFilterOpen] = useState(false);
 
     useEffect(() => {
-        getPurchases(customer.customerID, (data) => {
+        getCustomerOrders(customer.customerID, (data) => {
             setPurchasesData(data);
         });
     }, [customer.customerID]);

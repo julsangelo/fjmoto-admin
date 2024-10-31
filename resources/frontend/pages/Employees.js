@@ -5,31 +5,20 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 import Table from "../components/Table";
 import Filter from "../components/Filter";
+import { search } from "../utils/search";
 
 export default function Employees({ branchID, showDetails }) {
     const [employeesData, setEmployeesData] = useState({});
-    const [searchTerm, setSearchTerm] = useState("");
     const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const { searchTerm, handleSearchChange, searchData } = search(
+        employeesData.data,
+    );
 
     useEffect(() => {
         getEmployees(branchID, (data) => {
             setEmployeesData(data);
         });
     }, [branchID]);
-
-    const handleSearchChange = (event) => {
-        setSearchTerm(event.target.value);
-    };
-
-    const filteredData = employeesData.data
-        ? employeesData.data.filter((item) =>
-              Object.values(item).some((value) =>
-                  String(value)
-                      .toLowerCase()
-                      .includes(searchTerm.toLowerCase()),
-              ),
-          )
-        : [];
 
     const toggleFilterModal = () => {
         setIsFilterOpen((prev) => !prev);
@@ -90,7 +79,7 @@ export default function Employees({ branchID, showDetails }) {
                     data={{
                         headers: employeesData.headers || [],
                         data: searchTerm
-                            ? filteredData
+                            ? searchData
                             : employeesData.data || [],
                     }}
                     action={true}

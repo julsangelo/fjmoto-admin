@@ -6,13 +6,17 @@ import Input from "../components/Input";
 import Table from "../components/Table";
 import Filter from "../components/Filter";
 import Sort from "../components/Sort";
+import { search } from "../utils/search";
 
 export default function Orders({ branchID, showOrders }) {
     const [ordersData, setOrdersData] = useState({});
-    const [searchTerm, setSearchTerm] = useState("");
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [isSortOpen, setIsSortOpen] = useState(false);
     const [modalType, setModalType] = useState("");
+
+    const { searchTerm, handleSearchChange, searchData } = search(
+        ordersData.data,
+    );
 
     useEffect(() => {
         getOrders(
@@ -23,23 +27,6 @@ export default function Orders({ branchID, showOrders }) {
             false,
         );
     }, [branchID]);
-
-    console.log(ordersData);
-
-    const handleSearchChange = (event) => {
-        setSearchTerm(event.target.value);
-        console.log(event.target.value);
-    };
-
-    const filteredData = ordersData.data
-        ? ordersData.data.filter((item) =>
-              Object.values(item).some((value) =>
-                  String(value)
-                      .toLowerCase()
-                      .includes(searchTerm.toLowerCase()),
-              ),
-          )
-        : [];
 
     const toggleFilterModal = () => {
         setIsFilterOpen((prev) => !prev);
@@ -58,7 +45,6 @@ export default function Orders({ branchID, showOrders }) {
 
     const handleView = (orderID) => {
         showOrders(orderID);
-        console.log("hello");
     };
 
     return (
@@ -111,7 +97,7 @@ export default function Orders({ branchID, showOrders }) {
                     checkbox={false}
                     data={{
                         headers: ordersData.headers || [],
-                        data: searchTerm ? filteredData : ordersData.data || [],
+                        data: searchTerm ? searchData : ordersData.data || [],
                     }}
                     action={true}
                     branchID={branchID}

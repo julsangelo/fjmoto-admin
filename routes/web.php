@@ -18,3 +18,4 @@ Route::post('/deleteInventory', [InventoryController::class, 'deleteInventory'])
 Route::post('/getOrders', [OrdersController::class, 'getOrders']);
 Route::post('/getEmployees', [EmployeesController::class, 'getEmployees']);
 Route::post('/getPurchases', [CustomersController::class, 'getPurchases']);
+Route::post('/getOrderItems', [OrdersController::class, 'getOrderItems']);

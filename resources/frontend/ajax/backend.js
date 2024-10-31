@@ -84,9 +84,20 @@ export function deleteInventory(productId, callback) {
         });
 }
 
-export function getPurchases(customerID, callback) {
+export function getCustomerOrders(customerID, callback) {
     axiosClient
         .post("/getPurchases", { customerID: customerID })
+        .then((response) => {
+            callback(response.data);
+        })
+        .catch((error) => {
+            return error;
+        });
+}
+
+export function getOrderItems(orderID, callback) {
+    axiosClient
+        .post("/getOrderItems", { orderID: orderID })
         .then((response) => {
             callback(response.data);
         })
