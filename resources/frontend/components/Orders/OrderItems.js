@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { getOrderItems } from "../../ajax/backend";
+import { getCustomerInfo } from "../../ajax/backend";
 import styles from "./OrderItems.module";
 import Button from "../Button";
 import OrderItem from "../OrderItem";
 
 export default function Details({ order, onBack }) {
     const [orderItems, setOrderItems] = useState({});
+    const [customerData, setCustomerData] = useState({});
 
     useEffect(() => {
         getOrderItems(
@@ -17,7 +19,13 @@ export default function Details({ order, onBack }) {
         );
     }, [order.orderID]);
 
-    console.log("Order List: ", orderItems);
+    useEffect(() => {
+        getCustomerInfo(order.customerID, (data) => {
+            setCustomerData(data);
+        });
+    }, [order.customerID]);
+
+    console.log("Customer ID in order: ", customerData);
 
     return (
         <div className={styles.detailContent}>
@@ -29,27 +37,27 @@ export default function Details({ order, onBack }) {
                         className={styles.detailBackButton}
                         onClick={onBack}
                     />
-                    <p>Order No. {orderItems.orderID}</p>
+                    <p>Order No. {order.orderID}</p>
                     <div className={styles.orderBadge}>
-                        <p>{orderItems.orderFulfillmentStatus}</p>
+                        <p>{order.orderFulfillmentStatus}</p>
                     </div>
                     <div className={styles.orderBadge}>
-                        <p>{orderItems.orderStatus}</p>
+                        <p>{order.orderStatus}</p>
                     </div>
                 </div>
                 <div className={styles.orderDateTime}>
-                    <p>Order made in {orderItems.orderDateTime}</p>
+                    <p>Order made in {order.orderDateTime}</p>
                 </div>
             </div>
             <div className={styles.detailsContainer}>
                 <div className={styles.infoContainer}>
-                    <OrderItem />
+                    <OrderItem orderItems={orderItems.data} />
                 </div>
                 <div className={styles.infoContainer}>
                     <p>Customer</p>
                     <div className={styles.infoTable}>
                         <div>
-                            <p>{orderItems.customerFirstName}</p>
+                            <p></p>
                         </div>
                     </div>
                 </div>

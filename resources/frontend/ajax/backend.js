@@ -105,3 +105,14 @@ export function getOrderItems(orderID, callback) {
             return error;
         });
 }
+
+export function getCustomerInfo(customerID, callback) {
+    axiosClient
+        .post("/getCustomers", { customerID: customerID })
+        .then((response) => {
+            callback(response.data);
+        })
+        .catch((error) => {
+            return error;
+        });
+}

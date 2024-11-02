@@ -2,9 +2,7 @@
 
 .orderItemContainer {
     .orderItemInfo {
-        display: grid;
-        grid-template-columns: 70px 1fr auto auto;
-        gap: 15px;
+        display: flex;
         color: $c_primary;
         border-bottom: 1px solid $c_gray;
         padding-bottom: 20px;
@@ -17,6 +15,8 @@
         }
 
         .description {
+            margin: 0 15px;
+
             p {
                 font-weight: 800;
                 margin-bottom: 5px;
@@ -33,9 +33,19 @@
         }
 
         .priceQuantity {
+            margin-left: auto;
+            text-align: left;
+            width: 200px;
+
             span {
-                margin-right: 40px;
+                display: inline-block;
+                font-size: 14px;
+                margin-right: 20px;
             }
+        }
+
+        .itemTotalPrice {
+            font-size: 14px;
         }
     }
 }
