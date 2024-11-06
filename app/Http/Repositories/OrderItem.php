@@ -2,30 +2,35 @@
 
 namespace App\Http\Repositories;
 
+use App\Models\Customers;
+use App\Models\OrderItems;
 use Illuminate\Support\Facades\DB;
 
 class OrderItem
 {
     public function getOrderItems($orderID)
     {
-        $orderItems = DB::table('orderItems')
-            ->join('products', 'orderItems.productID', '=', 'products.productID')
-            // ->join('customers', 'orderItems.customerID', '=', 'customers.customerID')
-            ->select(
-                'orderItems.orderItemQuantity',
-                'orderItems.orderItemTotal',
-                'products.productName as productName',
-                'products.productImage as productImage'
-                // 'customers.customerID as customerID'
-            )
-            ->where('orderItems.orderID', $orderID)
-            ->get();
+        $orderItems = OrderItems::with(['product' => function ($query) {
+            $query->select('productName', 'productImage', 'productPrice');
+        }])
+        ->where('orderID', $orderID)
+        ->get();
 
-        // $headers = array_keys($orderItems->first()->getAttributes());
+        $headers = array_keys($orderItems->first()->getAttributes());
 
         return [
-            // 'headers' => $headers,
+            'headers' => $headers,
             'data' => $orderItems
+        ];
+    }
+
+    public function getCustomerInfo($customerID)
+    {
+        $customerInfo = Customers::select(DB::raw('CONCAT(customerFirstName, " ", customerLastName) as customerName'), 'customerID', 'customerEmail', 'customerContactNo', 'customerAddress')
+            ->get();
+
+        return [
+            'data' => $customerInfo,
         ];
     }
 }

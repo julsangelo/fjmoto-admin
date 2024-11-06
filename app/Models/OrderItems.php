@@ -9,4 +9,9 @@ class OrderItems extends Model
 {
     protected $table = 'orderItems';
     public $timestamps = false;
+
+    public function product()
+    {
+        return $this->belongsTo(Products::class, 'productID');
+    }
 }

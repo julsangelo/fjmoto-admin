@@ -3,7 +3,7 @@ import { getEmployees } from "../../ajax/backend";
 import styles from "./Details.module";
 import Button from "../Button";
 
-export default function Details({ employee, onBack }) {
+export default function Details({ employee, onBack, showEdit }) {
     const [employeeDetails, setEmployeeDetails] = useState({});
 
     useEffect(() => {
@@ -27,7 +27,7 @@ export default function Details({ employee, onBack }) {
                     label="Edit details"
                     icon="edit"
                     size="24"
-                    // onClick={() => openModal("add")}
+                    onClick={() => showEdit(employee)}
                 />
             </div>
             <div className={styles.detailsContainer}>
@@ -55,8 +55,8 @@ export default function Details({ employee, onBack }) {
                             <p>{employee.employeeEmail}</p>
                         </div>
                         <div>
-                            <p>Phone Number</p>
-                            <p>{employee.employeePhoneNo}</p>
+                            <p>Contact Number</p>
+                            <p>{employee.employeeContactNo}</p>
                         </div>
                         <div>
                             <p>Address</p>

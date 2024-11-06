@@ -39,18 +39,19 @@ const schema = yup.object().shape({
         ),
 });
 
-export default function EditInventory({ onClose, branch, product }) {
+export default function EditInventory({ onClose, branch, product, category }) {
     const {
         register,
         handleSubmit,
         setValue,
         formState: { errors },
         trigger,
+        watch,
     } = useForm({ resolver: yupResolver(schema) });
 
     useEffect(() => {
         if (product) {
-            setValue("productID", product.productID); // Ensure productID is set
+            setValue("productID", product.productID);
             setValue("productCode", product.productCode);
             setValue("productName", product.productName);
             setValue("productStockQuantity", product.productStockQuantity);
@@ -126,8 +127,10 @@ export default function EditInventory({ onClose, branch, product }) {
                     label="Category"
                     className={styles.editInventoryDropdown}
                     onSelect={handleCategoryChange}
-                    value={product?.productCategory}
+                    value={watch("productCategory")}
                     error={errors.productCategory?.message}
+                    data={category}
+                    dataPrefix="category"
                 />
             </div>
             <div className={styles.editInventoryButton}>

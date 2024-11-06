@@ -1,5 +1,16 @@
 import axiosClient from "./axios";
 
+export function getReferences(callback) {
+    axiosClient
+        .get("/getReferences")
+        .then((response) => {
+            callback(response.data);
+        })
+        .catch((error) => {
+            return error;
+        });
+}
+
 export function getInventory(branch, callback) {
     axiosClient
         .post(`/getInventory`, {
@@ -108,7 +119,7 @@ export function getOrderItems(orderID, callback) {
 
 export function getCustomerInfo(customerID, callback) {
     axiosClient
-        .post("/getCustomers", { customerID: customerID })
+        .post("/getCustomerInfo", { customerID: customerID })
         .then((response) => {
             callback(response.data);
         })

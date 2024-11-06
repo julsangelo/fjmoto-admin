@@ -34,11 +34,12 @@ const schema = yup.object().shape({
         ),
 });
 
-export default function AddInventory({ onClose, branchID }) {
+export default function AddInventory({ onClose, branchID, category }) {
     const {
         register,
         handleSubmit,
         setValue,
+        watch,
         setError,
         formState: { errors },
     } = useForm({ resolver: yupResolver(schema) });
@@ -47,6 +48,8 @@ export default function AddInventory({ onClose, branchID }) {
         if (file) setValue("productImage", file);
         setError("productImage", { type: "manual", message: "" });
     };
+
+    const productCategory = watch("productCategory");
 
     const handleCategoryChange = (value) => {
         setValue("productCategory", value);
@@ -93,6 +96,9 @@ export default function AddInventory({ onClose, branchID }) {
                     className={styles.addInventoryDropdown}
                     onSelect={handleCategoryChange}
                     error={errors.productCategory?.message}
+                    data={category}
+                    dataPrefix="category"
+                    value={productCategory}
                 />
             </div>
             <div className={styles.addInventoryButton}>

@@ -7,6 +7,7 @@ import Table from "../components/Table";
 import Filter from "../components/Filter";
 import Sort from "../components/Sort";
 import { search } from "../utils/search";
+import { toggleFilter, toggleSearch, toggleSort } from "../utils/toggle";
 
 export default function Orders({ branchID, showOrders }) {
     const [ordersData, setOrdersData] = useState({});
@@ -28,21 +29,6 @@ export default function Orders({ branchID, showOrders }) {
         );
     }, [branchID]);
 
-    const toggleFilterModal = () => {
-        setIsFilterOpen((prev) => !prev);
-        setIsSortOpen(false);
-    };
-
-    const toggleSortModal = () => {
-        setIsSortOpen((prev) => !prev);
-        setIsFilterOpen(false);
-    };
-
-    const toggleSearch = () => {
-        setIsFilterOpen(false);
-        setIsSortOpen(false);
-    };
-
     const handleView = (orderID) => {
         showOrders(orderID);
     };
@@ -58,7 +44,9 @@ export default function Orders({ branchID, showOrders }) {
                         size="24"
                         value={searchTerm}
                         onChange={handleSearchChange}
-                        onClick={toggleSearch}
+                        onClick={() =>
+                            toggleSearch(setIsFilterOpen, setIsSortOpen)
+                        }
                     />
                     <div className={styles.optionsContainer}>
                         <Button
@@ -66,7 +54,9 @@ export default function Orders({ branchID, showOrders }) {
                             size="24"
                             className={styles.options}
                             label="Filter"
-                            onClick={toggleFilterModal}
+                            onClick={() =>
+                                toggleFilter(setIsFilterOpen, setIsSortOpen)
+                            }
                         />
                         {isFilterOpen && (
                             <Filter
@@ -74,7 +64,7 @@ export default function Orders({ branchID, showOrders }) {
                                     "date",
                                     "total",
                                     "payment",
-                                    "fullfillment",
+                                    "fulfillment",
                                     "order",
                                 ]}
                             />
@@ -86,7 +76,9 @@ export default function Orders({ branchID, showOrders }) {
                             size="24"
                             className={styles.options}
                             label="Sort"
-                            onClick={toggleSortModal}
+                            onClick={() =>
+                                toggleSort(setIsSortOpen, setIsFilterOpen)
+                            }
                         />
                         {isSortOpen && (
                             <Sort visibleSort={["date", "total", "items"]} />
@@ -104,7 +96,7 @@ export default function Orders({ branchID, showOrders }) {
                     visibleColumns={[
                         "orderID",
                         "orderDateTime",
-                        "customerID",
+                        "customerName",
                         "orderTotal",
                         "orderPaymentStatus",
                         "orderFulfillmentStatus",

@@ -11,17 +11,30 @@ export default function Modal({
     modal,
     productId,
     product,
+    references,
 }) {
     const renderContent = () => {
         switch (modal) {
             case "add":
-                return <AddInventory onClose={onClose} branchID={branchID} />;
+                return (
+                    <AddInventory
+                        onClose={onClose}
+                        branchID={branchID}
+                        category={references.categories}
+                    />
+                );
             case "delete":
                 return (
                     <DeleteInventory onClose={onClose} productId={productId} />
                 );
             case "edit":
-                return <EditInventory onClose={onClose} product={product} />;
+                return (
+                    <EditInventory
+                        onClose={onClose}
+                        product={product}
+                        category={references.categories}
+                    />
+                );
             default:
                 return <div>No content available</div>;
         }

@@ -75,8 +75,11 @@ export default function Purchases({ customer, onBack }) {
                     <div className={styles.purchasesInfoContainer}>
                         Customer
                         <div className={styles.purchasesInfoDetails}>
-                            <p>{customer.customerName}</p>
-                            <span>2 orders</span>
+                            <p>
+                                {customer.customerName}
+                                <span>(ID:{customer.customerID})</span>
+                            </p>
+                            <p>{purchasesData.data?.length || 0} orders</p>
                         </div>
                     </div>
                     <div className={styles.purchasesInfoContainer}>
@@ -89,7 +92,10 @@ export default function Purchases({ customer, onBack }) {
                     <div className={styles.purchasesInfoContainer}>
                         Shipping Address
                         <div className={styles.purchasesInfoDetails}>
-                            <p>{customer.customerName}</p>
+                            <p>
+                                {customer.customerFirstName}{" "}
+                                {customer.customerLastName}
+                            </p>
                             <p>{customer.customerAddress}</p>
                         </div>
                     </div>

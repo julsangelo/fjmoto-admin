@@ -25,7 +25,7 @@ export default function Details({ order, onBack }) {
         });
     }, [order.customerID]);
 
-    console.log("Customer ID in order: ", customerData);
+    console.log("Customer ID in order: ", customerData.data);
 
     return (
         <div className={styles.detailContent}>
@@ -54,10 +54,36 @@ export default function Details({ order, onBack }) {
                     <OrderItem orderItems={orderItems.data} />
                 </div>
                 <div className={styles.infoContainer}>
-                    <p>Customer</p>
-                    <div className={styles.infoTable}>
-                        <div>
-                            <p></p>
+                    <div className={styles.info}>
+                        {/* <p>Customer</p>
+                        <div className={styles.infoTable}>
+                            <div>
+                                <p></p>
+                            </div>
+                        </div> */}
+                        Customer
+                        <div className={styles.infoDetails}>
+                            <p>
+                                {customerData.data?.[0]?.customerName}
+                                <span>
+                                    (ID:{customerData.data?.[0]?.customerID})
+                                </span>
+                            </p>
+                            <p>{orderItems.data?.length || 0} items</p>
+                        </div>
+                    </div>
+                    <div className={styles.info}>
+                        Contact Information
+                        <div className={styles.infoDetails}>
+                            <p>{customerData.data?.[0]?.customerEmail}</p>
+                            <p>{customerData.data?.[0]?.customerContactNo}</p>
+                        </div>
+                    </div>
+                    <div className={styles.info}>
+                        Shipping Address
+                        <div className={styles.infoDetails}>
+                            <p>{customerData.data?.[0]?.customerName}</p>
+                            <p>{customerData.data?.[0]?.customerAddress}</p>
                         </div>
                     </div>
                 </div>

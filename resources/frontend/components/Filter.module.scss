@@ -7,10 +7,10 @@
     padding: 25px 20px;
     border: 1px solid $c_gray;
     border-radius: 5px;
-    max-width: 365px;
+    min-width: 270px;
     display: flex;
     flex-flow: column;
-    row-gap: 30px;
+    row-gap: 20px;
 }
 
 .filterContainer {
@@ -19,7 +19,7 @@
     color: $c_dark;
     display: flex;
     flex-direction: column;
-    row-gap: 20px;
+    row-gap: 10px;
     align-items: baseline;
 }
 

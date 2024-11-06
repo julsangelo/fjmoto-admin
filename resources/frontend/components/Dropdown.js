@@ -1,12 +1,18 @@
 import React from "react";
 import styles from "./Dropdown.module";
 
-export default function Dropdown({ onSelect, label, className, error, value }) {
+export default function Dropdown({
+    data,
+    dataPrefix,
+    onSelect,
+    label,
+    className,
+    error,
+    value,
+}) {
     const handleChange = (event) => {
         onSelect(event.target.value);
     };
-
-    console.log(value);
 
     return (
         <div className={className}>
@@ -16,11 +22,14 @@ export default function Dropdown({ onSelect, label, className, error, value }) {
                 onChange={handleChange}
                 value={value || ""}
             >
-                <option selected disabled>
-                    Select Category
+                <option disabled value="">
+                    Select
                 </option>
-                <option value="1">Mandaluyong Branch</option>
-                <option value="2">Rizal Branch</option>
+                {data?.map((item, index) => (
+                    <option key={index} value={item[`${dataPrefix}ID`]}>
+                        {item[`${dataPrefix}Name`]}
+                    </option>
+                ))}
             </select>
             <div className={styles.dropdownError}>{error}</div>
         </div>

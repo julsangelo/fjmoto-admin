@@ -42,6 +42,9 @@
     border-radius: 5px;
     background-color: #ffffff;
     height: fit-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
 }
 
 .infoTable {
@@ -92,4 +95,31 @@
     font-weight: 500;
     margin-left: 30px;
     color: $c_darkgray;
+}
+
+//Added styles by Gilo 
+.info {
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: max-content;
+}
+
+.infoDetails {
+    font-size: 16px;
+    font-weight: normal;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.infoDetails p {
+    margin: 0;
+}
+
+.infoDetails span {
+    color: $c_mediumgray;
+    margin-left: 10px;
 }

@@ -6,13 +6,11 @@ import Input from "../components/Input";
 import Table from "../components/Table";
 import Filter from "../components/Filter";
 import { search } from "../utils/search";
+import { toggleSearch, toggleFilter } from "../utils/toggle";
 
-export default function Employees({ branchID, showDetails }) {
+export default function Employees({ branchID, showDetails, showAdd }) {
     const [employeesData, setEmployeesData] = useState({});
     const [isFilterOpen, setIsFilterOpen] = useState(false);
-    const { searchTerm, handleSearchChange, searchData } = search(
-        employeesData.data,
-    );
 
     useEffect(() => {
         getEmployees(branchID, (data) => {
@@ -20,18 +18,14 @@ export default function Employees({ branchID, showDetails }) {
         });
     }, [branchID]);
 
-    const toggleFilterModal = () => {
-        setIsFilterOpen((prev) => !prev);
-    };
+    const { searchTerm, handleSearchChange, searchData } = search(
+        employeesData.data,
+    );
 
     const handleView = (employeeID) => {
         showDetails(employeeID);
     };
 
-    const toggleSearch = () => {
-        setIsFilterOpen(false);
-        setIsSortOpen(false);
-    };
     return (
         <div className={styles.container}>
             <div className={styles.header}>
@@ -40,7 +34,7 @@ export default function Employees({ branchID, showDetails }) {
                     label="Add employee"
                     icon="add"
                     size="24"
-                    // onClick={() => openModal("add")}
+                    onClick={() => showAdd(null)}
                 />
             </div>
             <div className={styles.mainContent}>
@@ -51,7 +45,7 @@ export default function Employees({ branchID, showDetails }) {
                         size="24"
                         value={searchTerm}
                         onChange={handleSearchChange}
-                        onClick={toggleSearch}
+                        onClick={() => toggleSearch(setIsFilterOpen)}
                     />
                     <div className={styles.optionsContainer}>
                         <Button
@@ -59,7 +53,7 @@ export default function Employees({ branchID, showDetails }) {
                             size="24"
                             className={styles.options}
                             label="Filter"
-                            onClick={toggleFilterModal}
+                            onClick={() => toggleFilter(setIsFilterOpen)}
                         />
                         {isFilterOpen && (
                             <Filter
@@ -92,7 +86,7 @@ export default function Employees({ branchID, showDetails }) {
                         "employeePosition",
                         "employeeStatus",
                     ]}
-                    visibleActions={["view", "delete", "edit"]}
+                    visibleActions={["view"]}
                     onView={handleView}
                 />
             </div>

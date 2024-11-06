@@ -40,13 +40,19 @@
 }
 
 .inputError {
-    color: #d62828;
-    margin: 5px;
-    font-size: 14px;
+    color: #d62828 !important;
+    margin: 5px !important;
+    font-size: 14px !important;
 }
 
 .inputPeso {
     font-size: 16px;
+    font-weight: normal;
+    color: $c_mediumgray;
+}
+
+.inputNumber {
+    font-size: 15px;
     font-weight: normal;
     color: $c_mediumgray;
 }

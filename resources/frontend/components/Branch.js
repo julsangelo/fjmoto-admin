@@ -1,15 +1,16 @@
 import React from "react";
 import styles from "./Branch.module";
 
-export default function Branch({ setSelectedBranch }) {
+export default function Branch({ setSelectedBranch, branches }) {
     const handleChange = (event) => {
         setSelectedBranch(event.target.value);
     };
 
     return (
         <select className={styles.branchDropdown} onChange={handleChange}>
-            <option value="1">Mandaluyong Branch</option>
-            <option value="2">Rizal Branch</option>
+            {branches.map((item) => (
+                <option value={item.branchID}>{item.branchName}</option>
+            ))}
         </select>
     );
 }

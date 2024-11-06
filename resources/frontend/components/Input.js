@@ -13,6 +13,7 @@ const Input = forwardRef(
             error,
             labelStyle,
             containerStyle,
+            number,
             ...rest
         },
         ref,
@@ -26,6 +27,7 @@ const Input = forwardRef(
             <div className={`${styles.inputContainer} ${containerStyle}`}>
                 {icon && <Icon icon={icon} size={size} />}
                 {peso && <div className={styles.inputPeso}>₱</div>}
+                {number && <div className={styles.inputNumber}>+63</div>}
                 <input
                     className={styles.input}
                     placeholder={placeholder}

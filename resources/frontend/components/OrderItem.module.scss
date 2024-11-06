@@ -8,10 +8,16 @@
         padding-bottom: 20px;
         margin-bottom: 20px;
 
-        .image {
+        .orderItemImageContainer {
             height: 70px;
             width: 70px;
             background-color: $c_gray;
+        }
+
+        .orderItemImage {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
         }
 
         .description {
@@ -20,6 +26,7 @@
             p {
                 font-weight: 800;
                 margin-bottom: 5px;
+                font-size: 16px;
             }
 
             div {
@@ -39,13 +46,13 @@
 
             span {
                 display: inline-block;
-                font-size: 14px;
+                font-size: 16px;
                 margin-right: 20px;
             }
         }
 
         .itemTotalPrice {
-            font-size: 14px;
+            font-size: 16px;
         }
     }
 }

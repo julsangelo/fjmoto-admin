@@ -9,4 +9,9 @@ class Orders extends Model
 {
     protected $table = 'orders';
     public $timestamps = false;
+
+    public function customer()
+    {
+        return $this->belongsTo(Customers::class, 'customerID', 'customerID');
+    }
 }

@@ -33,4 +33,12 @@ class OrdersController extends Controller
 
         return response()->json($data);
     }
+
+    public function getCustomerInfo(Request $request) 
+    {
+        $customerID = $request->input('customerID');
+        $data = $this->orderItem->getCustomerInfo($customerID);
+
+        return response()->json($data);
+    }
 }

@@ -4,13 +4,14 @@ import { RouterProvider } from "react-router-dom";
 import router from "./index/router.js";
 import { ContextProvider } from "./context/ContextProvider.js";
 import { FlashMessage } from "./context/FlashMessage.js";
+import { ReferenceProvider } from "./context/ReferenceProvider.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <React.StrictMode>
-        <ContextProvider>
+    <ContextProvider>
+        <ReferenceProvider>
             <FlashMessage>
                 <RouterProvider router={router} />
             </FlashMessage>
-        </ContextProvider>
-    </React.StrictMode>,
+        </ReferenceProvider>
+    </ContextProvider>,
 );

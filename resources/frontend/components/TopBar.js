@@ -4,11 +4,15 @@ import Branch from "./Branch";
 import Role from "./Role";
 import User from "./User";
 
-export default function TopBar({ setSelectedBranch }) {
+export default function TopBar({ setSelectedBranch, branches }) {
+    console.log(branches);
     return (
         <div className={styles.topBar}>
             <div className={styles.topBarGroup}>
-                <Branch setSelectedBranch={setSelectedBranch} />
+                <Branch
+                    setSelectedBranch={setSelectedBranch}
+                    branches={branches}
+                />
                 <Role />
             </div>
             <User />

@@ -23,4 +23,19 @@ class EmployeesController extends Controller
         return response()->json($data);
     }
 
+    // public function addEmployee(Request $request) {
+    //     $request->validate([
+    //         'employeeFirstName'
+    //         'employeeMiddleName' 
+    //         'employeeLastName'
+    //         'employeeEmail'
+    //         'employeeContactNumber'
+    //         'employeeAddress'
+    //         ''
+    //         ''
+    //         ''
+    //         ''
+    //         ''
+    //     ]);
+    // }
 }

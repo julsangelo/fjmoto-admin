@@ -25,11 +25,11 @@ class InventoryController extends Controller
 
     public function addInventory(Request $request) {
         $request->validate([
-            'productCode' => 'required|string',
+            'productCode' => 'required|string|unique:products,productCode',
             'productName' => 'required|string',
             'productStockQuantity' => 'required|integer',
             'productPrice' => 'required|numeric',
-            'productCategory' => 'required|string',
+            'productCategory' => 'required|numeric',
             'productImage' => 'required|image|max:2048',
             'branchID' => 'required|exists:branches,branchID'
         ]);

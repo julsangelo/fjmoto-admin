@@ -8,18 +8,19 @@ export default function OrderItem({ orderItems }) {
             {orderItems &&
                 orderItems.map((item, index) => (
                     <div key={index} className={styles.orderItemInfo}>
-                        <div className={styles.image}>
+                        <div className={styles.orderItemImageContainer}>
                             <img
-                                src={item.productImage}
-                                alt={item.productName}
+                                src={`/fjmoto/${item.product?.productImage}`}
+                                alt={item.product?.productName}
+                                className={styles.orderItemImage}
                             />
                         </div>
                         <div className={styles.description}>
-                            <p>{item.productName}</p>
+                            <p>{item.product?.productName}</p>
                             <div>Product Specification</div>
                         </div>
                         <div className={styles.priceQuantity}>
-                            <span>{item.orderItemTotal}</span>
+                            <span>₱ {item.product?.productPrice}</span>
                             <span>x</span>
                             <span>{item.orderItemQuantity}</span>
                         </div>

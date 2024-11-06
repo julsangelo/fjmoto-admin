@@ -1,0 +1,67 @@
+@import "../../assets/scss/main.module.scss";
+
+.addEditEmployeeContent {
+    height: fit-content;
+    width: calc(100% - 310px);
+    position: absolute;
+    top: 71px;
+    right: 0;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.addEditEmployeeBackButton {
+    height: 54px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    color: $c_mediumgray;
+}
+
+.addEditEmployeeContainer {
+    padding: 80px 100px;
+    border: 1px solid #d7d7d7;
+    border-radius: 5px;
+    background-color: #ffffff;
+    height: fit-content;
+    max-width: 100%;
+    margin: auto;
+}
+
+.addEditEmployeeGroupContainer {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    row-gap: 30px;
+    column-gap: 150px;
+}
+
+.addEditEmployeeGroupContainer p {
+    font-size: 22px;
+    font-weight: bolder;
+    color: $c_dark;
+}
+
+.addEditEmployeeInputContainer {
+    row-gap: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.addEditEmployeeLineSeparator {
+    margin: 80px 0;
+}
+
+.addEditEmployeeButtonContainer {
+    display: flex;
+    justify-content: end;
+    column-gap: 20px;
+    margin-top: 80px;
+}
+
+.addEditEmployeeCancelButton {
+    border: 1px solid $c_mediumgray;
+    color: $c_mediumgray;
+    background-color: transparent;
+}

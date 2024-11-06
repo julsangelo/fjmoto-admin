@@ -7,8 +7,10 @@ import { search } from "../utils/search";
 
 export default function Customer({ showPurchases }) {
     const [customerData, setCustomerData] = useState({});
+
     const { searchTerm, handleSearchChange, searchData } = search(
         customerData.data,
+        ["cusomterFirstName"],
     );
 
     useEffect(() => {
@@ -45,8 +47,7 @@ export default function Customer({ showPurchases }) {
                     visibleActions={["view"]}
                     onView={handleView}
                     visibleColumns={[
-                        "customerFirstName",
-                        "customerLastName",
+                        "customerName",
                         "customerID",
                         "customerEmail",
                         "customerContactNo",

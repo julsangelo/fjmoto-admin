@@ -8,9 +8,11 @@ import Modal from "../components/Modal";
 import Filter from "../components/Filter";
 import Sort from "../components/Sort";
 import { search } from "../utils/search";
+import { toggleFilter, toggleSort, toggleSearch } from "../utils/toggle";
 
-export default function Inventory({ branchID }) {
+export default function Inventory({ branchID, references }) {
     const [inventoryData, setInventoryData] = useState({});
+    const [modifiedData, setModifiedData] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [isSortOpen, setIsSortOpen] = useState(false);
@@ -18,8 +20,10 @@ export default function Inventory({ branchID }) {
     const [selectedProductId, setSelectedProductId] = useState(null);
     const [selectedProduct, setSelectedProduct] = useState(null);
 
-    const { searchTerm, handleSearchChange, searchData } = search(
-        inventoryData.data,
+    const { searchTerm, handleSearchChange } = search(
+        modifiedData ? modifiedData.data : inventoryData.data,
+        ["productName", "productCode"],
+        setModifiedData,
     );
 
     useEffect(() => {
@@ -29,7 +33,6 @@ export default function Inventory({ branchID }) {
     }, [branchID]);
 
     const openModal = (type, productId, product) => {
-        console.log(product);
         setModalType(type);
         setSelectedProductId(productId);
         setIsModalOpen(true);
@@ -40,21 +43,6 @@ export default function Inventory({ branchID }) {
         setIsModalOpen(false);
         setSelectedProductId(null);
         setSelectedProduct(null);
-    };
-
-    const toggleFilterModal = () => {
-        setIsFilterOpen((prev) => !prev);
-        setIsSortOpen(false);
-    };
-
-    const toggleSortModal = () => {
-        setIsSortOpen((prev) => !prev);
-        setIsFilterOpen(false);
-    };
-
-    const toggleSearch = () => {
-        setIsFilterOpen(false);
-        setIsSortOpen(false);
     };
 
     return (
@@ -76,7 +64,9 @@ export default function Inventory({ branchID }) {
                         size="24"
                         value={searchTerm}
                         onChange={handleSearchChange}
-                        onClick={toggleSearch}
+                        onClick={() =>
+                            toggleSearch(setIsFilterOpen, setIsSortOpen)
+                        }
                     />
                     <div className={styles.optionsContainer}>
                         <Button
@@ -84,17 +74,18 @@ export default function Inventory({ branchID }) {
                             size="24"
                             className={styles.options}
                             label="Filter"
-                            onClick={toggleFilterModal}
+                            onClick={() =>
+                                toggleFilter(setIsFilterOpen, setIsSortOpen)
+                            }
                         />
                         {isFilterOpen && (
                             <Filter
-                                visibleFilter={[
-                                    "date",
-                                    "total",
-                                    "payment",
-                                    "fullfillment",
-                                    "order",
-                                ]}
+                                visibleFilter={["category", "price"]}
+                                data={
+                                    modifiedData ? modifiedData : inventoryData
+                                }
+                                dataPrefix="product"
+                                onFilterApply={setModifiedData}
                             />
                         )}
                     </div>
@@ -104,10 +95,19 @@ export default function Inventory({ branchID }) {
                             size="24"
                             className={styles.options}
                             label="Sort"
-                            onClick={toggleSortModal}
+                            onClick={() =>
+                                toggleSort(setIsSortOpen, setIsFilterOpen)
+                            }
                         />
                         {isSortOpen && (
-                            <Sort visibleSort={["price", "stockQuantity"]} />
+                            <Sort
+                                visibleSort={["price", "stockQuantity"]}
+                                data={
+                                    modifiedData ? modifiedData : inventoryData
+                                }
+                                dataPrefix="product"
+                                onSort={setModifiedData}
+                            />
                         )}
                     </div>
                 </div>
@@ -115,8 +115,8 @@ export default function Inventory({ branchID }) {
                     checkbox={false}
                     data={{
                         headers: inventoryData.headers || [],
-                        data: searchTerm
-                            ? searchData
+                        data: modifiedData
+                            ? modifiedData.data
                             : inventoryData.data || [],
                     }}
                     openModal={openModal}
@@ -139,6 +139,7 @@ export default function Inventory({ branchID }) {
                         modal={modalType}
                         productId={selectedProductId}
                         product={selectedProduct}
+                        references={references}
                     />
                 )}
             </div>
