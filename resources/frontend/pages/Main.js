@@ -29,8 +29,6 @@ export default function Main() {
         }
     }, []);
 
-    console.log(activeComponent);
-
     const showPurchases = (customerId) => {
         setSelectedCustomer(customerId);
         setActiveComponent("customerOrders");
@@ -119,8 +117,6 @@ export default function Main() {
                 );
         }
     };
-
-    console.log(references);
 
     return (
         <>

@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { addInventory } from "../../ajax/backend";
+import { useFlashMessage } from "../../context/FlashMessage";
 
 const schema = yup.object().shape({
     productCode: yup.string().required("Code is required."),
@@ -35,6 +36,8 @@ const schema = yup.object().shape({
 });
 
 export default function AddInventory({ onClose, branchID, category }) {
+    const { setFlashMessage, setFlashStatus } = useFlashMessage();
+
     const {
         register,
         handleSubmit,
@@ -63,8 +66,7 @@ export default function AddInventory({ onClose, branchID, category }) {
                 formData.append(key, value);
             else formData.append(key, value);
         });
-        console.log(data);
-        addInventory(formData);
+        addInventory(formData, setFlashMessage, setFlashStatus, onClose);
     };
 
     const renderInput = (label, name, type = "text", peso = false) => (

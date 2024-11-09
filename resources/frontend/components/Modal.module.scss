@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 500;
 }
 
 .modalContainer {
@@ -29,4 +29,11 @@
 
 .modalContent {
     padding: 53px 67px;
+}
+
+.modalImage {
+    display: flex;
+    justify-content: center;
+    height: 250px;
+    width: 100%;
 }

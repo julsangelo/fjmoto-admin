@@ -9,16 +9,22 @@ import Filter from "../components/Filter";
 import Sort from "../components/Sort";
 import { search } from "../utils/search";
 import { toggleFilter, toggleSort, toggleSearch } from "../utils/toggle";
+import { useModal } from "../utils/modal";
 
 export default function Inventory({ branchID, references }) {
     const [inventoryData, setInventoryData] = useState({});
     const [modifiedData, setModifiedData] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [isSortOpen, setIsSortOpen] = useState(false);
-    const [modalType, setModalType] = useState("");
-    const [selectedProductId, setSelectedProductId] = useState(null);
-    const [selectedProduct, setSelectedProduct] = useState(null);
+
+    const {
+        isModalOpen,
+        modalType,
+        selectedValue,
+        selectedData,
+        openModal,
+        closeModal,
+    } = useModal();
 
     const { searchTerm, handleSearchChange } = search(
         modifiedData ? modifiedData.data : inventoryData.data,
@@ -30,20 +36,7 @@ export default function Inventory({ branchID, references }) {
         getInventory(branchID, (data) => {
             setInventoryData(data);
         });
-    }, [branchID]);
-
-    const openModal = (type, productId, product) => {
-        setModalType(type);
-        setSelectedProductId(productId);
-        setIsModalOpen(true);
-        setSelectedProduct(product);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-        setSelectedProductId(null);
-        setSelectedProduct(null);
-    };
+    }, [branchID, isModalOpen]);
 
     return (
         <div className={styles.container}>
@@ -137,8 +130,8 @@ export default function Inventory({ branchID, references }) {
                         onClose={closeModal}
                         branchID={branchID}
                         modal={modalType}
-                        productId={selectedProductId}
-                        product={selectedProduct}
+                        value={selectedValue}
+                        data={selectedData}
                         references={references}
                     />
                 )}

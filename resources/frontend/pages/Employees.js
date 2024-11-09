@@ -24,6 +24,7 @@ export default function Employees({ branchID, showDetails, showAdd }) {
 
     const handleView = (employeeID) => {
         showDetails(employeeID);
+        console.log(employeeID);
     };
 
     return (
@@ -69,7 +70,6 @@ export default function Employees({ branchID, showDetails, showAdd }) {
                     </div>
                 </div>
                 <Table
-                    checkbox={true}
                     data={{
                         headers: employeesData.headers || [],
                         data: searchTerm
@@ -82,7 +82,7 @@ export default function Employees({ branchID, showDetails, showAdd }) {
                         "employeeFirstName",
                         "employeeMiddleName",
                         "employeeLastName",
-                        "branchID",
+                        "branchBranch",
                         "employeePosition",
                         "employeeStatus",
                     ]}

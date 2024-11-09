@@ -10,12 +10,6 @@ export default function DefaultLayout() {
         return <Navigate to="/login" />;
     }
 
-    useEffect(() => {
-        axiosClient.get("/user").then(({ data }) => {
-            setUser(data);
-        });
-    }, []);
-
     return (
         <div>
             <Outlet />

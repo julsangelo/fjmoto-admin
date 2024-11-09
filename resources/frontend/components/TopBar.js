@@ -5,7 +5,6 @@ import Role from "./Role";
 import User from "./User";
 
 export default function TopBar({ setSelectedBranch, branches }) {
-    console.log(branches);
     return (
         <div className={styles.topBar}>
             <div className={styles.topBarGroup}>

@@ -14,6 +14,7 @@ const Input = forwardRef(
             labelStyle,
             containerStyle,
             number,
+            optional,
             ...rest
         },
         ref,
@@ -21,7 +22,7 @@ const Input = forwardRef(
         <div className={styles.inputBox}>
             {label && (
                 <div className={`${styles.inputLabel} ${labelStyle}`}>
-                    {label}
+                    {label} {optional && <span>(Optional)</span>}
                 </div>
             )}
             <div className={`${styles.inputContainer} ${containerStyle}`}>

@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { editInventory } from "../../ajax/backend";
+import { useFlashMessage } from "../../context/FlashMessage";
 
 const schema = yup.object().shape({
     productID: yup.number().required(),
@@ -40,6 +41,8 @@ const schema = yup.object().shape({
 });
 
 export default function EditInventory({ onClose, branch, product, category }) {
+    const { setFlashMessage, setFlashStatus } = useFlashMessage();
+
     const {
         register,
         handleSubmit,
@@ -87,11 +90,7 @@ export default function EditInventory({ onClose, branch, product, category }) {
             formData.append(key, value);
         });
 
-        editInventory(formData)
-            .then(() => onClose())
-            .catch((error) =>
-                console.error("Failed to edit inventory:", error),
-            );
+        editInventory(formData, setFlashMessage, setFlashStatus, onClose);
     };
 
     const renderInput = (label, name, type = "text", peso = false) => (

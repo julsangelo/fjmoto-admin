@@ -17,6 +17,8 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import BadgeIcon from "@mui/icons-material/Badge";
+import CircleIcon from "@mui/icons-material/Circle";
+import CheckIcon from "@mui/icons-material/Check";
 
 const ICON_TYPES = {
     dashboard: DashboardIcon,
@@ -37,6 +39,9 @@ const ICON_TYPES = {
     view: VisibilityIcon,
     back: ArrowBackIcon,
     employees: BadgeIcon,
+    bullet: CircleIcon,
+    success: CheckIcon,
+    error: CloseIcon,
 };
 
 export default function Icon({ icon, size, onClick, className }) {

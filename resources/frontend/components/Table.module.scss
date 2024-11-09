@@ -3,13 +3,13 @@
 table input {
     height: 20px;
     width: 20px;
-    margin-left: 15px;
 }
 
-.productImage {
+.image {
     height: 40px;
     width: 40px;
     display: flex;
+    object-fit: cover;
 }
 
 table {
@@ -38,9 +38,9 @@ thead tr {
 tbody td {
     border: none;
     padding: 0 20px;
-    white-space: nowrap; 
-    overflow: hidden;       
-    text-overflow: ellipsis;   
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     max-width: 150px;
 }
 

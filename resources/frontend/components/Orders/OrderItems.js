@@ -4,6 +4,7 @@ import { getCustomerInfo } from "../../ajax/backend";
 import styles from "./OrderItems.module";
 import Button from "../Button";
 import OrderItem from "../OrderItem";
+import Tag from "../Tag";
 
 export default function Details({ order, onBack }) {
     const [orderItems, setOrderItems] = useState({});
@@ -38,12 +39,14 @@ export default function Details({ order, onBack }) {
                         onClick={onBack}
                     />
                     <p>Order No. {order.orderID}</p>
-                    <div className={styles.orderBadge}>
+                    {/* <div className={styles.orderBadge}>
                         <p>{order.orderFulfillmentStatus}</p>
                     </div>
                     <div className={styles.orderBadge}>
                         <p>{order.orderStatus}</p>
-                    </div>
+                    </div> */}
+                    <Tag text={order.orderFulfillmentStatus} />
+                    <Tag text={order.orderStatus} />
                 </div>
                 <div className={styles.orderDateTime}>
                     <p>Order made in {order.orderDateTime}</p>

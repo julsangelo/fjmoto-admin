@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
+import Message from "../components/Message";
 
 let flashContext = createContext({
     status: null,
@@ -29,6 +30,7 @@ export let FlashMessage = ({ children }) => {
         <flashContext.Provider
             value={{ status, message, setFlashStatus, setFlashMessage }}
         >
+            <Message message={message} status={status} />
             {children}
         </flashContext.Provider>
     );

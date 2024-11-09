@@ -4,13 +4,16 @@ import Icon from "./Icon";
 import AddInventory from "./Inventory/AddInventory";
 import DeleteInventory from "./Inventory/DeleteInventory";
 import EditInventory from "./Inventory/EditInventory";
+import DeleteEmployee from "./Employees/DeleteEmployee";
 
 export default function Modal({
     onClose,
     branchID,
     modal,
-    productId,
-    product,
+    value,
+    data,
+    tab,
+    onBack,
     references,
 }) {
     const renderContent = () => {
@@ -24,16 +27,36 @@ export default function Modal({
                     />
                 );
             case "delete":
-                return (
-                    <DeleteInventory onClose={onClose} productId={productId} />
-                );
+                switch (tab) {
+                    case "employee":
+                        return (
+                            <DeleteEmployee
+                                onClose={onClose}
+                                employee={data}
+                                onBack={onBack}
+                            />
+                        );
+                    default:
+                        return (
+                            <DeleteInventory
+                                onClose={onClose}
+                                productID={value}
+                            />
+                        );
+                }
             case "edit":
                 return (
                     <EditInventory
                         onClose={onClose}
-                        product={product}
+                        product={data}
                         category={references.categories}
                     />
+                );
+            case "image":
+                return (
+                    <div className={styles.modalImage}>
+                        <img src={`/fjmoto/${value}`} alt="" />
+                    </div>
                 );
             default:
                 return <div>No content available</div>;

@@ -2,10 +2,13 @@ import React from "react";
 import styles from "./DeleteInventory.module";
 import Button from "../Button";
 import { deleteInventory } from "../../ajax/backend";
+import { useFlashMessage } from "../../context/FlashMessage";
 
-export default function DeleteInventory({ onClose, productId }) {
-    const deleteProduct = (productId) => {
-        deleteInventory(productId);
+export default function DeleteInventory({ onClose, productID }) {
+    const { setFlashMessage, setFlashStatus } = useFlashMessage();
+
+    const deleteProduct = (productID) => {
+        deleteInventory(productID, setFlashMessage, setFlashStatus, onClose);
     };
 
     return (
@@ -27,7 +30,7 @@ export default function DeleteInventory({ onClose, productId }) {
                     icon="delete"
                     size="24"
                     className={styles.deleteInventorySubmit}
-                    onClick={() => deleteProduct(productId)}
+                    onClick={() => deleteProduct(productID)}
                 />
             </div>
         </>

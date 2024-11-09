@@ -40,7 +40,7 @@ class InventoryController extends Controller
 
         $imagePath = 'images/products/' . $imageName;
 
-        Products::create([
+        $addInventory = Products::create([
             'productCode' => $request->productCode,
             'productName' => $request->productName,
             'productStockQuantity' => $request->productStockQuantity,
@@ -49,10 +49,16 @@ class InventoryController extends Controller
             'productImage' => $imagePath,
             'branchID' => $request->branchID
         ]);
+
+        if ($addInventory) {
+            return response()->json(['message' => 'Product added successfully.', 'status' => 'success']);
+        } else {
+            return response()->json(['message' => 'Error adding the product.', 'status' => 'error']);
+        }
     }
 
     public function editInventory(Request $request) {
-        $product = Products::findOrFail($request->productID);
+        $editProduct = Products::findOrFail($request->productID);
     
         $request->validate([
             'productCode' => 'required|string',
@@ -66,12 +72,12 @@ class InventoryController extends Controller
         if ($request->hasFile('productImage')) {
             $imageName = $request->file('productImage')->getClientOriginalName();
             $request->file('productImage')->move(public_path('fjmoto/images/products'), $imageName);
-            $product->productImage = 'images/products/' . $imageName;
+            $editProduct->productImage = 'images/products/' . $imageName;
         }
     
-        $product->update($request->only(['productCode', 'productName', 'productStockQuantity', 'productPrice', 'productCategory']));
+        $editProduct->update($request->only(['productCode', 'productName', 'productStockQuantity', 'productPrice', 'productCategory']));
     
-        return response()->json(['message' => 'Product updated successfully.']);
+        return response()->json(['message' => 'Product updated successfully.', 'status' => 'success']);
     }
     
     
@@ -79,6 +85,12 @@ class InventoryController extends Controller
     public function deleteInventory(Request $request) 
     {
         $productID = $request->input('productID');
-        $product = Products::findOrFail($productID)->delete();
+        $deleteInventory = Products::findOrFail($productID)->delete();
+
+        if ($deleteInventory) {
+            return response()->json(['message' => 'Product deleted successfully.', 'status' => 'success']);
+        } else {
+            return response()->json(['message' => 'Error deleting the product.', 'status' => 'error']);
+        }
     }
 }

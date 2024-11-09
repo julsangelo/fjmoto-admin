@@ -22,3 +22,6 @@ Route::post('/getPurchases', [CustomersController::class, 'getPurchases']);
 Route::post('/getOrderItems', [OrdersController::class, 'getOrderItems']);
 Route::post('/getCustomerInfo', [OrdersController::class, 'getCustomerInfo']);
 Route::get( '/getReferences', [ReferencesController::class, 'getReferences']);
+Route::post('/deleteEmployee', [EmployeesController::class, 'deleteEmployee']);
+Route::post('/addEmployee', [EmployeesController::class, 'addEmployee']);
+Route::post('/editEmployee', [EmployeesController::class, 'editEmployee']);

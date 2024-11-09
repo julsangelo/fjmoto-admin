@@ -18,7 +18,7 @@ class Inventory
 
         return [
             'headers' => $headers,
-            'data' => $products
+            'data' => $products,
         ];
     }
 }

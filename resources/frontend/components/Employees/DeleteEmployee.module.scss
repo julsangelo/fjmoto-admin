@@ -1,29 +1,40 @@
 @import "../../assets/scss/main.module.scss";
 
-.deleteInventoryTitle {
+.deleteEmployeeTitle {
     font-size: 24px;
     font-weight: bolder;
 }
 
-.deleteInventoryText {
+.deleteEmployeeText {
     font-size: 16px;
+    margin-top: 10px;
+    max-width: 500px;
+}
+
+.deleteEmployeeConfirmation {
+    width: fit-content;
+    margin-top: 30px;
+}
+
+.deleteEmployeeConfirmationInput {
+    width: fit-content;
     margin-top: 10px;
 }
 
-.deleteInventoryButton {
+.deleteEmployeeButton {
     display: flex;
     justify-content: end;
     column-gap: 16px;
     margin-top: 40px;
 }
 
-.deleteInventoryCancel {
+.deleteEmployeeCancel {
     border: 1px solid $c_mediumgray;
     color: $c_mediumgray;
     background-color: transparent;
 }
 
-.deleteInventorySubmit {
+.deleteEmployeeSubmit {
     color: $c_secondary;
     background-color: #d62828;
 }

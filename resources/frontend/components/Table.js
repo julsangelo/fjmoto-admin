@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./Table.module";
 import Icon from "./Icon";
 import Button from "./Button";
+import Tag from "./Tag";
 
 export default function Table({
     checkbox,
@@ -46,41 +47,51 @@ export default function Table({
                     </th>
                 )}
                 {isDataValid &&
-                    visibleColumns.map((header, idx) => (
-                        <th key={idx}>{formatHeader(header)}</th>
+                    visibleColumns.map((header, index) => (
+                        <th key={index}>{formatHeader(header)}</th>
                     ))}
                 {action && <th>Action</th>}
             </tr>
         </thead>
     );
 
-    const renderTableRow = (item) => (
-        <React.Fragment key={item.id}>
+    const renderTableRow = (item, index) => (
+        <React.Fragment key={index}>
             <tr>
                 {checkbox && (
                     <td>
                         <input type="checkbox" />
                     </td>
                 )}
-                {visibleColumns.map((header, idx) => (
-                    <td
-                        key={idx}
-                        style={idx === 0 ? { padding: "0px 20px" } : {}}
-                    >
+                {visibleColumns.map((header, index) => (
+                    <td key={index}>
                         {formatHeader(header).toLowerCase() === "image" ? (
                             <div className={styles.tableImageContainer}>
                                 <img
-                                    className={styles.productImage}
+                                    className={styles.image}
                                     src={`/fjmoto/${item.productImage}`}
                                     alt={item.product || "Product Image"}
                                 />
-                                <div className={styles.tableViewImage}>
+                                <div
+                                    className={styles.tableViewImage}
+                                    onClick={() =>
+                                        openModal(
+                                            "image",
+                                            item.productImage,
+                                            null,
+                                        )
+                                    }
+                                >
                                     <Icon icon="view" size="20" />
                                 </div>
                             </div>
                         ) : formatHeader(header).toLowerCase() === "price" ||
                           formatHeader(header).toLowerCase() === "total" ? (
                             `₱ ${item[header]}`
+                        ) : formatHeader(header)
+                              .toLowerCase()
+                              .includes("status") ? (
+                            <Tag text={item[header]} />
                         ) : (
                             item[header]
                         )}

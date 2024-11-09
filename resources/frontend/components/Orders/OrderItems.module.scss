@@ -20,13 +20,14 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    column-gap: 10px;
+    height: 50px;
 }
 
 .detailBackButton {
     background-color: transparent;
     color: $c_mediumgray;
-    padding: 15px 0;
-    margin-right: 10px;
+    padding: 0;
 }
 
 .detailsContainer {
@@ -97,7 +98,7 @@
     color: $c_darkgray;
 }
 
-//Added styles by Gilo 
+//Added styles by Gilo
 .info {
     font-size: 18px;
     font-weight: bold;

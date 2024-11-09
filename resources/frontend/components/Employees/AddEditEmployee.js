@@ -7,6 +7,8 @@ import Input from "../Input";
 import Button from "../Button";
 import Icon from "../Icon";
 import Dropdown from "../Dropdown";
+import { addEmployee, editEmployee } from "../../ajax/backend";
+import { useFlashMessage } from "../../context/FlashMessage";
 
 const employeeValidationSchema = Yup.object().shape({
     employeeFirstName: Yup.string()
@@ -23,25 +25,33 @@ const employeeValidationSchema = Yup.object().shape({
         .email("Invalid email format.")
         .required("Email is required."),
     employeeContactNo: Yup.string()
+        .required("Contact number is required.")
         .matches(/^[0-9]+$/, "Contact number must only contain numbers.")
-        .min(11, "Contact number must be at least 11 digits.")
-        .required("Contact number is required."),
+        .test("starts-with-09", "Contact number must start with 09", (value) =>
+            value?.startsWith("09"),
+        )
+        .length(11, "Contact number must be exactly 11 digits."),
     employeeAddress: Yup.string()
         .min(5, "Address must be at least 5 characters.")
         .required("Address is required."),
     employeePosition: Yup.string().required("Position/Role is required."),
-    employeeDateHired: Yup.date().required("Date hired is required."),
-    employeeEmploymentStatus: Yup.string().required(
-        "Employment status is required.",
+    employeeDateHired: Yup.string().matches(
+        /^\d{4}-\d{2}-\d{2}$/,
+        "Date hired is required.",
     ),
+    employeeStatus: Yup.string().required("Employment status is required."),
     employeeBranch: Yup.string().required("Branch is required."),
 });
 
 export default function AddEditEmployee({ employee, onBack, references }) {
+    const { setFlashMessage, setFlashStatus } = useFlashMessage();
+
     const {
         register,
         handleSubmit,
         formState: { errors },
+        watch,
+        trigger,
         setValue,
     } = useForm({
         resolver: yupResolver(employeeValidationSchema),
@@ -52,16 +62,20 @@ export default function AddEditEmployee({ employee, onBack, references }) {
             employeeEmail: employee?.employeeEmail || "",
             employeeContactNo: employee?.employeeContactNo || "",
             employeeAddress: employee?.employeeAddress || "",
-            employeePosition: employee?.employeePosition || "",
+            employeePosition: employee?.employeePositionID || "",
             employeeDateHired: employee?.employeeDateHired || "",
-            employeeEmploymentStatus: employee?.employeeEmploymentStatus || "",
-            employeeBranch: employee?.employeeBranch || "",
-            employeeID: employee?.employeeEmployeeID || "",
+            employeeStatus: employee?.employeeStatusID || "",
+            employeeBranch: employee?.branchID || "",
+            employeeID: employee?.employeeID || "",
         },
     });
 
     const onSubmit = (data) => {
-        console.log(data);
+        if (employee) {
+            editEmployee(data, setFlashMessage, setFlashStatus, onBack);
+        } else {
+            addEmployee(data, setFlashMessage, setFlashStatus, onBack);
+        }
     };
 
     useEffect(() => {
@@ -72,16 +86,18 @@ export default function AddEditEmployee({ employee, onBack, references }) {
             setValue("employeeEmail", employee.employeeEmail);
             setValue("employeeContactNo", employee.employeeContactNo);
             setValue("employeeAddress", employee.employeeAddress);
-            setValue("employeePosition", employee.employeePosition);
+            setValue("employeePosition", employee.employeePositionID);
             setValue("employeeDateHired", employee.employeeDateHired);
-            setValue(
-                "employeeEmploymentStatus",
-                employee.employeeEmploymentStatus,
-            );
-            setValue("employeeBranch", employee.employeeBranch);
-            setValue("employeeEmployeeID", employee.employeeID);
+            setValue("employeeStatus", employee.employeeStatusID);
+            setValue("employeeBranch", employee.branchID);
+            setValue("employeeID", employee.employeeID);
         }
     }, [employee, setValue]);
+
+    const handleDropdownChange = (value, fieldName) => {
+        setValue(fieldName, value);
+        trigger(fieldName);
+    };
 
     return (
         <div className={styles.addEditEmployeeContent}>
@@ -99,6 +115,7 @@ export default function AddEditEmployee({ employee, onBack, references }) {
                         />
                         <Input
                             label="Middle Name"
+                            optional={true}
                             {...register("employeeMiddleName")}
                             error={errors.employeeMiddleName?.message}
                         />
@@ -132,6 +149,10 @@ export default function AddEditEmployee({ employee, onBack, references }) {
                     <div className={styles.addEditEmployeeInputContainer}>
                         <Dropdown
                             label="Position/Role"
+                            onSelect={(value) =>
+                                handleDropdownChange(value, "employeePosition")
+                            }
+                            value={watch("employeePosition")}
                             {...register("employeePosition")}
                             error={errors.employeePosition?.message}
                             data={references.position}
@@ -145,13 +166,21 @@ export default function AddEditEmployee({ employee, onBack, references }) {
                         />
                         <Dropdown
                             label="Employment Status"
-                            {...register("employeeEmploymentStatus")}
-                            error={errors.employeeEmploymentStatus?.message}
+                            onSelect={(value) =>
+                                handleDropdownChange(value, "employeeStatus")
+                            }
+                            value={watch("employeeStatus")}
+                            {...register("employeeStatus")}
+                            error={errors.employeeStatus?.message}
                             data={references.employmentStatus}
                             dataPrefix="employmentStatus"
                         />
                         <Dropdown
                             label="Branch"
+                            onSelect={(value) =>
+                                handleDropdownChange(value, "employeeBranch")
+                            }
+                            value={watch("employeeBranch")}
                             {...register("employeeBranch")}
                             error={errors.employeeBranch?.message}
                             data={references.branches}

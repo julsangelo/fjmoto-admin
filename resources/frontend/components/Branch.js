@@ -8,8 +8,10 @@ export default function Branch({ setSelectedBranch, branches }) {
 
     return (
         <select className={styles.branchDropdown} onChange={handleChange}>
-            {branches.map((item) => (
-                <option value={item.branchID}>{item.branchName}</option>
+            {branches.map((item, index) => (
+                <option key={index} value={item.branchID}>
+                    {item.branchName}
+                </option>
             ))}
         </select>
     );

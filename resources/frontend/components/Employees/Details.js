@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { getEmployees } from "../../ajax/backend";
+import React from "react";
 import styles from "./Details.module";
 import Button from "../Button";
+import { useModal } from "../../utils/modal";
+import Modal from "../Modal";
 
 export default function Details({ employee, onBack, showEdit }) {
-    const [employeeDetails, setEmployeeDetails] = useState({});
-
-    useEffect(() => {
-        getEmployees(employee.employeeID, (data) => {
-            setEmployeeDetails(data);
-        });
-    }, [employee.employeeID]);
-
-    console.log(employeeDetails);
+    const {
+        isModalOpen,
+        modalType,
+        selectedValue,
+        selectedData,
+        selectedTab,
+        openModal,
+        closeModal,
+    } = useModal();
 
     return (
         <div className={styles.detailContent}>
@@ -85,7 +86,7 @@ export default function Details({ employee, onBack, showEdit }) {
                         </div>
                         <div>
                             <p>Branch</p>
-                            <p>{employee.branchID}</p>
+                            <p>{employee.branchBranch}</p>
                         </div>
                     </div>
                 </div>
@@ -95,9 +96,19 @@ export default function Details({ employee, onBack, showEdit }) {
                 label="Delete employee"
                 icon="delete"
                 size="24"
-                // onClick={() => openModal("add")}
                 className={styles.deleteButton}
+                onClick={() => openModal("delete", null, employee, "employee")}
             />
+            {isModalOpen && (
+                <Modal
+                    onClose={closeModal}
+                    modal={modalType}
+                    value={selectedValue}
+                    data={selectedData}
+                    tab={selectedTab}
+                    onBack={onBack}
+                />
+            )}
         </div>
     );
 }
