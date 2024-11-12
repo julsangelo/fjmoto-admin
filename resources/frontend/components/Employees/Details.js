@@ -4,9 +4,12 @@ import Button from "../Button";
 import { useModal } from "../../utils/modal";
 import Modal from "../Modal";
 import { getViewEmployee } from "../../ajax/backend";
+import { LoginContext } from "../../context/LoginProvider";
 
 export default function Details({ employeeID, onBack, showEdit }) {
+    const { user } = useContext(LoginContext);
     const [viewEmployeeData, setViewEmployeeData] = useState();
+    const isSelf = user?.user?.employeeID !== viewEmployeeData?.employeeID;
 
     const {
         isModalOpen,
@@ -100,16 +103,17 @@ export default function Details({ employeeID, onBack, showEdit }) {
                     </div>
                 </div>
             </div>
-
-            <Button
-                label="Delete employee"
-                icon="delete"
-                size="24"
-                className={styles.deleteButton}
-                onClick={() =>
-                    openModal("delete", null, viewEmployeeData, "employee")
-                }
-            />
+            {isSelf && (
+                <Button
+                    label="Delete employee"
+                    icon="delete"
+                    size="24"
+                    className={styles.deleteButton}
+                    onClick={() =>
+                        openModal("delete", null, viewEmployeeData, "employee")
+                    }
+                />
+            )}
             {isModalOpen && (
                 <Modal
                     onClose={closeModal}

@@ -29,7 +29,7 @@ export default function OrderItem({ orderItems }) {
                         </span>
                     </div>
                 ))}
-            <Button label="Fulfill items" />
+            <Button label="Fulfill items" className={styles.orderItemButton} />
         </div>
     );
 }

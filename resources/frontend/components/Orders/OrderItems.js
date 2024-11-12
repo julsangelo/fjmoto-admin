@@ -47,8 +47,32 @@ export default function Details({ order, onBack }) {
                 </div>
             </div>
             <div className={styles.detailsContainer}>
-                <div className={styles.infoContainer}>
-                    <OrderItem orderItems={orderItems.data} />
+                <div className={styles.infoContent}>
+                    <div className={styles.infoContainer}>
+                        <OrderItem orderItems={orderItems.data} />
+                    </div>
+                    <div className={styles.infoContainer}>
+                        <Tag text={order.orderPaymentStatus} icon={true} />
+                        <div className={styles.infoTotal}>
+                            <div className={styles.infoTotalDetails}>
+                                <p>Subtotal</p>
+                                <p>{orderItems.data?.length} item/s</p>
+                                <p>₱ {order.orderTotal}</p>
+                            </div>
+                            <div className={styles.infoTotalDetails}>
+                                <p>Shipping Fee</p>
+                                <p>₱ 50</p>
+                            </div>
+                            <div className={styles.infoTotalDetails}>
+                                <strong>Total</strong>
+                                <strong>₱ {order.orderTotal + 50}</strong>
+                            </div>
+                        </div>
+                        <Button
+                            label="Send Invoice"
+                            className={styles.infoButton}
+                        />
+                    </div>
                 </div>
                 <div className={styles.infoContainer}>
                     <div className={styles.info}>
