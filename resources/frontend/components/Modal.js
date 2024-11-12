@@ -23,7 +23,7 @@ export default function Modal({
                     <AddInventory
                         onClose={onClose}
                         branchID={branchID}
-                        category={references.categories}
+                        category={references.productCategory}
                     />
                 );
             case "delete":
@@ -49,7 +49,7 @@ export default function Modal({
                     <EditInventory
                         onClose={onClose}
                         product={data}
-                        category={references.categories}
+                        category={references.productCategory}
                     />
                 );
             case "image":

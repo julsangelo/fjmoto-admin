@@ -99,7 +99,7 @@ export default function AddInventory({ onClose, branchID, category }) {
                     onSelect={handleCategoryChange}
                     error={errors.productCategory?.message}
                     data={category}
-                    dataPrefix="category"
+                    dataPrefix="productCategory"
                     value={productCategory}
                 />
             </div>

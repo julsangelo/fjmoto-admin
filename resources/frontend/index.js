@@ -2,16 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import router from "./index/router.js";
-import { ContextProvider } from "./context/ContextProvider.js";
+import { LoginProvider } from "./context/LoginProvider.js";
 import { FlashMessage } from "./context/FlashMessage.js";
 import { ReferenceProvider } from "./context/ReferenceProvider.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <ContextProvider>
-        <ReferenceProvider>
-            <FlashMessage>
+    <FlashMessage>
+        <LoginProvider>
+            <ReferenceProvider>
                 <RouterProvider router={router} />
-            </FlashMessage>
-        </ReferenceProvider>
-    </ContextProvider>,
+            </ReferenceProvider>
+        </LoginProvider>
+    </FlashMessage>,
 );

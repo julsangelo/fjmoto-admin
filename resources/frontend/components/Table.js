@@ -88,10 +88,15 @@ export default function Table({
                         ) : formatHeader(header).toLowerCase() === "price" ||
                           formatHeader(header).toLowerCase() === "total" ? (
                             `₱ ${item[header]}`
-                        ) : formatHeader(header)
-                              .toLowerCase()
-                              .includes("status") ? (
-                            <Tag text={item[header]} />
+                        ) : ["status", "branch", "position"].some((key) =>
+                              formatHeader(header).toLowerCase().includes(key),
+                          ) ? (
+                            <Tag
+                                text={item[header]}
+                                icon={formatHeader(header)
+                                    .toLowerCase()
+                                    .includes("status")}
+                            />
                         ) : (
                             item[header]
                         )}

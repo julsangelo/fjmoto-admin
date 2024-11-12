@@ -40,7 +40,7 @@ const schema = yup.object().shape({
         ),
 });
 
-export default function EditInventory({ onClose, branch, product, category }) {
+export default function EditInventory({ onClose, product, category }) {
     const { setFlashMessage, setFlashStatus } = useFlashMessage();
 
     const {
@@ -59,7 +59,7 @@ export default function EditInventory({ onClose, branch, product, category }) {
             setValue("productName", product.productName);
             setValue("productStockQuantity", product.productStockQuantity);
             setValue("productPrice", product.productPrice);
-            setValue("productCategory", product.productCategory);
+            setValue("productCategory", product.productCategoryID);
 
             if (product.productImage) {
                 fetch(`/fjmoto/${product.productImage}`)
@@ -86,7 +86,7 @@ export default function EditInventory({ onClose, branch, product, category }) {
 
     const onSubmit = (data) => {
         const formData = new FormData();
-        Object.entries({ ...data, branch }).forEach(([key, value]) => {
+        Object.entries({ ...data }).forEach(([key, value]) => {
             formData.append(key, value);
         });
 
@@ -129,7 +129,7 @@ export default function EditInventory({ onClose, branch, product, category }) {
                     value={watch("productCategory")}
                     error={errors.productCategory?.message}
                     data={category}
-                    dataPrefix="category"
+                    dataPrefix="productCategory"
                 />
             </div>
             <div className={styles.editInventoryButton}>

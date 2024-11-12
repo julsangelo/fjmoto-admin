@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Details.module";
 import Button from "../Button";
 import { useModal } from "../../utils/modal";
 import Modal from "../Modal";
+import { getViewEmployee } from "../../ajax/backend";
 
-export default function Details({ employee, onBack, showEdit }) {
+export default function Details({ employeeID, onBack, showEdit }) {
+    const [viewEmployeeData, setViewEmployeeData] = useState();
+
     const {
         isModalOpen,
         modalType,
@@ -14,6 +17,12 @@ export default function Details({ employee, onBack, showEdit }) {
         openModal,
         closeModal,
     } = useModal();
+
+    useEffect(() => {
+        getViewEmployee(employeeID, (data) => {
+            setViewEmployeeData(data.data[0]);
+        });
+    }, [employeeID]);
 
     return (
         <div className={styles.detailContent}>
@@ -28,7 +37,7 @@ export default function Details({ employee, onBack, showEdit }) {
                     label="Edit details"
                     icon="edit"
                     size="24"
-                    onClick={() => showEdit(employee)}
+                    onClick={() => showEdit(viewEmployeeData)}
                 />
             </div>
             <div className={styles.detailsContainer}>
@@ -37,31 +46,31 @@ export default function Details({ employee, onBack, showEdit }) {
                     <div className={styles.infoTable}>
                         <div>
                             <p>Employee ID</p>
-                            <p>{employee.employeeID}</p>
+                            <p>{viewEmployeeData?.employeeID}</p>
                         </div>
                         <div>
                             <p>First Name</p>
-                            <p>{employee.employeeFirstName}</p>
+                            <p>{viewEmployeeData?.employeeFirstName}</p>
                         </div>
                         <div>
                             <p>Middle Name</p>
-                            <p>{employee.employeeMiddleName}</p>
+                            <p>{viewEmployeeData?.employeeMiddleName}</p>
                         </div>
                         <div>
                             <p>Last Name</p>
-                            <p>{employee.employeeLastName}</p>
+                            <p>{viewEmployeeData?.employeeLastName}</p>
                         </div>
                         <div>
                             <p>Email</p>
-                            <p>{employee.employeeEmail}</p>
+                            <p>{viewEmployeeData?.employeeEmail}</p>
                         </div>
                         <div>
                             <p>Contact Number</p>
-                            <p>{employee.employeeContactNo}</p>
+                            <p>{viewEmployeeData?.employeeContactNo}</p>
                         </div>
                         <div>
                             <p>Address</p>
-                            <p>{employee.employeeAddress}</p>
+                            <p>{viewEmployeeData?.employeeAddress}</p>
                         </div>
                     </div>
                 </div>
@@ -70,23 +79,23 @@ export default function Details({ employee, onBack, showEdit }) {
                     <div className={styles.infoTable}>
                         <div>
                             <p>Position/Role</p>
-                            <p>{employee.employeePosition}</p>
+                            <p>{viewEmployeeData?.employeePosition}</p>
                         </div>
                         <div>
                             <p>Date Hired</p>
-                            <p>{employee.employeeDateHired}</p>
+                            <p>{viewEmployeeData?.employeeDateHired}</p>
                         </div>
                         <div>
                             <p>Employment Status</p>
-                            <p>{employee.employeeStatus}</p>
+                            <p>{viewEmployeeData?.employeeStatus}</p>
                         </div>
                         <div>
                             <p>Manager/Supervisor</p>
-                            <p>{employee.employeeManager}</p>
+                            <p>{viewEmployeeData?.employeeManager}</p>
                         </div>
                         <div>
                             <p>Branch</p>
-                            <p>{employee.branchBranch}</p>
+                            <p>{viewEmployeeData?.employeeBranch}</p>
                         </div>
                     </div>
                 </div>
@@ -97,7 +106,9 @@ export default function Details({ employee, onBack, showEdit }) {
                 icon="delete"
                 size="24"
                 className={styles.deleteButton}
-                onClick={() => openModal("delete", null, employee, "employee")}
+                onClick={() =>
+                    openModal("delete", null, viewEmployeeData, "employee")
+                }
             />
             {isModalOpen && (
                 <Modal

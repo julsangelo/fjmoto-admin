@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Branches extends Model
+class EmployeeStatus extends Model
 {
-    protected $table = 'branches';
+    protected $table = 'employeeStatus';
     public $timestamps = false;
 }

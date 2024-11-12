@@ -2,36 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Repositories\Inventory;
-use App\Models\Products;
+use App\Http\Repositories\Products;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class InventoryController extends Controller
 {
-    protected $inventory;
+    protected $products;
 
-    public function __construct(Inventory $inventory)
+    public function __construct(Products $products)
     {
-        $this->inventory = $inventory;
+        $this->products = $products;
     }
 
-    public function getInventory(Request $request)
+    public function getProducts(Request $request)
     {
         $branch = $request->input('branch');
-        $data = $this->inventory->getInventory($branch);
+        $data = $this->products->getProducts($branch);
 
         return response()->json($data);
     }
 
     public function addInventory(Request $request) {
         $request->validate([
-            'productCode' => 'required|string|unique:products,productCode',
+            'productCode' => 'required|string|unique:product,productCode',
             'productName' => 'required|string',
             'productStockQuantity' => 'required|integer',
             'productPrice' => 'required|numeric',
             'productCategory' => 'required|numeric',
             'productImage' => 'required|image|max:2048',
-            'branchID' => 'required|exists:branches,branchID'
+            'branchID' => 'required|exists:branch,branchID'
         ]);
 
         $image = $request->file('productImage');
@@ -40,7 +40,7 @@ class InventoryController extends Controller
 
         $imagePath = 'images/products/' . $imageName;
 
-        $addInventory = Products::create([
+        $addInventory = Product::create([
             'productCode' => $request->productCode,
             'productName' => $request->productName,
             'productStockQuantity' => $request->productStockQuantity,
@@ -58,7 +58,7 @@ class InventoryController extends Controller
     }
 
     public function editInventory(Request $request) {
-        $editProduct = Products::findOrFail($request->productID);
+        $editProduct = Product::findOrFail($request->productID);
     
         $request->validate([
             'productCode' => 'required|string',
@@ -85,7 +85,7 @@ class InventoryController extends Controller
     public function deleteInventory(Request $request) 
     {
         $productID = $request->input('productID');
-        $deleteInventory = Products::findOrFail($productID)->delete();
+        $deleteInventory = Product::findOrFail($productID)->delete();
 
         if ($deleteInventory) {
             return response()->json(['message' => 'Product deleted successfully.', 'status' => 'success']);

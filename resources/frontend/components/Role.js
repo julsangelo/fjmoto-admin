@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Role.module";
 
-export default function Role() {
-    return <div className={styles.role}>Admin</div>;
+export default function Role({ data }) {
+    return <div className={styles.role}>{data?.user?.employeePosition}</div>;
 }

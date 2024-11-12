@@ -22,9 +22,8 @@ export default function Employees({ branchID, showDetails, showAdd }) {
         employeesData.data,
     );
 
-    const handleView = (employeeID) => {
-        showDetails(employeeID);
-        console.log(employeeID);
+    const handleView = (employee) => {
+        showDetails(employee.employeeID);
     };
 
     return (
@@ -82,7 +81,7 @@ export default function Employees({ branchID, showDetails, showAdd }) {
                         "employeeFirstName",
                         "employeeMiddleName",
                         "employeeLastName",
-                        "branchBranch",
+                        "employeeBranch",
                         "employeePosition",
                         "employeeStatus",
                     ]}

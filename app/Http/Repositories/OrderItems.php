@@ -2,15 +2,15 @@
 
 namespace App\Http\Repositories;
 
-use App\Models\Customers;
-use App\Models\OrderItems;
+use App\Models\Customer;
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\DB;
 
-class OrderItem
+class OrderItems
 {
     public function getOrderItems($orderID)
     {
-        $orderItems = OrderItems::with(['product' => function ($query) {
+        $orderItems = OrderItem::with(['product' => function ($query) {
             $query->select('productName', 'productImage', 'productPrice');
         }])
         ->where('orderID', $orderID)
@@ -26,7 +26,7 @@ class OrderItem
 
     public function getCustomerInfo($customerID)
     {
-        $customerInfo = Customers::select(DB::raw('CONCAT(customerFirstName, " ", customerLastName) as customerName'), 'customerID', 'customerEmail', 'customerContactNo', 'customerAddress')
+        $customerInfo = Customer::select(DB::raw('CONCAT(customerFirstName, " ", customerLastName) as customerName'), 'customerID', 'customerEmail', 'customerContactNo', 'customerAddress')
             ->get();
 
         return [

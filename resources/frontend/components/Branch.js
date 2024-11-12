@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Branch.module";
 
-export default function Branch({ setSelectedBranch, branches }) {
+export default function Branch({ setSelectedBranch, branch, data }) {
+    const [selectedBranch, setSelectedBranchLocal] = useState(
+        data?.user?.branchID,
+    );
+
+    useEffect(() => {
+        if (data?.user?.branchID !== null) {
+            setSelectedBranchLocal(data?.user?.branchID);
+            setSelectedBranch(data?.user?.branchID);
+        }
+    }, [data?.user?.branchID]);
+
     const handleChange = (event) => {
-        setSelectedBranch(event.target.value);
+        const branch = event.target.value;
+        setSelectedBranch(branch);
+        setSelectedBranchLocal(branch);
     };
 
     return (
-        <select className={styles.branchDropdown} onChange={handleChange}>
-            {branches.map((item, index) => (
+        <select
+            className={styles.branchDropdown}
+            onChange={handleChange}
+            value={selectedBranch}
+        >
+            {branch?.map((item, index) => (
                 <option key={index} value={item.branchID}>
                     {item.branchName}
                 </option>

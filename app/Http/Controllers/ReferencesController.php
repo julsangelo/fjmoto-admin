@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Repositories\Reference;
+use App\Http\Repositories\References;
 use Illuminate\Http\Request;
 
 class ReferencesController extends Controller
 {
     protected $references;
 
-    public function __construct(Reference $references)
+    public function __construct(References $references)
     {
         $this->references = $references;
     }

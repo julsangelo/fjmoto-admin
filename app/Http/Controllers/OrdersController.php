@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Repositories\Order;
-use App\Http\Repositories\OrderItem;
+use App\Http\Repositories\Orders;
+use App\Http\Repositories\OrderItems;
 use App\Models\Products;
 use Illuminate\Http\Request;
 
@@ -12,10 +12,10 @@ class OrdersController extends Controller
     protected $order;
     protected $orderItem;
 
-    public function __construct(Order $order, OrderItem $orderItem)
+    public function __construct(Orders $order, OrderItems $orderItems)
     {
         $this->order = $order;
-        $this->orderItem = $orderItem;
+        $this->orderItem = $orderItems;
     }
 
     public function getOrders(Request $request)

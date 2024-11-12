@@ -12,15 +12,18 @@ import OrderItems from "../components/Orders/OrderItems";
 import AddEditEmployee from "../components/Employees/AddEditEmployee";
 import { useContext } from "react";
 import { ReferenceContext } from "../context/ReferenceProvider";
+import { LoginContext } from "../context/LoginProvider";
 
 export default function Main() {
     const { references } = useContext(ReferenceContext);
+    const { onLoad } = useContext(LoginContext);
     const [activeComponent, setActiveComponent] = useState("addEditEmployee");
     const [selectedBranch, setSelectedBranch] = useState("1");
     const [selectedCustomer, setSelectedCustomer] = useState(null);
     const [selectedEmployee, setSelectedEmployee] = useState(null);
     const [selectedEmployeeEdit, setSelectedEmployeeEdit] = useState(null);
     const [selectedOrder, setSelectedOrder] = useState(null);
+    const [showSidebarTopbar, setShowSidebarTopbar] = useState(false);
 
     useEffect(() => {
         const storedComponent = localStorage.getItem("activeComponent");
@@ -28,6 +31,12 @@ export default function Main() {
             setActiveComponent(storedComponent);
         }
     }, []);
+
+    useEffect(() => {
+        if (onLoad != null) {
+            setShowSidebarTopbar(true);
+        }
+    }, [onLoad]);
 
     const showPurchases = (customerId) => {
         setSelectedCustomer(customerId);
@@ -89,7 +98,7 @@ export default function Main() {
             case "employeeDetails":
                 return (
                     <Details
-                        employee={selectedEmployee}
+                        employeeID={selectedEmployee}
                         onBack={() => setActiveComponent("employees")}
                         showEdit={showAddEdit}
                     />
@@ -120,11 +129,15 @@ export default function Main() {
 
     return (
         <>
-            <SideBar setActiveComponent={setActiveComponent} />
-            <TopBar
-                setSelectedBranch={setSelectedBranch}
-                branches={references?.branches}
-            />
+            {showSidebarTopbar && (
+                <>
+                    <SideBar setActiveComponent={setActiveComponent} />
+                    <TopBar
+                        setSelectedBranch={setSelectedBranch}
+                        branch={references?.branch}
+                    />
+                </>
+            )}
             <div>{renderContent()}</div>
         </>
     );

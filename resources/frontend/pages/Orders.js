@@ -13,7 +13,6 @@ export default function Orders({ branchID, showOrders }) {
     const [ordersData, setOrdersData] = useState({});
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [isSortOpen, setIsSortOpen] = useState(false);
-    const [modalType, setModalType] = useState("");
 
     const { searchTerm, handleSearchChange, searchData } = search(
         ordersData.data,

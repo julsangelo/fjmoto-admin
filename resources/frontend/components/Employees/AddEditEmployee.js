@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -9,15 +9,15 @@ import Icon from "../Icon";
 import Dropdown from "../Dropdown";
 import { addEmployee, editEmployee } from "../../ajax/backend";
 import { useFlashMessage } from "../../context/FlashMessage";
+import { LoginContext } from "../../context/LoginProvider";
 
 const employeeValidationSchema = Yup.object().shape({
     employeeFirstName: Yup.string()
         .max(50, "First name cannot exceed 50 characters.")
         .required("First name is required."),
-    employeeMiddleName: Yup.string().max(
-        50,
-        "Middle name cannot exceed 50 characters.",
-    ),
+    employeeMiddleName: Yup.string()
+        .max(50, "Middle name cannot exceed 50 characters.")
+        .nullable(),
     employeeLastName: Yup.string()
         .max(50, "Last name cannot exceed 50 characters.")
         .required("Last name is required."),
@@ -44,6 +44,7 @@ const employeeValidationSchema = Yup.object().shape({
 });
 
 export default function AddEditEmployee({ employee, onBack, references }) {
+    const { user, setComponentOnLoad } = useContext(LoginContext);
     const { setFlashMessage, setFlashStatus } = useFlashMessage();
 
     const {
@@ -72,7 +73,19 @@ export default function AddEditEmployee({ employee, onBack, references }) {
 
     const onSubmit = (data) => {
         if (employee) {
-            editEmployee(data, setFlashMessage, setFlashStatus, onBack);
+            editEmployee(
+                data,
+                setFlashMessage,
+                setFlashStatus,
+                onBack,
+                (data) => {
+                    if ((data.status = "success")) {
+                        if (user?.user?.employeeID === employee.employeeID) {
+                            setComponentOnLoad(true);
+                        }
+                    }
+                },
+            );
         } else {
             addEmployee(data, setFlashMessage, setFlashStatus, onBack);
         }
@@ -155,8 +168,8 @@ export default function AddEditEmployee({ employee, onBack, references }) {
                             value={watch("employeePosition")}
                             {...register("employeePosition")}
                             error={errors.employeePosition?.message}
-                            data={references.position}
-                            dataPrefix="position"
+                            data={references.employeePosition}
+                            dataPrefix="employeePosition"
                         />
                         <Input
                             label="Date Hired"
@@ -172,8 +185,8 @@ export default function AddEditEmployee({ employee, onBack, references }) {
                             value={watch("employeeStatus")}
                             {...register("employeeStatus")}
                             error={errors.employeeStatus?.message}
-                            data={references.employmentStatus}
-                            dataPrefix="employmentStatus"
+                            data={references.employeeStatus}
+                            dataPrefix="employeeStatus"
                         />
                         <Dropdown
                             label="Branch"
@@ -183,7 +196,7 @@ export default function AddEditEmployee({ employee, onBack, references }) {
                             value={watch("employeeBranch")}
                             {...register("employeeBranch")}
                             error={errors.employeeBranch?.message}
-                            data={references.branches}
+                            data={references.branch}
                             dataPrefix="branch"
                         />
                     </div>

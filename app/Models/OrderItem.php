@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Orders extends Model
+class OrderItem extends Model
 {
-    protected $table = 'orders';
+    protected $table = 'orderItem';
     public $timestamps = false;
 
-    public function customer()
+    public function product()
     {
-        return $this->belongsTo(Customers::class, 'customerID', 'customerID');
+        return $this->belongsTo(Product::class, 'productID');
     }
 }

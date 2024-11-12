@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Repositories\Employee;
-use App\Models\Employees;
+use App\Http\Repositories\Employees;
+use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeesController extends Controller
 {
     protected $employee;
 
-    public function __construct(Employee $employee)
+    public function __construct(Employees $employee)
     {
         $this->employee = $employee;
     }
@@ -23,26 +24,35 @@ class EmployeesController extends Controller
         return response()->json($data);
     }
 
+    public function getViewEmployee(Request $request)
+    {
+        $employeeID = $request->input('employeeID');
+        $data = $this->employee->getViewEmployee($employeeID);
+
+        return response()->json($data);
+    }
+
     public function addEmployee(Request $request) {
         $request->validate([
             'employeeFirstName' => 'required|string|max:50',
             'employeeMiddleName' => 'nullable|string|max:50',
             'employeeLastName' => 'required|string|max:50',
-            'employeeEmail' => 'required|email|max:255|unique:employees,employeeEmail',
+            'employeeEmail' => 'required|email|max:255|unique:employee,employeeEmail',
             'employeeContactNo' => 'required|digits:11',
             'employeeAddress' => 'required|string|min:5|max:255',
-            'employeePosition' => 'required|integer|exists:position,positionID',
+            'employeePosition' => 'required|integer|exists:employeePosition,employeePositionID',
             'employeeDateHired' => 'required|date_format:Y-m-d',
-            'employeeStatus' => 'required|integer|exists:employmentStatus,employmentStatusID',
-            'employeeBranch' => 'required|integer|exists:branches,branchID',
+            'employeeStatus' => 'required|integer|exists:employeeStatus,employeeStatusID',
+            'employeeBranch' => 'required|integer|exists:branch,branchID',
         ]);
     
-        $addEmployee = Employees::create([
+        $addEmployee = Employee::create([
             'branchID' => $request->employeeBranch,
             'employeeFirstName' => $request->employeeFirstName,
             'employeeMiddleName' => $request->employeeMiddleName,
             'employeeLastName' => $request->employeeLastName,
             'employeeEmail' => $request->employeeEmail,
+            'employeePassword' => Hash::make($request->employeeBranch . $request->employeeFirstName . $request->employeeLastName),
             'employeeContactNo' => $request->employeeContactNo,
             'employeeAddress' => $request->employeeAddress,
             'employeePosition' => $request->employeePosition,
@@ -58,7 +68,7 @@ class EmployeesController extends Controller
     }
     
     public function editEmployee(Request $request) {
-        $editEmployee = Employees::findOrFail($request->employeeID);
+        $editEmployee = Employee::findOrFail($request->employeeID);
 
         $request->validate([
             'employeeFirstName' => 'required|string|max:50',
@@ -67,24 +77,24 @@ class EmployeesController extends Controller
             'employeeEmail' => 'required|email|max:255',
             'employeeContactNo' => 'required|digits:11',
             'employeeAddress' => 'required|string|min:5|max:255',
-            'employeePosition' => 'required|integer|exists:position,positionID',
+            'employeePosition' => 'required|integer|exists:employeePosition,employeePositionID',
             'employeeDateHired' => 'required|date_format:Y-m-d',
-            'employeeStatus' => 'required|integer|exists:employmentStatus,employmentStatusID',
-            'employeeBranch' => 'required|integer|exists:branches,branchID',
+            'employeeStatus' => 'required|integer|exists:employeeStatus,employeeStatusID',
+            'employeeBranch' => 'required|integer|exists:branch,branchID',
         ]);
     
-        $editEmployee->update($request->only([
-            'branchID',
-            'employeeFirstName',
-            'employeeMiddleName',
-            'employeeLastName',
-            'employeeEmail',
-            'employeeContactNo',
-            'employeeAddress',
-            'employeePosition',
-            'employeeDateHired',
-            'employeeStatus',
-        ]));
+        $editEmployee->update([
+            'branchID' => $request->employeeBranch,
+            'employeeFirstName' => $request->employeeFirstName,
+            'employeeMiddleName' => $request->employeeMiddleName,
+            'employeeLastName' => $request->employeeLastName,
+            'employeeEmail' => $request->employeeEmail,
+            'employeeContactNo' => $request->employeeContactNo,
+            'employeeAddress' => $request->employeeAddress,
+            'employeePosition' => $request->employeePosition,
+            'employeeDateHired' => $request->employeeDateHired,
+            'employeeStatus' => $request->employeeStatus,
+        ]);
     
         if($editEmployee) {
             return response()->json(['message' => 'Employee updated successfully.', 'status' => 'success']);
@@ -96,7 +106,7 @@ class EmployeesController extends Controller
     public function deleteEmployee(Request $request) 
     {
         $employeeID = $request->input('employeeID');
-        $employee = Employees::findOrFail($employeeID)->delete();
+        $employee = Employee::findOrFail($employeeID)->delete();
 
         if ($employee) {
             return response()->json(['message' => 'Employee deleted successfully.', 'status' => 'success']);

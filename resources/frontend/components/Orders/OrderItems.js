@@ -39,14 +39,8 @@ export default function Details({ order, onBack }) {
                         onClick={onBack}
                     />
                     <p>Order No. {order.orderID}</p>
-                    {/* <div className={styles.orderBadge}>
-                        <p>{order.orderFulfillmentStatus}</p>
-                    </div>
-                    <div className={styles.orderBadge}>
-                        <p>{order.orderStatus}</p>
-                    </div> */}
-                    <Tag text={order.orderFulfillmentStatus} />
-                    <Tag text={order.orderStatus} />
+                    <Tag text={order.orderFulfillmentStatus} icon={true} />
+                    <Tag text={order.orderStatus} icon={true} />
                 </div>
                 <div className={styles.orderDateTime}>
                     <p>Order made in {order.orderDateTime}</p>
@@ -58,12 +52,6 @@ export default function Details({ order, onBack }) {
                 </div>
                 <div className={styles.infoContainer}>
                     <div className={styles.info}>
-                        {/* <p>Customer</p>
-                        <div className={styles.infoTable}>
-                            <div>
-                                <p></p>
-                            </div>
-                        </div> */}
                         Customer
                         <div className={styles.infoDetails}>
                             <p>

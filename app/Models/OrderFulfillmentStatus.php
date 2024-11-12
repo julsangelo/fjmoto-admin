@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FulfillmentStatus extends Model
+class OrderFulfillmentStatus extends Model
 {
-    protected $table = 'fulfillmentStatus';
+    protected $table = 'orderFulfillmentStatus';
     public $timestamps = false;
 }

@@ -3,7 +3,7 @@ import styles from "./Main.module";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import Table from "../components/Table";
-import { getInventory } from "../ajax/backend";
+import { getProducts } from "../ajax/backend";
 import Modal from "../components/Modal";
 import Filter from "../components/Filter";
 import Sort from "../components/Sort";
@@ -33,7 +33,7 @@ export default function Inventory({ branchID, references }) {
     );
 
     useEffect(() => {
-        getInventory(branchID, (data) => {
+        getProducts(branchID, (data) => {
             setInventoryData(data);
         });
     }, [branchID, isModalOpen]);

@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Sidebar.module";
 import BarLink from "./BarLink";
 import Brand from "./Brand";
+import { LoginContext } from "../context/LoginProvider";
 
 export default function Sidebar({ setActiveComponent }) {
+    const { user } = useContext(LoginContext);
     const [activeLink, setActiveLink] = useState(() => {
         return localStorage.getItem("activeComponent") || "dashboard";
     });
@@ -49,14 +51,18 @@ export default function Sidebar({ setActiveComponent }) {
                     size="24"
                     isActive={activeLink === "orders"}
                 ></BarLink>
-                <p className={styles.otherMenu}>Management</p>
-                <BarLink
-                    onClick={() => handleLinkClick("employees")}
-                    label="Employees"
-                    icon="employees"
-                    size="24"
-                    isActive={activeLink === "employees"}
-                ></BarLink>
+                {user?.user?.employeePosition === "Admin" && (
+                    <div>
+                        <p className={styles.otherMenu}>Management</p>
+                        <BarLink
+                            onClick={() => handleLinkClick("employees")}
+                            label="Employees"
+                            icon="employees"
+                            size="24"
+                            isActive={activeLink === "employees"}
+                        ></BarLink>
+                    </div>
+                )}
             </div>
         </div>
     );
