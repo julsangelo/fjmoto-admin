@@ -23,6 +23,7 @@ Route::get( '/getReferences', [ReferencesController::class, 'getReferences']);
 Route::post('/deleteEmployee', [EmployeesController::class, 'deleteEmployee']);
 Route::post('/addEmployee', [EmployeesController::class, 'addEmployee']);
 Route::post('/editEmployee', [EmployeesController::class, 'editEmployee']);
+Route::post('/editProfile', [EmployeesController::class, 'editProfile']);
 
 Route::post('/userLogin', [LoginController::class, 'userLogin']);
 Route::get('/getUser', [LoginController::class, 'getUser']);

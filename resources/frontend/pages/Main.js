@@ -10,6 +10,7 @@ import CustomerOrders from "../components/Customers/CustomerOrders";
 import Details from "../components/Employees/Details";
 import OrderItems from "../components/Orders/OrderItems";
 import AddEditEmployee from "../components/Employees/AddEditEmployee";
+import EditProfile from "../components/EditProfile";
 import { useContext } from "react";
 import { ReferenceContext } from "../context/ReferenceProvider";
 import { LoginContext } from "../context/LoginProvider";
@@ -17,16 +18,18 @@ import { LoginContext } from "../context/LoginProvider";
 export default function Main() {
     const { references } = useContext(ReferenceContext);
     const { onLoad } = useContext(LoginContext);
-    const [activeComponent, setActiveComponent] = useState("addEditEmployee");
+    const [activeComponent, setActiveComponent] = useState("dashboard");
+    const [previousComponent, setPreviousComponent] = useState(null);
     const [selectedBranch, setSelectedBranch] = useState("1");
     const [selectedCustomer, setSelectedCustomer] = useState(null);
     const [selectedEmployee, setSelectedEmployee] = useState(null);
     const [selectedEmployeeEdit, setSelectedEmployeeEdit] = useState(null);
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [showSidebarTopbar, setShowSidebarTopbar] = useState(false);
+    const [selectedUserEdit, setSelectedUserEdit] = useState(null);
 
     useEffect(() => {
-        const storedComponent = localStorage.getItem("activeComponent");
+        const storedComponent = sessionStorage.getItem("activeComponent");
         if (storedComponent) {
             setActiveComponent(storedComponent);
         }
@@ -56,6 +59,12 @@ export default function Main() {
     const showAddEdit = (employeeID) => {
         setSelectedEmployeeEdit(employeeID);
         setActiveComponent("addEditEmployee");
+    };
+
+    const showEdit = (user) => {
+        setSelectedUserEdit(user);
+        setPreviousComponent(activeComponent);
+        setActiveComponent("editProfile");
     };
 
     const renderContent = () => {
@@ -124,6 +133,13 @@ export default function Main() {
                         references={references}
                     />
                 );
+            case "editProfile":
+                return (
+                    <EditProfile
+                        user={selectedUserEdit}
+                        onBack={() => setActiveComponent(previousComponent)}
+                    />
+                );
         }
     };
 
@@ -131,7 +147,10 @@ export default function Main() {
         <>
             {showSidebarTopbar && (
                 <>
-                    <SideBar setActiveComponent={setActiveComponent} />
+                    <SideBar
+                        setActiveComponent={setActiveComponent}
+                        showEdit={showEdit}
+                    />
                     <TopBar
                         setSelectedBranch={setSelectedBranch}
                         branch={references?.branch}

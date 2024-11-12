@@ -22,10 +22,12 @@ class Orders
             ->orderBy('order.orderID', "DESC")
             ->get();
 
-        $headers = array_keys($orders->first()->getAttributes());
+        if ($orders->count() > 0) {
+            $headers = array_keys($orders->first()->getAttributes());
+        }
 
         return [
-            'headers' => $headers,
+            'headers' => isset($headers) && !empty($headers) ? $headers : [],
             'data' => $orders
         ];
     }

@@ -10,16 +10,12 @@ class OrderItems
 {
     public function getOrderItems($orderID)
     {
-        $orderItems = OrderItem::with(['product' => function ($query) {
-            $query->select('productName', 'productImage', 'productPrice');
-        }])
-        ->where('orderID', $orderID)
+        $orderItems = OrderItem::join('product', 'orderItem.productID', '=', 'product.productID')
+        ->where('orderItem.orderID', $orderID)
+        ->select('orderItem.*', 'product.productName', 'product.productImage', 'product.productPrice')
         ->get();
 
-        $headers = array_keys($orderItems->first()->getAttributes());
-
         return [
-            'headers' => $headers,
             'data' => $orderItems
         ];
     }

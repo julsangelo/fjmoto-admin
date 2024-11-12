@@ -24,10 +24,12 @@ class Employees
             ->orderBy('employee.employeeID', 'DESC')
             ->get();
 
-        $headers = array_keys($employees->first()->getAttributes());
+        if ($employees->count() > 0) {
+            $headers = array_keys($employees->first()->getAttributes());
+        }
 
         return [
-            'headers' => $headers,
+            'headers' => isset($headers) && !empty($headers) ? $headers : [],
             'data' => $employees
         ];
     }
@@ -50,11 +52,8 @@ class Employees
         ->orderBy('employee.employeeID', 'DESC')
         ->get();
 
-    $headers = array_keys($employees->first()->getAttributes());
-
-    return [
-        'headers' => $headers,
-        'data' => $employees
-    ];
+        return [
+            'data' => $employees
+        ];
     }
 }

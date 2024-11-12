@@ -3,6 +3,7 @@
 namespace App\Http\Repositories;
 
 use App\Models\Branch;
+use App\Models\Employee;
 use App\Models\ProductCategory;
 use App\Models\EmployeeStatus;
 use App\Models\OrderFulfillmentStatus;
@@ -21,6 +22,7 @@ class References
         $orderPaymentStatus = OrderPaymentStatus::get()->toArray();
         $orderStatus = OrderStatus::get()->toArray();
         $employeePosition = EmployeePosition::get()->toArray(); 
+        $employeeAdminCount = Employee::where('employeePosition', 1)->count();
         
         return [
             'branch' => $branch,
@@ -30,6 +32,7 @@ class References
             'orderPaymentStatus' => $orderPaymentStatus,
             'orderStatus' => $orderStatus,
             'employeePosition' => $employeePosition,
+            'employeeAdminCount' => $employeeAdminCount,
         ];
     }
 }

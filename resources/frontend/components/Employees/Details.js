@@ -9,7 +9,6 @@ import { LoginContext } from "../../context/LoginProvider";
 export default function Details({ employeeID, onBack, showEdit }) {
     const { user } = useContext(LoginContext);
     const [viewEmployeeData, setViewEmployeeData] = useState();
-    const isSelf = user?.user?.employeeID !== viewEmployeeData?.employeeID;
 
     const {
         isModalOpen,
@@ -36,12 +35,18 @@ export default function Details({ employeeID, onBack, showEdit }) {
                     className={styles.detailBackButton}
                     onClick={onBack}
                 />
-                <Button
-                    label="Edit details"
-                    icon="edit"
-                    size="24"
-                    onClick={() => showEdit(viewEmployeeData)}
-                />
+                {user?.user?.employeeID !== viewEmployeeData?.employeeID &&
+                    (user?.user?.employeePosition === "Admin" ||
+                        (user?.user?.employeePosition === "Manager" &&
+                            viewEmployeeData?.employeePosition ===
+                                "Staff")) && (
+                        <Button
+                            label="Edit details"
+                            icon="edit"
+                            size="24"
+                            onClick={() => showEdit(viewEmployeeData)}
+                        />
+                    )}
             </div>
             <div className={styles.detailsContainer}>
                 <div className={styles.infoContainer}>
@@ -103,17 +108,25 @@ export default function Details({ employeeID, onBack, showEdit }) {
                     </div>
                 </div>
             </div>
-            {isSelf && (
-                <Button
-                    label="Delete employee"
-                    icon="delete"
-                    size="24"
-                    className={styles.deleteButton}
-                    onClick={() =>
-                        openModal("delete", null, viewEmployeeData, "employee")
-                    }
-                />
-            )}
+            {user?.user?.employeeID !== viewEmployeeData?.employeeID &&
+                (user?.user?.employeePosition === "Admin" ||
+                    (user?.user?.employeePosition === "Manager" &&
+                        viewEmployeeData?.employeePosition === "Staff")) && (
+                    <Button
+                        label="Delete employee"
+                        icon="delete"
+                        size="24"
+                        className={styles.deleteButton}
+                        onClick={() =>
+                            openModal(
+                                "delete",
+                                null,
+                                viewEmployeeData,
+                                "employee",
+                            )
+                        }
+                    />
+                )}
             {isModalOpen && (
                 <Modal
                     onClose={closeModal}

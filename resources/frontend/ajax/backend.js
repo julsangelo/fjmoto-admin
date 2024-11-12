@@ -221,18 +221,33 @@ export function userLogin(
     setFlashMessage,
     setFlashStatus,
     setLoginToken,
-    callback,
 ) {
     axios.post("/userLogin", data).then((response) => {
         setFlashMessage(response.data.message);
         setFlashStatus(response.data.status);
         setLoginToken(response.data.token);
-        callback(response.data);
     });
 }
 
 export function getUser(setUser) {
     axios.get("/getUser").then((response) => {
         setUser(response.data);
+    });
+}
+
+export function editProfile(
+    data,
+    setFlashMessage,
+    setFlashStatus,
+    onBack,
+    setComponentOnLoad,
+) {
+    axios.post("/editProfile", data).then((response) => {
+        setFlashMessage(response.data.message);
+        setFlashStatus(response.data.status);
+        if (response.data.status === "success") {
+            setComponentOnLoad(true);
+            onBack();
+        }
     });
 }

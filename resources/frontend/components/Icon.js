@@ -19,6 +19,8 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import BadgeIcon from "@mui/icons-material/Badge";
 import CircleIcon from "@mui/icons-material/Circle";
 import CheckIcon from "@mui/icons-material/Check";
+import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const ICON_TYPES = {
     dashboard: DashboardIcon,
@@ -42,6 +44,8 @@ const ICON_TYPES = {
     bullet: CircleIcon,
     success: CheckIcon,
     error: CloseIcon,
+    settings: SettingsIcon,
+    logout: LogoutIcon,
 };
 
 export default function Icon({ icon, size, onClick, className }) {

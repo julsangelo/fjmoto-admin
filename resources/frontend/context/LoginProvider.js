@@ -4,15 +4,15 @@ export const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
     let [user, setUser] = useState({});
-    let [token, setToken] = useState(localStorage.getItem("token"));
+    let [token, setToken] = useState(sessionStorage.getItem("token"));
     let [onLoad, setOnLoad] = useState(false);
 
     let setLoginToken = (token) => {
         setToken(token);
         if (token) {
-            localStorage.setItem("token", token);
+            sessionStorage.setItem("token", token);
         } else {
-            localStorage.removeItem("token");
+            sessionStorage.removeItem("token");
         }
     };
 
@@ -20,7 +20,7 @@ export const LoginProvider = ({ children }) => {
         setOnLoad(onLoad);
         setTimeout(() => {
             setOnLoad(false);
-        }, 1000);
+        }, 0);
     };
 
     return (

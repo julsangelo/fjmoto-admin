@@ -19,11 +19,13 @@ class Purchases
         ->where('order.customerID', $customerID)
         ->orderBy('order.orderID', "DESC")
         ->get();
-
-        $headers = array_keys($purchases->first()->getAttributes());
+        
+        if ($purchases->count() > 0) {
+            $headers = array_keys($purchases->first()->getAttributes());
+        }
 
         return [
-            'headers' => $headers,
+            'headers' => isset($headers) && !empty($headers) ? $headers : [],
             'data' => $purchases
         ];
     }

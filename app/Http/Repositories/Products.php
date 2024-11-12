@@ -15,10 +15,12 @@ class Products
             ->get()
             ;
 
-        $headers = array_keys($products->first()->getAttributes());
+        if ($products->count() > 0) {
+            $headers = array_keys($products->first()->getAttributes());
+        }
 
         return [
-            'headers' => $headers,
+            'headers' => isset($headers) && !empty($headers) ? $headers : [],
             'data' => $products,
         ];
     }

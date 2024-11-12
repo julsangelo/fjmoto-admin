@@ -12,10 +12,12 @@ class Customers
         $customers = Customer::select(DB::raw('CONCAT(customerFirstName, " ", customerLastName) as customerName'), 'customerID', 'customerEmail', 'customerContactNo', 'customerAddress')
             ->get();
 
-        $headers = array_keys($customers->first()->getAttributes());
+        if ($customers->count() > 0) {
+            $headers = array_keys($customers->first()->getAttributes());
+        }
 
         return [
-            'headers' => $headers,
+            'headers' => isset($headers) && !empty($headers) ? $headers : [],
             'data' => $customers
         ];
     }

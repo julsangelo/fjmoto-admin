@@ -114,4 +114,36 @@ class EmployeesController extends Controller
             return response()->json(['message' => 'Error deleting the product.', 'status' => 'error']);
         }
     }
+
+    public function editProfile(Request $request)
+    {
+        $employeeID = $request->input('employeeID');
+        $editEmployee = Employee::findOrFail($request->employeeID);
+
+        $request->validate([
+            'employeeFirstName' => 'required|string|max:50',
+            'employeeMiddleName' => 'nullable|string|max:50',
+            'employeeLastName' => 'required|string|max:50',
+            'employeeEmail' => 'required|email|max:255',
+            'employeePassword' => 'nullable|string|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/',
+            'employeeContactNo' => 'required|digits:11',
+            'employeeAddress' => 'required|string|min:5|max:255',
+        ]);
+
+        $editEmployee->update([
+            'employeeFirstName' => $request->employeeFirstName,
+            'employeeMiddleName' => $request->employeeMiddleName,
+            'employeeLastName' => $request->employeeLastName,
+            'employeeEmail' => $request->employeeEmail,
+            'employeePassword' => Hash::make($request->employeePassword),
+            'employeeContactNo' => $request->employeeContactNo,
+            'employeeAddress' => $request->employeeAddress,
+        ]);
+    
+        if($editEmployee) {
+            return response()->json(['message' => 'Profile updated successfully.', 'status' => 'success']);
+        } else {
+            return response()->json(['message' => 'Failed to add employee.', 'status' => 'error'], 500);
+        }
+    }
 }
