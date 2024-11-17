@@ -3,7 +3,7 @@
     "scripts": {
         "start": "webpack",
         "dev": "vite",
-        "build": "vite build",
+        "build": "webpack",
         "watch": "watch npm start"
     },
     "devDependencies": {
