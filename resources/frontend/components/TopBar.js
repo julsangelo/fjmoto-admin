@@ -15,6 +15,7 @@ export default function TopBar({ setSelectedBranch, branch }) {
                     setSelectedBranch={setSelectedBranch}
                     branch={branch}
                     data={user}
+                    disable={user?.user?.employeePosition != "Admin"}
                 />
                 <Role data={user} />
             </div>

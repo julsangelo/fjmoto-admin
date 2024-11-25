@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\EmployeesController;
@@ -27,5 +28,9 @@ Route::post('/editProfile', [EmployeesController::class, 'editProfile']);
 
 Route::post('/userLogin', [LoginController::class, 'userLogin']);
 Route::get('/getUser', [LoginController::class, 'getUser']);
+
+Route::post('/getAllOrder', [DashboardController::class, 'getAllOrder']);
+
+Route::post('/setOrderFulfilled', [OrdersController::class, 'setOrderFulfilled']);
 
 Route::view('/{path?}', 'index');

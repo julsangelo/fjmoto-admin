@@ -9,4 +9,10 @@ class Order extends Model
 {
     protected $table = 'order';
     public $timestamps = false;
+
+    protected $primaryKey = 'orderID';
+
+    protected $fillable = [
+        'orderFulfillmentStatus'
+    ];
 }

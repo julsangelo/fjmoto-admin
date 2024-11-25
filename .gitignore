@@ -1,5 +1,4 @@
 /node_modules
 /vendor
 /public/assets
-/public/fjmoto
-*.log
+/public/fjmoto/images/products

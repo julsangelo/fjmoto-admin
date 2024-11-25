@@ -6,9 +6,12 @@ import Button from "../Button";
 import OrderItem from "../OrderItem";
 import Tag from "../Tag";
 
-export default function Details({ order, onBack }) {
+export default function OrderItems({ order, onBack }) {
     const [orderItems, setOrderItems] = useState({});
     const [customerData, setCustomerData] = useState({});
+    const [fulfillmentStatus, setFulfillmentStatus] = useState(
+        order.orderFulfillmentStatus,
+    );
 
     useEffect(() => {
         getOrderItems(
@@ -26,8 +29,6 @@ export default function Details({ order, onBack }) {
         });
     }, [order.customerID]);
 
-    console.log("Customer ID in order: ", customerData.data);
-
     return (
         <div className={styles.detailContent}>
             <div className={styles.detailHeader}>
@@ -39,7 +40,7 @@ export default function Details({ order, onBack }) {
                         onClick={onBack}
                     />
                     <p>Order No. {order.orderID}</p>
-                    <Tag text={order.orderFulfillmentStatus} icon={true} />
+                    <Tag text={fulfillmentStatus} icon={true} />
                     <Tag text={order.orderStatus} icon={true} />
                 </div>
                 <div className={styles.orderDateTime}>
@@ -49,7 +50,13 @@ export default function Details({ order, onBack }) {
             <div className={styles.detailsContainer}>
                 <div className={styles.infoContent}>
                     <div className={styles.infoContainer}>
-                        <OrderItem orderItems={orderItems.data} />
+                        <OrderItem
+                            orderItems={orderItems.data}
+                            order={order}
+                            isFulfilled={fulfillmentStatus == "Fulfilled"}
+                            isActive={order.orderStatus == "Active"}
+                            setFulfillStatus={setFulfillmentStatus}
+                        />
                     </div>
                     <div className={styles.infoContainer}>
                         <Tag text={order.orderPaymentStatus} icon={true} />

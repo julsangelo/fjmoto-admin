@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Branch.module";
 
-export default function Branch({ setSelectedBranch, branch, data }) {
+export default function Branch({ setSelectedBranch, branch, data, disable }) {
     const [selectedBranch, setSelectedBranchLocal] = useState(
         data?.user?.branchID,
     );
@@ -24,6 +24,7 @@ export default function Branch({ setSelectedBranch, branch, data }) {
             className={styles.branchDropdown}
             onChange={handleChange}
             value={selectedBranch}
+            disabled={disable}
         >
             {branch?.map((item, index) => (
                 <option key={index} value={item.branchID}>

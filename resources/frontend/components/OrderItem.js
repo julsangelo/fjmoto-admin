@@ -1,8 +1,23 @@
 import React from "react";
 import styles from "./OrderItem.module";
 import Button from "./Button";
+import { setFulfill } from "../ajax/backend";
+import { useFlashMessage } from "../context/FlashMessage";
 
-export default function OrderItem({ orderItems }) {
+export default function OrderItem({
+    orderID,
+    orderItems,
+    isFulfilled,
+    isActive,
+    setFulfillStatus,
+}) {
+    const { setFlashMessage, setFlashStatus } = useFlashMessage();
+
+    const handleFulfill = (orderID) => {
+        setFulfill(orderID, setFlashMessage, setFlashStatus);
+        setFulfillStatus("Fulfilled");
+    };
+
     return (
         <div className={styles.orderItemContainer}>
             {orderItems &&
@@ -29,7 +44,13 @@ export default function OrderItem({ orderItems }) {
                         </span>
                     </div>
                 ))}
-            <Button label="Fulfill items" className={styles.orderItemButton} />
+            {!isFulfilled && isActive && (
+                <Button
+                    label="Fulfill items"
+                    className={styles.orderItemButton}
+                    onClick={() => handleFulfill(orderID)}
+                />
+            )}
         </div>
     );
 }

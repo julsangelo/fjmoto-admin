@@ -14,7 +14,7 @@ RUN apk update && \
     apk add --no-cache \
     composer \
     nodejs \
-    npm 
+    npm
 
 COPY ./supervisor/supervisor-npm.conf /opt/docker/etc/supervisor.d/
 COPY ./entrypoints/development.sh /opt/docker/entrypoint/development.sh

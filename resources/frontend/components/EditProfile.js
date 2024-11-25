@@ -25,10 +25,27 @@ const employeeValidationSchema = Yup.object().shape({
         .required("Email is required."),
     employeePassword: Yup.string()
         .nullable()
-        .min(8, "Password must be at least 8 characters")
-        .matches(/[a-z]/, "Password must contain at least one lowercase letter")
-        .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
-        .matches(/[0-9]/, "Password must contain at least one number"),
+        .notRequired()
+        .test(
+            "min-length",
+            "Password must be at least 8 characters",
+            (value) => !value || value.length >= 8,
+        )
+        .test(
+            "lowercase",
+            "Password must contain at least one lowercase letter",
+            (value) => !value || /[a-z]/.test(value),
+        )
+        .test(
+            "uppercase",
+            "Password must contain at least one uppercase letter",
+            (value) => !value || /[A-Z]/.test(value),
+        )
+        .test(
+            "number",
+            "Password must contain at least one number",
+            (value) => !value || /[0-9]/.test(value),
+        ),
     employeeContactNo: Yup.string()
         .required("Contact number is required.")
         .matches(/^[0-9]+$/, "Contact number must only contain numbers.")

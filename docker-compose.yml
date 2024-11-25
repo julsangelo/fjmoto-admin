@@ -1,41 +1,24 @@
 services:
-  laravel:
-    image: fjmoto_admin_laravel-dev
-    build: 
-      context: .
-      target: development
-    container_name: fjmoto_admin_laravel
-    volumes:
-      - ./:/var/www/html
-    ports:
-      - "2303:80"
-    depends_on:
-      - database
-    environment:
-      - DB_HOST=database
-      - DB_PORT=3306
-      - DB_DATABASE=fjmoto-admin
-      - DB_USERNAME=root
-      - DB_PASSWORD=root
-    networks:
-      - network
-
-  database:
-    image: mysql:8.0
-    container_name: fjmoto_admin_database
-    ports:
-      - "2608:3306"
-    environment:
-      MYSQL_DATABASE: fjmoto-admin
-      MYSQL_ROOT_PASSWORD: root
-    volumes:
-      - mysql-data:/var/lib/mysql
-    networks:
-      - network
-
-volumes:
-  mysql-data:
+    laravel:
+        image: admin_laravel
+        build:
+            context: .
+            target: development
+        container_name: website
+        volumes:
+            - ./:/var/www/html
+        ports:
+            - "2303:80"
+        environment:
+            - DB_HOST=cliff_database
+            - DB_PORT=3306
+            - DB_DATABASE=cliff-database
+            - DB_USERNAME=root
+            - DB_PASSWORD=root
+        networks:
+            - cliff-network
 
 networks:
-  network:
-    driver: bridge
+    cliff-network:
+        external: true
+        name: cliff-network

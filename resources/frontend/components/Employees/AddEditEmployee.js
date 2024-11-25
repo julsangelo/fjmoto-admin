@@ -118,59 +118,71 @@ export default function AddEditEmployee({ employee, onBack, references }) {
                 <Icon icon="back" size="20" onClick={onBack} />
             </div>
             <div className={styles.addEditEmployeeContainer}>
-                <div className={styles.addEditEmployeeGroupContainer}>
-                    <p>Personal Details</p>
-                    <div className={styles.addEditEmployeeInputContainer}>
-                        <Input
-                            label="First Name"
-                            {...register("employeeFirstName")}
-                            error={errors.employeeFirstName?.message}
-                        />
-                        <Input
-                            label="Middle Name"
-                            optional={true}
-                            {...register("employeeMiddleName")}
-                            error={errors.employeeMiddleName?.message}
-                        />
-                        <Input
-                            label="Last Name"
-                            {...register("employeeLastName")}
-                            error={errors.employeeLastName?.message}
-                        />
-                        <Input
-                            label="Email"
-                            type="email"
-                            {...register("employeeEmail")}
-                            error={errors.employeeEmail?.message}
-                        />
-                        <Input
-                            label="Contact Number"
-                            number={true}
-                            {...register("employeeContactNo")}
-                            error={errors.employeeContactNo?.message}
-                        />
-                        <Input
-                            label="Address"
-                            {...register("employeeAddress")}
-                            error={errors.employeeAddress?.message}
-                        />
-                    </div>
-                </div>
-                <hr className={styles.addEditEmployeeLineSeparator} />
+                {!employee && (
+                    <>
+                        <div className={styles.addEditEmployeeGroupContainer}>
+                            <p>Personal Details</p>
+                            <div
+                                className={styles.addEditEmployeeInputContainer}
+                            >
+                                <Input
+                                    label="First Name"
+                                    {...register("employeeFirstName")}
+                                    error={errors.employeeFirstName?.message}
+                                />
+                                <Input
+                                    label="Middle Name"
+                                    optional={true}
+                                    {...register("employeeMiddleName")}
+                                    error={errors.employeeMiddleName?.message}
+                                />
+                                <Input
+                                    label="Last Name"
+                                    {...register("employeeLastName")}
+                                    error={errors.employeeLastName?.message}
+                                />
+                                <Input
+                                    label="Email"
+                                    type="email"
+                                    {...register("employeeEmail")}
+                                    error={errors.employeeEmail?.message}
+                                />
+                                <Input
+                                    label="Contact Number"
+                                    number={true}
+                                    {...register("employeeContactNo")}
+                                    error={errors.employeeContactNo?.message}
+                                />
+                                <Input
+                                    label="Address"
+                                    {...register("employeeAddress")}
+                                    error={errors.employeeAddress?.message}
+                                />
+                            </div>
+                        </div>
+                        <hr className={styles.addEditEmployeeLineSeparator} />
+                    </>
+                )}
                 <div className={styles.addEditEmployeeGroupContainer}>
                     <p>Employment Details</p>
                     <div className={styles.addEditEmployeeInputContainer}>
-                        <Dropdown
-                            label="Position/Role"
-                            onSelect={(value) =>
-                                handleDropdownChange(value, "employeePosition")
-                            }
-                            value={watch("employeePosition")}
-                            {...register("employeePosition")}
-                            error={errors.employeePosition?.message}
-                            data={references.employeePosition}
-                            dataPrefix="employeePosition"
-                        />
+                        {user?.user?.employeePosition !== "Manager" &&
+                            employee?.employeePositionID != 3 && (
+                                <Dropdown
+                                    label="Position/Role"
+                                    onSelect={(value) =>
+                                        handleDropdownChange(
+                                            value,
+                                            "employeePosition",
+                                        )
+                                    }
+                                    value={watch("employeePosition")}
+                                    {...register("employeePosition")}
+                                    error={errors.employeePosition?.message}
+                                    data={references.employeePosition}
+                                    dataPrefix="employeePosition"
+                                />
+                            )}
                         <Input
                             label="Date Hired"
                             type="date"

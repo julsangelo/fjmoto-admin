@@ -85,7 +85,8 @@ export function addInventory(data, setFlashMessage, setFlashStatus, onClose) {
             }
         })
         .catch((error) => {
-            console.error("Error adding inventory:", error);
+            setFlashMessage(error.response.data.message);
+            setFlashStatus("error");
         });
 }
 
@@ -249,5 +250,18 @@ export function editProfile(
             setComponentOnLoad(true);
             onBack();
         }
+    });
+}
+
+export function getAllOrder(branch, callback) {
+    axios.post("/getAllOrder", { branch: branch }).then((response) => {
+        callback(response.data);
+    });
+}
+
+export function setFulfill(order, setFlashMessage, setFlashStatus) {
+    axios.post("/setOrderFulfilled", { orderID: order }).then((response) => {
+        setFlashMessage(response.data.message);
+        setFlashStatus(response.data.status);
     });
 }

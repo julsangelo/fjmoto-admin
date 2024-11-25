@@ -1,0 +1,21 @@
+services:
+  database:
+    image: mysql:8.0
+    container_name: database
+    ports:
+      - "2608:3306"
+    environment:
+      MYSQL_DATABASE: cliff-database
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - cliff-network
+
+volumes:
+  mysql-data:
+
+networks:
+  cliff-network:
+    external: true
+    name: cliff-network
