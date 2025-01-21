@@ -64,7 +64,7 @@ export default function UploadImage({ onFileChange, error, uploadedImage }) {
                             <img
                                 src={
                                     uploadedImage === imageSrc
-                                        ? `/fjmoto/${imageSrc}`
+                                        ? `/hydrogen/${imageSrc}`
                                         : imageSrc
                                 }
                                 alt="Uploaded"

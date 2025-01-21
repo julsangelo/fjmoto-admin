@@ -39,7 +39,7 @@ export default function Login() {
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <img
-                    src="/fjmoto/images/logo/logo.png"
+                    src="/hydrogen/images/logo/logo.png"
                     alt=""
                     sizes="40"
                     className={styles.loginImage}

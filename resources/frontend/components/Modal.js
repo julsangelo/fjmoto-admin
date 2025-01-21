@@ -55,7 +55,7 @@ export default function Modal({
             case "image":
                 return (
                     <div className={styles.modalImage}>
-                        <img src={`/fjmoto/${value}`} alt="" />
+                        <img src={`/hydrogen/${value}`} alt="" />
                     </div>
                 );
             default:

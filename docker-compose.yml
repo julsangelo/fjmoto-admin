@@ -4,9 +4,10 @@ services:
         build:
             context: .
             target: development
-        container_name: website
+        container_name: admin-site
         volumes:
             - ./:/var/www/html
+            - ../storage/hydrogen:/var/www/html/public/hydrogen
         ports:
             - "2303:80"
         networks:

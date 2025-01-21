@@ -69,7 +69,7 @@ export default function Table({
                             <div className={styles.tableImageContainer}>
                                 <img
                                     className={styles.image}
-                                    src={`/fjmoto/${item.productImage}`}
+                                    src={`/hydrogen/${item.productImage}`}
                                     alt={item.product || "Product Image"}
                                 />
                                 <div

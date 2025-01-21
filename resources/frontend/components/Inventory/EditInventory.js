@@ -62,7 +62,7 @@ export default function EditInventory({ onClose, product, category }) {
             setValue("productCategory", product.productCategoryID);
 
             if (product.productImage) {
-                fetch(`/fjmoto/${product.productImage}`)
+                fetch(`/storage/${product.productImage}`)
                     .then((res) => res.blob())
                     .then((blob) => {
                         const file = new File([blob], product.productImage, {

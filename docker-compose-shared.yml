@@ -1,7 +1,7 @@
 services:
   database:
     image: mysql:8.0
-    container_name: database
+    container_name: db
     ports:
       - "2608:3306"
     environment:
@@ -9,6 +9,14 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - mysql-data:/var/lib/mysql
+    networks:
+      - cliff-network
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "1051:6379"
     networks:
       - cliff-network
 

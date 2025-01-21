@@ -6,7 +6,7 @@ export default function Brand() {
         <div className={styles.brandContainer}>
             <img
                 className={styles.brandLogo}
-                src="/fjmoto/images/logo/logo.png"
+                src="/hydrogen/images/logo/logo.png"
                 alt=""
             />
             <div className={styles.brandName}>FJ Moto Enduro</div>

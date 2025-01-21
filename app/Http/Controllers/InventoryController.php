@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Repositories\Products;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class InventoryController extends Controller
 {
@@ -35,8 +36,9 @@ class InventoryController extends Controller
         ]);
 
         $image = $request->file('productImage');
-        $imageName = $image->getClientOriginalName();
-        $image->move(public_path('fjmoto/images/products'), $imageName); 
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $image->move(public_path('hydrogen/images/products'), $imageName); 
+        
 
         $imagePath = 'images/products/' . $imageName;
 
@@ -71,7 +73,7 @@ class InventoryController extends Controller
     
         if ($request->hasFile('productImage')) {
             $imageName = $request->file('productImage')->getClientOriginalName();
-            $request->file('productImage')->move(public_path('fjmoto/images/products'), $imageName);
+            $request->file('productImage')->move(public_path('hydrogen/images/products'), $imageName);
             $editProduct->productImage = 'images/products/' . $imageName;
         }
     
