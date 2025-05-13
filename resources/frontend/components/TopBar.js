@@ -11,12 +11,6 @@ export default function TopBar({ setSelectedBranch, branch }) {
     return (
         <div className={styles.topBar}>
             <div className={styles.topBarGroup}>
-                <Branch
-                    setSelectedBranch={setSelectedBranch}
-                    branch={branch}
-                    data={user}
-                    disable={user?.user?.employeePosition != "Admin"}
-                />
                 <Role data={user} />
             </div>
             <User data={user} />

@@ -27,7 +27,7 @@ export default function Sales({ branch }) {
                         {
                             data: allOrder.totalOrder,
                             label: "Orders per Month",
-                            color: "rgb(233, 5, 15)",
+                            color: "#1ea1d7",
                         },
                     ]}
                     height={300}

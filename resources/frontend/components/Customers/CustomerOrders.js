@@ -19,6 +19,7 @@ export default function Purchases({ customer, onBack }) {
         setIsFilterOpen((prev) => !prev);
         setIsSortOpen(false);
     };
+
     return (
         <div className={styles.purchasesContent}>
             <div className={styles.purchasesHeader}>
@@ -76,7 +77,7 @@ export default function Purchases({ customer, onBack }) {
                         Customer
                         <div className={styles.purchasesInfoDetails}>
                             <p>
-                                {customer.customerName}
+                                {customer.customerUsername}
                                 <span>(ID:{customer.customerID})</span>
                             </p>
                             <p>{purchasesData.data?.length || 0} orders</p>
@@ -92,11 +93,17 @@ export default function Purchases({ customer, onBack }) {
                     <div className={styles.purchasesInfoContainer}>
                         Shipping Address
                         <div className={styles.purchasesInfoDetails}>
+                            <p>{customer.customerAddress.deliveryFullName}</p>
                             <p>
-                                {customer.customerFirstName}{" "}
-                                {customer.customerLastName}
+                                {customer.customerAddress
+                                    .deliveryAddressExtra &&
+                                    `${customer.customerAddress.deliveryAddressExtra}, `}
+                                {customer.customerAddress.deliveryAddress},{" "}
+                                {customer.customerAddress.deliveryBarangay},{" "}
+                                {customer.customerAddress.deliveryCity},{" "}
+                                {customer.customerAddress.deliveryProvince},{" "}
+                                {customer.customerAddress.deliveryRegion}
                             </p>
-                            <p>{customer.customerAddress}</p>
                         </div>
                     </div>
                 </div>

@@ -81,7 +81,6 @@ export default function Employees({ branchID, showDetails, showAdd }) {
                         "employeeFirstName",
                         "employeeMiddleName",
                         "employeeLastName",
-                        "employeeBranch",
                         "employeePosition",
                         "employeeStatus",
                     ]}

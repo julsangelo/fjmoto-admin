@@ -6,6 +6,7 @@ use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ReferencesController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,5 +33,9 @@ Route::get('/getUser', [LoginController::class, 'getUser']);
 Route::post('/getAllOrder', [DashboardController::class, 'getAllOrder']);
 
 Route::post('/setOrderFulfilled', [OrdersController::class, 'setOrderFulfilled']);
+Route::post('/setOrderComplete', [OrdersController::class, 'setOrderComplete']);
+Route::post('/addProductCategory', [ProductCategoryController::class, 'addProductCategory']);
+Route::post('/deleteProductCategory', [ProductCategoryController::class, 'deleteProductCategory']);
+Route::post('/editProductCategory', [ProductCategoryController::class, 'editProductCategory']);
 
 Route::view('/{path?}', 'index');

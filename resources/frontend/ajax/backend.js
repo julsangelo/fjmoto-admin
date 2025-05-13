@@ -265,3 +265,73 @@ export function setFulfill(order, setFlashMessage, setFlashStatus) {
         setFlashStatus(response.data.status);
     });
 }
+
+export function setComplete(order, setFlashMessage, setFlashStatus) {
+    axios.post("/setOrderComplete", { orderID: order }).then((response) => {
+        setFlashMessage(response.data.message);
+        setFlashStatus(response.data.status);
+    });
+}
+
+export function addProductCategory(
+    data,
+    setFlashMessage,
+    setFlashStatus,
+    onClose,
+) {
+    axios
+        .post("/addProductCategory", data)
+        .then((response) => {
+            setFlashMessage(response.data.message);
+            setFlashStatus(response.data.status);
+            if ((response.data.status = "success")) {
+                onClose();
+            }
+        })
+        .catch((error) => {
+            setFlashMessage(error.response.data.message);
+            setFlashStatus("error");
+        });
+}
+
+export function deleteProductCategory(
+    productCategoryID,
+    setFlashMessage,
+    setFlashStatus,
+    onClose,
+) {
+    axios
+        .post(`/deleteProductCategory`, {
+            productCategoryID: productCategoryID,
+        })
+        .then((response) => {
+            setFlashMessage(response.data.message);
+            setFlashStatus(response.data.status);
+            if ((response.data.status = "success")) {
+                onClose();
+            }
+        })
+        .catch((error) => {
+            return error;
+        });
+}
+
+export function editProductCategory(
+    data,
+    setFlashMessage,
+    setFlashStatus,
+    onClose,
+) {
+    axios
+        .post("/editProductCategory", data)
+        .then((response) => {
+            setFlashMessage(response.data.message);
+            setFlashStatus(response.data.status);
+            if ((response.data.status = "success")) {
+                onClose();
+            }
+        })
+        .catch((error) => {
+            console.error("Error adding inventory:", error);
+        });
+}

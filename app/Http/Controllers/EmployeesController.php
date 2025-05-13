@@ -117,7 +117,6 @@ class EmployeesController extends Controller
 
     public function editProfile(Request $request)
     {
-        $employeeID = $request->input('employeeID');
         $editEmployee = Employee::findOrFail($request->employeeID);
 
         $request->validate([
@@ -130,15 +129,20 @@ class EmployeesController extends Controller
             'employeeAddress' => 'required|string|min:5|max:255',
         ]);
 
-        $editEmployee->update([
+        $updateData = [
             'employeeFirstName' => $request->employeeFirstName,
             'employeeMiddleName' => $request->employeeMiddleName,
             'employeeLastName' => $request->employeeLastName,
             'employeeEmail' => $request->employeeEmail,
-            'employeePassword' => Hash::make($request->employeePassword),
             'employeeContactNo' => $request->employeeContactNo,
             'employeeAddress' => $request->employeeAddress,
-        ]);
+        ];
+
+        if (!empty($request->employeePassword)) {
+            $updateData['employeePassword'] = Hash::make($request->employeePassword);
+        }
+
+        $editEmployee->update($updateData);
     
         if($editEmployee) {
             return response()->json(['message' => 'Profile updated successfully.', 'status' => 'success']);

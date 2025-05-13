@@ -72,6 +72,15 @@ export default function Sidebar({ setActiveComponent, showEdit }) {
                                 size="24"
                                 isActive={activeLink === "employees"}
                             ></BarLink>
+                            <BarLink
+                                onClick={() =>
+                                    handleLinkClick("productCategories")
+                                }
+                                label="Product Categories"
+                                icon="employees"
+                                size="24"
+                                isActive={activeLink === "productCategories"}
+                            ></BarLink>
                         </div>
                     )}
                 </div>

@@ -15,11 +15,9 @@ class Employees
                 'employee.employeeLastName',
                 'employeePosition.employeePositionName as employeePosition',
                 'employeeStatus.employeeStatusName as employeeStatus',
-                'branch.branchName as employeeBranch',
             )
             ->leftJoin('employeePosition', 'employee.employeePosition', '=', 'employeePosition.employeePositionID')
             ->leftJoin('employeeStatus', 'employee.employeeStatus', '=', 'employeeStatus.employeeStatusID')
-            ->leftJoin('branch', 'employee.branchID', '=', 'branch.branchID')
             ->where('employee.branchID', $branch)
             ->orderBy('employee.employeeID', 'DESC')
             ->get();

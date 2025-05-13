@@ -63,7 +63,7 @@ class InventoryController extends Controller
         $editProduct = Product::findOrFail($request->productID);
     
         $request->validate([
-            'productCode' => 'required|string',
+            'productCode' => 'required|string|unique:product,productCode,' . $editProduct->productID . ',productID',
             'productName' => 'required|string',
             'productStockQuantity' => 'required|integer',
             'productPrice' => 'required|numeric',
@@ -81,8 +81,6 @@ class InventoryController extends Controller
     
         return response()->json(['message' => 'Product updated successfully.', 'status' => 'success']);
     }
-    
-    
 
     public function deleteInventory(Request $request) 
     {

@@ -1,18 +1,17 @@
 .brandContainer {
     width: auto;
     height: auto;
-    display: flex;
     align-items: center;
-    column-gap: 5%;
     padding: 20px;
 }
 
-.brandLogo {
-    height: 40px;
-    width: 40px;
-}
-
-.brandName {
-    font-weight: bold;
-    font-size: 16px;
+.brandHeading {
+    font-weight: 900 !important;
+    background: #065477;
+    background: linear-gradient(to bottom, #065477 40%, #ecc232 60%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: "Chivo", sans-serif !important;
+    font-style: italic !important;
+    font-size: 35px;
 }

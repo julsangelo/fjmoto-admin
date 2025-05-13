@@ -8,6 +8,7 @@ import Button from "../components/Button";
 import { userLogin } from "../ajax/backend";
 import { useFlashMessage } from "../context/FlashMessage";
 import { LoginContext } from "../context/LoginProvider";
+import Brand from "../components/Brand";
 
 export default function Login() {
     const { setLoginToken } = useContext(LoginContext);
@@ -38,12 +39,12 @@ export default function Login() {
                 className={styles.loginContainer}
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <img
-                    src="/hydrogen/images/logo/logo.png"
-                    alt=""
-                    sizes="40"
-                    className={styles.loginImage}
-                />
+                <div className={styles.brandContainer}>
+                    <p className={styles.brandHeading}>CLIFF</p>
+                    <p className={styles.brandSubheading}>
+                        Automotive Parts Trading
+                    </p>
+                </div>
                 <Input
                     label="Email or User ID"
                     name="emailOrUserID"

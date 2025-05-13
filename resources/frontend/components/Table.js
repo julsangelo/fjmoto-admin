@@ -15,7 +15,6 @@ export default function Table({
 }) {
     const itemsPerPage = 7;
     const [currentPage, setCurrentPage] = useState(1);
-
     const isDataValid = Array.isArray(data?.data);
     const totalPages = isDataValid
         ? Math.ceil(data.data.length / itemsPerPage)
@@ -65,11 +64,17 @@ export default function Table({
                 )}
                 {visibleColumns.map((header, index) => (
                     <td key={index}>
-                        {formatHeader(header).toLowerCase() === "image" ? (
+                        {formatHeader(header).toLowerCase() === "image" ||
+                        formatHeader(header).toLowerCase() ===
+                            "category image" ? (
                             <div className={styles.tableImageContainer}>
                                 <img
                                     className={styles.image}
-                                    src={`/hydrogen/${item.productImage}`}
+                                    src={
+                                        item.productImage
+                                            ? `/hydrogen/${item.productImage}`
+                                            : `/hydrogen/${item.productCategoryImage}`
+                                    }
                                     alt={item.product || "Product Image"}
                                 />
                                 <div
@@ -77,7 +82,9 @@ export default function Table({
                                     onClick={() =>
                                         openModal(
                                             "image",
-                                            item.productImage,
+                                            item.productImage
+                                                ? item.productImage
+                                                : item.productCategoryImage,
                                             null,
                                         )
                                     }
@@ -112,38 +119,56 @@ export default function Table({
         </React.Fragment>
     );
 
-    const renderActionButtons = (item) => (
-        <td>
-            <div className={styles.tableAction}>
-                {visibleActions.includes("view") && (
-                    <Button
-                        icon="view"
-                        size="24"
-                        className={styles.tableButton}
-                        onClick={() => onView(item)}
-                    />
-                )}
-                {visibleActions.includes("delete") && (
-                    <Button
-                        icon="delete"
-                        size="24"
-                        className={styles.tableButton}
-                        onClick={() =>
-                            openModal("delete", item.productID, null)
-                        }
-                    />
-                )}
-                {visibleActions.includes("edit") && (
-                    <Button
-                        icon="edit"
-                        size="24"
-                        className={styles.tableButton}
-                        onClick={() => openModal("edit", null, item)}
-                    />
-                )}
-            </div>
-        </td>
-    );
+    const renderActionButtons = (item) => {
+        const isProduct = "productID" in item;
+
+        return (
+            <td>
+                <div className={styles.tableAction}>
+                    {visibleActions.includes("view") && (
+                        <Button
+                            icon="view"
+                            size="24"
+                            className={styles.tableButton}
+                            onClick={() => onView(item)}
+                        />
+                    )}
+                    {visibleActions.includes("delete") && (
+                        <Button
+                            icon="delete"
+                            size="24"
+                            className={styles.tableButton}
+                            onClick={() =>
+                                openModal(
+                                    isProduct
+                                        ? "delete"
+                                        : "deleteProductCategory",
+                                    isProduct
+                                        ? item.productID
+                                        : item.productCategoryID,
+                                    null,
+                                )
+                            }
+                        />
+                    )}
+                    {visibleActions.includes("edit") && (
+                        <Button
+                            icon="edit"
+                            size="24"
+                            className={styles.tableButton}
+                            onClick={() =>
+                                openModal(
+                                    isProduct ? "edit" : "editProductCategory",
+                                    null,
+                                    item,
+                                )
+                            }
+                        />
+                    )}
+                </div>
+            </td>
+        );
+    };
 
     const calculateColSpan = () =>
         (visibleColumns.length || 0) + (checkbox ? 1 : 0) + (action ? 1 : 0);

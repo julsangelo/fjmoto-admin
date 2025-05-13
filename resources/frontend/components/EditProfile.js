@@ -99,6 +99,7 @@ export default function EditProfile({ user, onBack }) {
             setValue("employeeEmail", user.user.employeeEmail);
             setValue("employeeContactNo", user.user.employeeContactNo);
             setValue("employeeAddress", user.user.employeeAddress);
+            setValue("employeePassword", null);
         }
     }, [user, setValue]);
 

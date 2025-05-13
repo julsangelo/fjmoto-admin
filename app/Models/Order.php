@@ -13,6 +13,7 @@ class Order extends Model
     protected $primaryKey = 'orderID';
 
     protected $fillable = [
-        'orderFulfillmentStatus'
+        'orderFulfillmentStatus',
+        'orderStatus'
     ];
 }

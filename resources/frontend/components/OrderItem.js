@@ -32,7 +32,6 @@ export default function OrderItem({
                         </div>
                         <div className={styles.description}>
                             <p>{item.productName}</p>
-                            <div>Product Specification</div>
                         </div>
                         <div className={styles.priceQuantity}>
                             <span>₱ {item.productPrice}</span>
@@ -46,7 +45,7 @@ export default function OrderItem({
                 ))}
             {!isFulfilled && isActive && (
                 <Button
-                    label="Fulfill items"
+                    label="Pack order"
                     className={styles.orderItemButton}
                     onClick={() => handleFulfill(orderID)}
                 />

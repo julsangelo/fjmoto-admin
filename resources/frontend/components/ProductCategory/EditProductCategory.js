@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import styles from "./EditInventory.module";
+import styles from "./EditProductCategory.module";
 import Input from "../Input";
 import UploadImage from "../UploadImage";
 import Button from "../Button";
@@ -7,26 +7,15 @@ import Dropdown from "../Dropdown";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { editInventory } from "../../ajax/backend";
+import { editInventory, editProductCategory } from "../../ajax/backend";
 import { useFlashMessage } from "../../context/FlashMessage";
 
 const schema = yup.object().shape({
-    productID: yup.number().required(),
-    productCode: yup.string().required("ID is required."),
-    productName: yup.string().required("Product Name is required."),
-    productStockQuantity: yup
-        .number()
-        .typeError("Quantity must be a number.")
-        .required("Quantity is required.")
-        .positive("Quantity must be positive.")
-        .integer("Quantity must be an integer."),
-    productPrice: yup
-        .number()
-        .typeError("Price must be a number.")
-        .required("Price is required.")
-        .positive("Price must be positive."),
-    productCategory: yup.string().required("Category is required."),
-    productImage: yup
+    productCategoryID: yup.number().required(),
+    productCategoryName: yup
+        .string()
+        .required("Product Category Name is required."),
+    productCategoryImage: yup
         .mixed()
         .test(
             "required",
@@ -40,7 +29,7 @@ const schema = yup.object().shape({
         ),
 });
 
-export default function EditInventory({ onClose, product, category }) {
+export default function EditProductCategory({ onClose, productCategory }) {
     const { setFlashMessage, setFlashStatus } = useFlashMessage();
 
     const {
@@ -53,16 +42,15 @@ export default function EditInventory({ onClose, product, category }) {
     } = useForm({ resolver: yupResolver(schema) });
 
     useEffect(() => {
-        if (product) {
-            setValue("productID", product.productID);
-            setValue("productCode", product.productCode);
-            setValue("productName", product.productName);
-            setValue("productStockQuantity", product.productStockQuantity);
-            setValue("productPrice", product.productPrice);
-            setValue("productCategory", product.productCategoryID);
+        if (productCategory) {
+            setValue(
+                "productCategoryName",
+                productCategory.productCategoryName,
+            );
+            setValue("productCategoryID", productCategory.productCategoryID);
 
-            if (product.productImage) {
-                fetch(`/storage/${product.productImage}`)
+            if (productCategory.productCategoryImage) {
+                fetch(`/storage/${productCategory.productCategoryImage}`)
                     .then((res) => res.blob())
                     .then((blob) => {
                         const dataTransfer = new DataTransfer();
@@ -72,18 +60,14 @@ export default function EditInventory({ onClose, product, category }) {
                             fileInputRef.current.files = dataTransfer.files;
                         }
                     });
+                console.log(productCategory.productCategoryImage);
             }
         }
-    }, [product, setValue]);
+    }, [productCategory, setValue]);
 
     const handleFileChange = (file) => {
-        setValue("productImage", file);
-        trigger("productImage");
-    };
-
-    const handleCategoryChange = (value) => {
-        setValue("productCategory", value);
-        trigger("productCategory");
+        setValue("productCategoryImage", file);
+        trigger("productCategoryImage");
     };
 
     const onSubmit = (data) => {
@@ -91,8 +75,7 @@ export default function EditInventory({ onClose, product, category }) {
         Object.entries({ ...data }).forEach(([key, value]) => {
             formData.append(key, value);
         });
-
-        editInventory(formData, setFlashMessage, setFlashStatus, onClose);
+        editProductCategory(formData, setFlashMessage, setFlashStatus, onClose);
     };
 
     const renderInput = (label, name, type = "text", peso = false) => (
@@ -111,28 +94,18 @@ export default function EditInventory({ onClose, product, category }) {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div className={styles.editInventoryTitle}>Edit Inventory</div>
+            <div className={styles.editInventoryTitle}>
+                Edit Product Category
+            </div>
             <div className={styles.editInventoryForm}>
                 <div className={styles.editInventoryImage}>
                     <UploadImage
                         onFileChange={handleFileChange}
-                        uploadedImage={product?.productImage}
-                        error={errors.productImage?.message}
+                        uploadedImage={productCategory?.productCategoryImage}
+                        error={errors.productCategoryImage?.message}
                     />
                 </div>
-                {renderInput("Code", "productCode")}
-                {renderInput("Product Name", "productName")}
-                {renderInput("Quantity", "productStockQuantity", "number")}
-                {renderInput("Price", "productPrice", "number", true)}
-                <Dropdown
-                    label="Category"
-                    className={styles.editInventoryDropdown}
-                    onSelect={handleCategoryChange}
-                    value={watch("productCategory")}
-                    error={errors.productCategory?.message}
-                    data={category}
-                    dataPrefix="productCategory"
-                />
+                {renderInput("Product Category Name", "productCategoryName")}
             </div>
             <div className={styles.editInventoryButton}>
                 <Button

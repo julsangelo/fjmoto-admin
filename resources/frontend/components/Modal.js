@@ -5,6 +5,9 @@ import AddInventory from "./Inventory/AddInventory";
 import DeleteInventory from "./Inventory/DeleteInventory";
 import EditInventory from "./Inventory/EditInventory";
 import DeleteEmployee from "./Employees/DeleteEmployee";
+import AddProductCategory from "./ProductCategory/AddProductCategory";
+import EditProductCategory from "./ProductCategory/EditProductCategory";
+import DeleteProductCategory from "./ProductCategory/DeleteProductCategory";
 
 export default function Modal({
     onClose,
@@ -57,6 +60,29 @@ export default function Modal({
                     <div className={styles.modalImage}>
                         <img src={`/hydrogen/${value}`} alt="" />
                     </div>
+                );
+            case "addProductCategory":
+                return (
+                    <AddProductCategory
+                        onClose={onClose}
+                        productCategory={data}
+                        category={references.productCategory}
+                    />
+                );
+            case "editProductCategory":
+                return (
+                    <EditProductCategory
+                        onClose={onClose}
+                        productCategory={data}
+                        category={references.productCategory}
+                    />
+                );
+            case "deleteProductCategory":
+                return (
+                    <DeleteProductCategory
+                        onClose={onClose}
+                        productCategory={value}
+                    />
                 );
             default:
                 return <div>No content available</div>;

@@ -45,6 +45,7 @@ class OrdersController extends Controller
 
     public function setOrderFulfilled (Request $request) 
     {
+        
         $editOrder = Order::findOrFail($request->orderID);
 
         $editOrder->update([
@@ -54,7 +55,23 @@ class OrdersController extends Controller
         if($editOrder) {
             return response()->json(['message' => 'Order fulfilled.', 'status' => 'success']);
         } else {
-            return response()->json(['message' => 'Failed to fulfill.', 'status' => 'error'], 500);
+            return response()->json(['message' => 'Failed to fulfill.', 'status' => 'error']);
+        }
+    }
+
+    public function setOrderComplete (Request $request) 
+    {
+        
+        $editOrder = Order::findOrFail($request->orderID);
+
+        $editOrder->update([
+            'orderStatus' => 2
+        ]);
+
+        if($editOrder) {
+            return response()->json(['message' => 'Order complete.', 'status' => 'success']);
+        } else {
+            return response()->json(['message' => 'Failed to complete.', 'status' => 'error']);
         }
     }
 }

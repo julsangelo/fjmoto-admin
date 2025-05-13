@@ -8,6 +8,29 @@
     align-items: center;
 }
 
+.brandContainer {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.brandHeading {
+    font-weight: 900 !important;
+    background: linear-gradient(to bottom, #065477 40%, #ecc232 60%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: "Chivo", sans-serif !important;
+    font-style: italic !important;
+    font-size: 40px;
+    width: 135px;
+}
+
+.brandSubheading {
+    font-size: 17px;
+    width: 120px;
+    font-weight: 800;
+}
+
 .loginContainer {
     background-color: $b_primary;
     padding: 50px;

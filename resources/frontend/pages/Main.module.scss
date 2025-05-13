@@ -8,6 +8,7 @@
     top: 71px;
     right: 0;
     padding: 40px;
+    overflow: auto;
 }
 
 .header {
@@ -23,7 +24,8 @@
 .mainContent {
     background-color: $b_primary;
     margin-top: 20px;
-    width: 100%;
+    width: fit-content;
+    min-width: 100%;
     height: calc(100% - 68px);
     border: 1px solid $c_gray;
     border-radius: 5px;

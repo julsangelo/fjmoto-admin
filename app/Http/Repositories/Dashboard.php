@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class Dashboard
 {
-    public function getAllOrder ($branch) 
+    public function getAllOrder () 
     {
         $ordersPerMonth = Order::selectRaw('
             YEAR(orderDateTime) as year, 
@@ -15,7 +15,6 @@ class Dashboard
             MONTHNAME(orderDateTime) as monthName, 
             COUNT(*) as orderCount
         ')
-        ->where('branchID', $branch)
         ->groupBy(DB::raw('YEAR(orderDateTime)'), DB::raw('MONTH(orderDateTime)'), DB::raw('MONTHNAME(orderDateTime)'))
         ->orderBy(DB::raw('MONTH(orderDateTime)'), 'asc')
         ->get();

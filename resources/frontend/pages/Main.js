@@ -14,6 +14,7 @@ import EditProfile from "../components/EditProfile";
 import { useContext } from "react";
 import { ReferenceContext } from "../context/ReferenceProvider";
 import { LoginContext } from "../context/LoginProvider";
+import ProductCategory from "./ProductCategory";
 
 export default function Main() {
     const { references } = useContext(ReferenceContext);
@@ -137,6 +138,12 @@ export default function Main() {
                 return (
                     <EditProfile
                         user={selectedUserEdit}
+                        onBack={() => setActiveComponent(previousComponent)}
+                    />
+                );
+            case "productCategories":
+                return (
+                    <ProductCategory
                         onBack={() => setActiveComponent(previousComponent)}
                     />
                 );

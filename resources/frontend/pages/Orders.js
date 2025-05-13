@@ -28,8 +28,8 @@ export default function Orders({ branchID, showOrders }) {
         );
     }, [branchID]);
 
-    const handleView = (orderID) => {
-        showOrders(orderID);
+    const handleView = (order) => {
+        showOrders(order);
     };
 
     return (
@@ -94,8 +94,8 @@ export default function Orders({ branchID, showOrders }) {
                     branchID={branchID}
                     visibleColumns={[
                         "orderID",
-                        "orderDateTime",
-                        "customerName",
+                        "orderDate",
+                        "customerUsername",
                         "orderTotal",
                         "orderPaymentStatus",
                         "orderFulfillmentStatus",

@@ -47,11 +47,10 @@ export default function Customer({ showPurchases }) {
                     visibleActions={["view"]}
                     onView={handleView}
                     visibleColumns={[
-                        "customerName",
+                        "customerUsername",
                         "customerID",
                         "customerEmail",
                         "customerContactNo",
-                        "customerAddress",
                     ]}
                 />
             </div>
